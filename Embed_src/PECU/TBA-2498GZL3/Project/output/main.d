@@ -1,0 +1,17 @@
+..\output\main.o: ..\src\main.c
+..\output\main.o: ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD91xx\ISD9xx.h
+..\output\main.o: ..\..\ISD91XX_SDK\CMSIS\CM0\CoreSupport\core_cm0.h
+..\output\main.o: C:\Keil\ARM\RV31\INC\stdint.h
+..\output\main.o: ..\..\ISD91XX_SDK\CMSIS\CM0\CoreSupport\core_cmInstr.h
+..\output\main.o: ..\..\ISD91XX_SDK\CMSIS\CM0\CoreSupport\core_cmFunc.h
+..\output\main.o: ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD91xx\system_ISD9xx.h
+..\output\main.o: ..\..\ISD91XX_SDK\NuvotonPlatform_Keil\Include\System\SysInfra.h
+..\output\main.o: ..\..\ISD91XX_SDK\NuvotonPlatform_Keil\Include\System\ModuleID.h
+..\output\main.o: ..\..\ISD91XX_SDK\CMSIS\CM0\CoreSupport\core_cm0.h
+..\output\main.o: ..\inc\hw_config.h
+..\output\main.o: ..\..\ISD91XX_SDK\NuvotonPlatform_Keil\Include\Driver\DrvGPIO.h
+..\output\main.o: ..\inc\uart.h
+..\output\main.o: ..\inc\timer.h
+..\output\main.o: ..\inc\play_ctrl.h
+..\output\main.o: ..\inc\playPCM.h
+..\output\main.o: ..\inc\pecu.h

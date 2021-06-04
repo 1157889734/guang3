@@ -1,0 +1,11 @@
+..\output\audio_file.o: ..\src\audio_file.c
+..\output\audio_file.o: ..\inc\audio_file.h
+..\output\audio_file.o: ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD91xx\ISD9xx.h
+..\output\audio_file.o: ..\..\ISD91XX_SDK\CMSIS\CM0\CoreSupport\core_cm0.h
+..\output\audio_file.o: C:\Keil\ARM\RV31\INC\stdint.h
+..\output\audio_file.o: ..\..\ISD91XX_SDK\CMSIS\CM0\CoreSupport\core_cmInstr.h
+..\output\audio_file.o: ..\..\ISD91XX_SDK\CMSIS\CM0\CoreSupport\core_cmFunc.h
+..\output\audio_file.o: ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD91xx\system_ISD9xx.h
+..\output\audio_file.o: ..\..\ISD91XX_SDK\NuvotonPlatform_Keil\Include\System\SysInfra.h
+..\output\audio_file.o: ..\..\ISD91XX_SDK\NuvotonPlatform_Keil\Include\System\ModuleID.h
+..\output\audio_file.o: ..\..\ISD91XX_SDK\CMSIS\CM0\CoreSupport\core_cm0.h

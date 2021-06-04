@@ -1,0 +1,12 @@
+.\obj\drvgpio.o: ..\..\..\Src\Driver\DrvGPIO.c
+.\obj\drvgpio.o: D:\Keil\ARM\RV31\INC\stdio.h
+.\obj\drvgpio.o: ..\..\..\..\CMSIS\CM0\DeviceSupport\Nuvoton\ISD91xx\ISD9xx.h
+.\obj\drvgpio.o: ..\..\..\..\CMSIS\CM0\CoreSupport\core_cm0.h
+.\obj\drvgpio.o: D:\Keil\ARM\RV31\INC\stdint.h
+.\obj\drvgpio.o: ..\..\..\..\CMSIS\CM0\CoreSupport\core_cmInstr.h
+.\obj\drvgpio.o: ..\..\..\..\CMSIS\CM0\CoreSupport\core_cmFunc.h
+.\obj\drvgpio.o: ..\..\..\..\CMSIS\CM0\DeviceSupport\Nuvoton\ISD91xx\system_ISD9xx.h
+.\obj\drvgpio.o: ..\..\..\Include\System\SysInfra.h
+.\obj\drvgpio.o: ..\..\..\Include\System\ModuleID.h
+.\obj\drvgpio.o: ..\..\..\..\CMSIS\CM0\CoreSupport\core_cm0.h
+.\obj\drvgpio.o: ..\..\..\Include\Driver\DrvGPIO.h

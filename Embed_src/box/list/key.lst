@@ -1,0 +1,317 @@
+C51 COMPILER V8.08   KEY                                                                   11/14/2014 14:07:30 PAGE 1   
+
+
+C51 COMPILER V8.08, COMPILATION OF MODULE KEY
+OBJECT MODULE PLACED IN .\list\key.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE key.c COMPACT OPTIMIZE(1,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\list\key.
+                    -lst) OBJECT(.\list\key.obj)
+
+line level    source
+
+   1          /*
+   2          *******************************************************************************
+   3          **  Copyright (c) 2014, 深圳市北海轨道交通技术有限公司
+   4          **  All rights reserved.
+   5          **      
+   6          **  文件说明: 
+   7          **  创建日期: 2014.01.03
+   8          **
+   9          **  当前版本：1.0
+  10          **  作者：李军
+  11          *******************************************************************************
+  12          */
+  13          #include<main.h>
+  14          
+  15          
+  16          
+  17          bit gKeyPcRst = KEY_INVALID;
+  18          bit gKeyPc = KEY_INVALID;
+  19          bit gKeyCc = KEY_INVALID;
+  20          bit gKeyPA = KEY_INVALID;
+  21          bit gKeyPtt = KEY_INVALID;
+  22          //bit gKeyIdle = KEY_INVALID; // 按键既不在PA  也不在PC
+  23          bit gKeyLedTest = KEY_INVALID;
+  24          
+  25          //static eKeyType xdata gKey;
+  26          
+  27          tKey gKey;
+  28          
+  29          /*
+  30          void AppendKeyValue(eKeyType keyType)
+  31          {
+  32                  
+  33                  if (((gKey.q_in+1)%KEY_QUEUE_NUM) == gKey.q_out) return;
+  34          
+  35                  gKey.key_queue[gKey.q_in] = keyType;
+  36          
+  37                  gKey.q_in += 1;
+  38                  gKey.q_in %= KEY_QUEUE_NUM;
+  39          }
+  40          */
+  41          
+  42          
+  43          eKeyType GetKeyValue(void)
+  44          {
+  45   1              eKeyType value;
+  46   1      
+  47   1              
+  48   1              if (gKey.q_in == gKey.q_out) return KEY_TYPE_NULL;
+  49   1      
+  50   1              value = gKey.key_queue[gKey.q_out];
+  51   1              gKey.q_out += 1;
+  52   1              gKey.q_out %= KEY_QUEUE_NUM;
+  53   1              
+  54   1              return value;
+C51 COMPILER V8.08   KEY                                                                   11/14/2014 14:07:30 PAGE 2   
+
+  55   1      }
+  56          
+  57          /*
+  58          byte GetKeyPaStat(void)
+  59          {
+  60                  if (gKeyPA == KEY_VALID) return 0;
+  61                  else return 1;
+  62          }
+  63          
+  64          byte GetKeyCcStat(void)
+  65          {
+  66                  if (gKeyCc == KEY_VALID) return 0;
+  67                  else return 1;
+  68          }
+  69          
+  70          byte GetKeyPcStat(void)
+  71          {
+  72                  if (gKeyPc == KEY_VALID) return 0;
+  73                  else return 1;
+  74          }
+  75          
+  76          byte
+  77          */
+  78          
+  79          
+  80          byte ScanKey()
+  81          {
+  82   1              static xdata unsigned short pcrst_tick;
+  83   1              static xdata unsigned short pc_tick;
+  84   1              static xdata unsigned short ptt_tick;
+  85   1              //static xdata unsigned short idle_tick;
+  86   1              static xdata unsigned short pa_tick;
+  87   1              static xdata unsigned short cc_tick;
+  88   1              static xdata unsigned short ledtest_tick;
+  89   1      
+  90   1              KEY_PCRST_STAT = 1;
+  91   1              if (0 == KEY_PCRST_STAT) // PCRST 按键扫描
+  92   1              {
+  93   2                      if (gSys10msTick-pcrst_tick>KEY_SCAN_DEBOUNCE)
+  94   2                      {
+  95   3                              if (gKeyPcRst== KEY_INVALID)
+  96   3                              {
+  97   4                                      gKeyPcRst = KEY_VALID;
+  98   4                                      BoxDataUpdateKeyPcRst(0);
+  99   4                              }
+ 100   3                      }
+ 101   2                      if(gKeyPcRst == KEY_VALID)
+ 102   2                              pcrst_tick = gSys10msTick;
+ 103   2              }
+ 104   1              else 
+ 105   1              {
+ 106   2                      if (gSys10msTick-pcrst_tick>KEY_SCAN_DEBOUNCE)
+ 107   2                      {
+ 108   3                              if (gKeyPcRst == KEY_VALID)
+ 109   3                              {
+ 110   4                                      gKeyPcRst = KEY_INVALID;
+ 111   4                                      BoxDataUpdateKeyPcRst(1);
+ 112   4                              }
+ 113   3                      }
+ 114   2                      if(gKeyPcRst == KEY_INVALID)
+ 115   2                              pcrst_tick = gSys10msTick;
+ 116   2              }
+C51 COMPILER V8.08   KEY                                                                   11/14/2014 14:07:30 PAGE 3   
+
+ 117   1              
+ 118   1              KEY_PC_STAT = 1;                                                                
+ 119   1              if (0 == KEY_PC_STAT)       // PC 按键扫描
+ 120   1              {
+ 121   2                      if (gSys10msTick-pc_tick>KEY_SCAN_DEBOUNCE)
+ 122   2                      {
+ 123   3                              if (gKeyPc == KEY_INVALID)
+ 124   3                              {
+ 125   4                                      gKeyPc = KEY_VALID;
+ 126   4                                      BoxDataUpdateKeyPc(0);
+ 127   4                              }
+ 128   3                      }
+ 129   2                      if(gKeyPc == KEY_VALID)
+ 130   2                              pc_tick = gSys10msTick;
+ 131   2              }
+ 132   1              else 
+ 133   1              {
+ 134   2                      if (gSys10msTick-pc_tick>KEY_SCAN_DEBOUNCE)
+ 135   2                      {
+ 136   3                              if (gKeyPc == KEY_VALID)
+ 137   3                              {
+ 138   4                                      gKeyPc = KEY_INVALID;
+ 139   4                                      BoxDataUpdateKeyPc(1);
+ 140   4                              }
+ 141   3                      }
+ 142   2                      if(gKeyPc == KEY_INVALID)
+ 143   2                              pc_tick = gSys10msTick;
+ 144   2              }
+ 145   1      
+ 146   1              KEY_PTT_STAT = 1;
+ 147   1              if (0 == KEY_PTT_STAT)  // PTT 按键扫描
+ 148   1              {
+ 149   2                      if (gSys10msTick-ptt_tick>KEY_SCAN_DEBOUNCE)
+ 150   2                      {
+ 151   3                              if (gKeyPtt == KEY_INVALID)
+ 152   3                              {
+ 153   4                                      gKeyPtt = KEY_VALID;
+ 154   4                                      BoxDataUpdateKeyPtt(0);
+ 155   4                              }
+ 156   3                      }
+ 157   2                      if (gKeyPtt == KEY_VALID)
+ 158   2                      {
+ 159   3                              ptt_tick = gSys10msTick;
+ 160   3                      }
+ 161   2              }
+ 162   1              else 
+ 163   1              {               
+ 164   2                      if (gSys10msTick-ptt_tick > KEY_SCAN_DEBOUNCE)
+ 165   2                      {
+ 166   3                              if(gKeyPtt == KEY_VALID)
+ 167   3                              {
+ 168   4                                      BoxDataUpdateKeyPtt(1);
+ 169   4                                      gKeyPtt = KEY_INVALID;
+ 170   4                              }
+ 171   3                      }               
+ 172   2                      if (gKeyPtt == KEY_INVALID)
+ 173   2                      {
+ 174   3                              ptt_tick = gSys10msTick;
+ 175   3                      }
+ 176   2              }
+ 177   1      
+ 178   1              KEY_CC_STAT = 1;
+C51 COMPILER V8.08   KEY                                                                   11/14/2014 14:07:30 PAGE 4   
+
+ 179   1              if (0 == KEY_CC_STAT)        // CC 按键扫描
+ 180   1              {
+ 181   2                      if (gSys10msTick-cc_tick>KEY_SCAN_DEBOUNCE)
+ 182   2                      {
+ 183   3                              if (gKeyCc == KEY_INVALID)
+ 184   3                              {
+ 185   4                                      gKeyCc = KEY_VALID;
+ 186   4                                      BoxDataUpdateKeyCc(0);                          
+ 187   4                              }
+ 188   3                      }       
+ 189   2                      if(gKeyCc == KEY_VALID)
+ 190   2                              cc_tick = gSys10msTick;
+ 191   2              }
+ 192   1              else 
+ 193   1              {       
+ 194   2                      if (gSys10msTick-cc_tick>KEY_SCAN_DEBOUNCE)
+ 195   2                      {
+ 196   3                              if (gKeyCc == KEY_VALID)
+ 197   3                              {
+ 198   4                                      gKeyCc = KEY_INVALID;
+ 199   4                                      BoxDataUpdateKeyCc(1);
+ 200   4                              }
+ 201   3                      }
+ 202   2                      if(gKeyCc == KEY_INVALID)
+ 203   2                              cc_tick = gSys10msTick;
+ 204   2              }
+ 205   1      
+ 206   1              KEY_PA_STAT = 1;
+ 207   1              if (0 == KEY_PA_STAT)   // PA 按键扫描
+ 208   1              {
+ 209   2                      if (gSys10msTick-pa_tick>KEY_SCAN_DEBOUNCE)
+ 210   2                      {
+ 211   3                              if (gKeyPA== KEY_INVALID)
+ 212   3                              {
+ 213   4                                      gKeyPA = KEY_VALID;
+ 214   4                                      BoxDataUpdateKeyPa(0);                          
+ 215   4                              }
+ 216   3                      }       
+ 217   2                      if(gKeyPA == KEY_VALID)
+ 218   2                              pa_tick = gSys10msTick;
+ 219   2              }
+ 220   1              else 
+ 221   1              {       
+ 222   2                      if (gSys10msTick-pa_tick>KEY_SCAN_DEBOUNCE)
+ 223   2                      {
+ 224   3                              if (gKeyPA == KEY_VALID)
+ 225   3                              {
+ 226   4                                      gKeyPA = KEY_INVALID;
+ 227   4                                      BoxDataUpdateKeyPa(1);
+ 228   4                              }
+ 229   3                      }
+ 230   2                      if(gKeyPA == KEY_INVALID)
+ 231   2                              pa_tick = gSys10msTick;
+ 232   2              }
+ 233   1      
+ 234   1              KEY_LED_TEST_STAT = 1;
+ 235   1              if (0 == KEY_LED_TEST_STAT)     // LED_TEST 按键扫描
+ 236   1              {
+ 237   2                      if (gSys10msTick-ledtest_tick>KEY_SCAN_DEBOUNCE)
+ 238   2                      {
+ 239   3                              if (gKeyLedTest == KEY_INVALID)
+ 240   3                              {
+C51 COMPILER V8.08   KEY                                                                   11/14/2014 14:07:30 PAGE 5   
+
+ 241   4                                      gKeyLedTest = KEY_VALID;
+ 242   4                                      BoxDataUpdateKeyLedTest(0);
+ 243   4                              }
+ 244   3                      }
+ 245   2                      if(gKeyLedTest == KEY_VALID)                    
+ 246   2                              ledtest_tick = gSys10msTick;
+ 247   2              }
+ 248   1              else 
+ 249   1              {
+ 250   2                      if (gSys10msTick-ledtest_tick>KEY_SCAN_DEBOUNCE)
+ 251   2                      {
+ 252   3                              if (gKeyLedTest == KEY_VALID)
+ 253   3                              {
+ 254   4                                      gKeyLedTest =KEY_INVALID ;
+ 255   4                                      BoxDataUpdateKeyLedTest(1);
+ 256   4                              }
+ 257   3                      }
+ 258   2                      if(gKeyLedTest == KEY_INVALID)                  
+ 259   2                              ledtest_tick = gSys10msTick;
+ 260   2              }
+ 261   1      
+ 262   1      
+ 263   1              /*
+ 264   1              if ((1 == KEY_PA_STAT) && (1 == KEY_CC_STAT))
+ 265   1              {
+ 266   1                      if (gSys10msTick-idle_tick>KEY_SCAN_DEBOUNCE)
+ 267   1                      {
+ 268   1                              if (gKeyIdle == KEY_INVALID)
+ 269   1                              {
+ 270   1                                      gKeyIdle = KEY_VALID;
+ 271   1                                      AppendKeyValue(KEY_TYPE_IDLE);
+ 272   1                                      goto scan_key_over;
+ 273   1                              }
+ 274   1                      }
+ 275   1              }
+ 276   1      */
+ 277   1              
+ 278   1      //scan_key_over:
+ 279   1      
+ 280   1              return 0;
+ 281   1      }
+ 282          
+ 283          
+ 284          
+ 285          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   1311    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =     12    ----
+   PDATA SIZE       =     13    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      6    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

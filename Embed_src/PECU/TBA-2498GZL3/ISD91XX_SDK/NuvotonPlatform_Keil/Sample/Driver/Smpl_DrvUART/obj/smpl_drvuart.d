@@ -1,0 +1,13 @@
+.\obj\smpl_drvuart.o: Smpl_DrvUART.c
+.\obj\smpl_drvuart.o: D:\Keil\ARM\RV31\INC\stdio.h
+.\obj\smpl_drvuart.o: ..\..\..\Include\Driver\DrvUART.h
+.\obj\smpl_drvuart.o: ..\..\..\..\CMSIS\CM0\DeviceSupport\Nuvoton\ISD91xx\ISD9xx.h
+.\obj\smpl_drvuart.o: ..\..\..\..\CMSIS\CM0\CoreSupport\core_cm0.h
+.\obj\smpl_drvuart.o: D:\Keil\ARM\RV31\INC\stdint.h
+.\obj\smpl_drvuart.o: ..\..\..\..\CMSIS\CM0\CoreSupport\core_cmInstr.h
+.\obj\smpl_drvuart.o: ..\..\..\..\CMSIS\CM0\CoreSupport\core_cmFunc.h
+.\obj\smpl_drvuart.o: ..\..\..\..\CMSIS\CM0\DeviceSupport\Nuvoton\ISD91xx\system_ISD9xx.h
+.\obj\smpl_drvuart.o: ..\..\..\Include\System\SysInfra.h
+.\obj\smpl_drvuart.o: ..\..\..\Include\System\ModuleID.h
+.\obj\smpl_drvuart.o: ..\..\..\..\CMSIS\CM0\CoreSupport\core_cm0.h
+.\obj\smpl_drvuart.o: ..\..\..\Include\Driver\DrvGPIO.h

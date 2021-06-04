@@ -1,0 +1,10 @@
+.\obj\system_isd9xx.o: ..\..\..\..\CMSIS\CM0\DeviceSupport\NUVOTON\ISD91xx\system_ISD9xx.c
+.\obj\system_isd9xx.o: D:\Keil\ARM\RV31\INC\stdint.h
+.\obj\system_isd9xx.o: ..\..\..\..\CMSIS\CM0\DeviceSupport\NUVOTON\ISD91xx\ISD9xx.h
+.\obj\system_isd9xx.o: ..\..\..\..\CMSIS\CM0\CoreSupport\core_cm0.h
+.\obj\system_isd9xx.o: ..\..\..\..\CMSIS\CM0\CoreSupport\core_cmInstr.h
+.\obj\system_isd9xx.o: ..\..\..\..\CMSIS\CM0\CoreSupport\core_cmFunc.h
+.\obj\system_isd9xx.o: ..\..\..\..\CMSIS\CM0\DeviceSupport\NUVOTON\ISD91xx\system_ISD9xx.h
+.\obj\system_isd9xx.o: ..\..\..\Include\System\SysInfra.h
+.\obj\system_isd9xx.o: ..\..\..\Include\System\ModuleID.h
+.\obj\system_isd9xx.o: ..\..\..\..\CMSIS\CM0\CoreSupport\core_cm0.h

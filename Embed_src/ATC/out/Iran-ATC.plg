@@ -1,0 +1,22 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+F:\shenzhen1\Code\keil\ATC\ATC-0507.uvproj
+Project File Date:  06/03/2013
+
+<h2>Output:</h2>
+Build target 'ATC'
+linking...
+Program Size: Code=65640 RO-data=744 RW-data=1964 ZI-data=36508  
+FromELF: creating hex file...
+User command #1: fromelf --bin --output .\bin\SZ1_ATC-20130529V1.2_ATbin .\out\SZ1-ATC.axf
+".\OUT\SZ1-ATC.axf" - 0 Error(s), 0 Warning(s).
+Build target 'ATC'
+compiling cmd.c...
+linking...
+Program Size: Code=65640 RO-data=744 RW-data=1964 ZI-data=36508  
+FromELF: creating hex file...
+User command #1: fromelf --bin --output .\bin\SZ1_ATC-20130529V1.2_ATbin .\out\SZ1-ATC.axf
+".\OUT\SZ1-ATC.axf" - 0 Error(s), 0 Warning(s).

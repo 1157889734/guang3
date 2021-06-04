@@ -1,0 +1,28 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Project:</h2>
+E:\Job\SZBH2014\广州地铁3号线改造\广州地铁3号线B1型车改造-设计\单机模块\IO\TBA-2479GZ3-01\TBA-2479GZ3-01.uvproj
+Project File Date:  10/01/2014
+
+<h2>Output:</h2>
+Build target 'TBA-2479GZ3-01'
+compiling TBA-2479GZ3-01.c...
+TBA-2479GZ3-01.c(3): warning C318: can't open file 'TBA-2474SZ1-26.h'
+TBA-2479GZ3-01.C(20): error C202: 'TIMEOUT': undefined identifier
+Target not created
+Build target 'TBA-2479GZ3-01'
+compiling TBA-2479GZ3-01.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_CHKSUM?TBA_2479GZ3_01
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_ISP_IAP_N_BYTE_READ?TBA_2479GZ3_01
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_ISP_IAP_N_BYTE_PROGRAM?TBA_2479GZ3_01
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_ISP_IAP_ERASE?TBA_2479GZ3_01
+Program Size: data=77.0 xdata=208 code=2550
+creating hex file from ".\output\TBA-2479GZ3-01"...
+".\output\TBA-2479GZ3-01" - 0 Error(s), 4 Warning(s).

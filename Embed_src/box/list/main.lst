@@ -1,0 +1,217 @@
+C51 COMPILER V8.08   MAIN                                                                  11/14/2014 14:07:29 PAGE 1   
+
+
+C51 COMPILER V8.08, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\list\main.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE main.c COMPACT OPTIMIZE(1,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\list\mai
+                    -n.lst) OBJECT(.\list\main.obj)
+
+line level    source
+
+   1          
+   2          /*------------------------------------------------------------------*/
+   3          /* --- STC MCU International Limited -------------------------------*/
+   4          /* --- STC 1T Series MCU RC Demo -----------------------------------*/
+   5          /* --- Mobile: (86)13922805190 -------------------------------------*/
+   6          /* --- Fax: 86-0513-55012956,55012947,55012969 ---------------------*/
+   7          /* --- Tel: 86-0513-55012928,55012929,55012966 ---------------------*/
+   8          /* --- Web: www.GXWMCU.com -----------------------------------------*/
+   9          /* --- QQ:  800003751 ----------------------------------------------*/
+  10          /* If you want to use the program or the program referenced in the  */
+  11          /* article, please specify in which data and procedures from STC    */
+  12          /*------------------------------------------------------------------*/
+  13          
+  14          
+  15          #include        "config.h"
+  16          #include        "timer.h"
+  17          #include        "USART.h"
+  18          #include        "delay.h"
+  19          #include "stat_switch.h"
+  20          #include<main.h>
+  21          
+  22          /*************  功能说明        **************
+  23          
+  24          双串口全双工中断方式收发通讯程序。
+  25          
+  26          通过PC向MCU发送数据, MCU收到后通过串口把收到的数据原样返回.
+  27          
+  28          ******************************************/
+  29          
+  30          /*************  本地常量声明    **************/
+  31          char code version_buf1[] = "u1DATE:2014-01-07\r\nV1.0\r\n" ;
+  32          char code version_buf2[] = "u2DATE:2014-01-07\r\nV1.0\r\n" ;
+  33          /*************  本地变量声明    **************/
+  34          
+  35          
+  36          /*************  本地函数声明    **************/
+  37          void delay10ms (byte count)     /*延时10ms子程序 实际延时时间9.644ms*/
+  38          {
+  39   1         byte i,j;   
+  40   1         while(count--!=0)
+  41   1         {
+  42   2            for(i=0;i<15;i++)
+  43   2            {
+  44   3               for(j=0;j<72;j++)
+  45   3                      ;
+  46   3                      
+  47   3             }
+  48   2             //RS485_Com_OP();
+  49   2             _nop_();
+  50   2         }
+  51   1      } 
+  52          
+  53          /************************ 定时器配置 ****************************/
+  54          void    Timer_config(void)
+C51 COMPILER V8.08   MAIN                                                                  11/14/2014 14:07:29 PAGE 2   
+
+  55          {
+  56   1      
+  57   1              TR0 = 0;
+  58   1              ET0 = 1;
+  59   1              PT0 = 1;
+  60   1              TMOD &=~0x03;
+  61   1              AUXR |= 0x80;
+  62   1              TMOD &=~0x04;
+  63   1      
+  64   1              TH0 = 0;
+  65   1              TL0 = 0;
+  66   1              TR0 = 1;
+  67   1              
+  68   1              #if 0
+                      TIM_InitTypeDef         TIM_InitStructure;                                      //结构定义
+                      TIM_InitStructure.TIM_Mode      = TIM_16BitAutoReload;  //指定工作模式,   TIM_16BitAutoReload,TIM_16Bit,TI
+             -M_8BitAutoReload,TIM_16BitAutoReloadNoMask
+                      TIM_InitStructure.TIM_Polity    = PolityLow;                    //指定中断优先级, PolityHigh,PolityLow
+                      TIM_InitStructure.TIM_Interrupt = DISABLE;                              //中断是否允许,   ENABLE或DISABLE
+                      TIM_InitStructure.TIM_ClkSource = TIM_CLOCK_1T;                 //指定时钟源,     TIM_CLOCK_1T,TIM_CLOCK_12T,TIM_CLOCK_
+             -Ext
+                      TIM_InitStructure.TIM_ClkOut    = ENABLE;                               //是否输出高速脉冲, ENABLE或DISABLE
+                      TIM_InitStructure.TIM_Value     = 65536UL - (MAIN_Fosc / 100000UL);             //初值,
+                      TIM_InitStructure.TIM_Run       = ENABLE;                               //是否初始化后启动定时器, ENABLE或DISABLE
+                      if(Timer_Inilize(Timer0,&TIM_InitStructure))
+                              while (1);                              //初始化Timer0    Timer0,Timer1,Timer2
+                    /*
+                      TIM_InitStructure.TIM_Mode      = TIM_16BitAutoReload;  //指定工作模式,   TIM_16BitAutoReload,TIM_16Bit,TI
+             -M_8BitAutoReload,TIM_16BitAutoReloadNoMask
+                      TIM_InitStructure.TIM_Polity    = PolityLow;                    //指定中断优先级, PolityHigh,PolityLow
+                      TIM_InitStructure.TIM_Interrupt = ENABLE;                               //中断是否允许,   ENABLE或DISABLE
+                      TIM_InitStructure.TIM_ClkSource = TIM_CLOCK_1T;                 //指定时钟源, TIM_CLOCK_1T,TIM_CLOCK_12T,TIM_CLOCK_Ext
+                      TIM_InitStructure.TIM_ClkOut    = ENABLE;                               //是否输出高速脉冲, ENABLE或DISABLE
+                      TIM_InitStructure.TIM_Value     = 65536UL - (MAIN_Fosc / 1000);         //初值,
+                      TIM_InitStructure.TIM_Run       = ENABLE;                               //是否初始化后启动定时器, ENABLE或DISABLE
+                      Timer_Inilize(Timer1,&TIM_InitStructure);                               //初始化Timer1    Timer0,Timer1,Timer2
+              
+                      TIM_InitStructure.TIM_Interrupt = ENABLE;                               //中断是否允许,   ENABLE或DISABLE. (注意: Timer2固定为16位自
+             -动重装, 中断固定为低优先级)
+                      TIM_InitStructure.TIM_ClkSource = TIM_CLOCK_12T;                //指定时钟源,     TIM_CLOCK_1T,TIM_CLOCK_12T,TIM_CLOCK_
+             -Ext
+                      TIM_InitStructure.TIM_ClkOut    = ENABLE;                               //是否输出高速脉冲, ENABLE或DISABLE
+                      TIM_InitStructure.TIM_Value     = 65536UL - (MAIN_Fosc / (50*12));              //初值
+                      TIM_InitStructure.TIM_Run       = ENABLE;                               //是否初始化后启动定时器, ENABLE或DISABLE
+                      Timer_Inilize(Timer2,&TIM_InitStructure);                               //初始化Timer2    Timer0,Timer1,Timer2
+                      */
+              
+                      /*
+                      AUXR |= 0x80;
+                      //AUXR &= ~0x80;
+                      TMOD = 0x00;
+              
+                      //TMOD &=~0x04;
+              
+                      TL0 = DELAY_10MS_L;
+                      TH0 = DELAY_10MS_H;
+                      //TL0   = (65536 - MAIN_Fosc /2/38400);
+                      //TH0 = (65536 - MAIN_Fosc /2/38400)>>8;
+                      TR0 = 1;
+                      INT_CLKO = 0x01;
+                      */
+                      
+C51 COMPILER V8.08   MAIN                                                                  11/14/2014 14:07:29 PAGE 3   
+
+                      #endif
+ 113   1      }
+ 114          
+ 115          /*************  外部函数和变量声明 *****************/
+ 116          
+ 117          void    UART_config(void)
+ 118          {
+ 119   1              COMx_InitDefine         COMx_InitStructure;                                     //结构定义
+ 120   1              COMx_InitStructure.UART_Mode      = UART_8bit_BRTx;             //模式,       UART_ShiftRight,UART_8bit_BRTx,UART_9b
+             -it,UART_9bit_BRTx
+ 121   1              COMx_InitStructure.UART_BRT_Use   = BRT_Timer1;                 //使用波特率,   BRT_Timer1, BRT_Timer2 (注意: 串口2固定
+             -使用BRT_Timer2)
+ 122   1              COMx_InitStructure.UART_BaudRate  = 9600ul;                     //波特率, 一般 110 ~ 115200
+ 123   1              COMx_InitStructure.UART_RxEnable  = ENABLE;                             //接收允许,   ENABLE或DISABLE
+ 124   1              COMx_InitStructure.BaudRateDouble = DISABLE;                    //波特率加倍, ENABLE或DISABLE
+ 125   1              COMx_InitStructure.UART_Interrupt = ENABLE;                             //中断允许,   ENABLE或DISABLE
+ 126   1              COMx_InitStructure.UART_Polity    = PolityLow;                  //中断优先级, PolityLow,PolityHigh
+ 127   1              COMx_InitStructure.UART_P_SW      = UART1_SW_P30_P31;   //切换端口,   UART1_SW_P30_P31,UART1_SW_P36_P37,UAR
+             -T1_SW_P16_P17(必须使用内部时钟)
+ 128   1              COMx_InitStructure.UART_RXD_TXD_Short = DISABLE;                //内部短路RXD与TXD, 做中继, ENABLE,DISABLE
+ 129   1              USART_Configuration(USART1, &COMx_InitStructure);               //初始化串口1 USART1,USART2
+ 130   1      
+ 131   1              COMx_InitStructure.UART_Mode      = UART_8bit_BRTx;             //模式,       UART_ShiftRight,UART_8bit_BRTx,UART_9b
+             -it,UART_9bit_BRTx
+ 132   1              COMx_InitStructure.UART_BaudRate  = 9600ul;                     //波特率,     110 ~ 115200
+ 133   1              COMx_InitStructure.UART_RxEnable  = ENABLE;                             //接收允许,   ENABLE或DISABLE
+ 134   1              COMx_InitStructure.UART_Interrupt = ENABLE;                             //中断允许,   ENABLE或DISABLE
+ 135   1              COMx_InitStructure.UART_Polity    = PolityLow;                  //中断优先级, PolityLow,PolityHigh
+ 136   1              COMx_InitStructure.UART_P_SW      = UART2_SW_P10_P11;   //切换端口,   UART2_SW_P10_P11,UART2_SW_P46_P47
+ 137   1              USART_Configuration(USART2, &COMx_InitStructure);               //初始化串口2 USART1,USART2
+ 138   1      
+ 139   1              //PrintString1("STC15F2K60S2 UART1 Test Prgramme!\r\n");        //SUART1发送一个字符串
+ 140   1              //PrintString2("STC15F2K60S2 UART2 Test Prgramme!\r\n");        //SUART2发送一个字符串
+ 141   1      }
+ 142          
+ 143          
+ 144          /**********************************************/
+ 145          void main(void)
+ 146          {
+ 147   1              
+ 148   1              Timer_config(); 
+ 149   1              UART_config();  
+ 150   1              EA = 1;
+ 151   1                              
+ 152   1              delay10ms(1);
+ 153   1              LedAllOpen();
+ 154   1              delay10ms(400);
+ 155   1              BoxDataInit();
+ 156   1              LedInit();
+ 157   1              TalkStatInit();
+ 158   1              MIC_CTRL_PIN = 1;
+ 159   1              BUZZER_CRTL_PIN = 1;
+ 160   1              //putnchar(version_buf, 23);
+ 161   1      
+ 162   1              Uart2StartSend(version_buf2, 23);
+ 163   1              Uart1StartSend(version_buf1, 23);
+ 164   1      
+ 165   1      
+ 166   1              while(1)
+ 167   1              {
+ 168   2                      LedRun();
+ 169   2                      BoxDataProc();
+C51 COMPILER V8.08   MAIN                                                                  11/14/2014 14:07:29 PAGE 4   
+
+ 170   2                      LcdDataProc();
+ 171   2                      ScanKey();
+ 172   2                      //TalkStatSwitch();             
+ 173   2                      WDT_CONTR = 0x3b;
+ 174   2              }
+ 175   1      }
+ 176          
+ 177          
+ 178          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    257    ----
+   CONSTANT SIZE    =     52    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =     16    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,3 @@
+--cpu Cortex-M0 "..\output\main.o" "..\output\uart.o" "..\output\hw_config.o" "..\output\timer.o" "..\output\playpcm.o" "..\output\play_ctrl.o" "..\output\audio_file.o" "..\output\pecu.o" "..\output\startup_isd91xx.o" "..\output\core_cm0.o" "..\output\system_isd9xx.o" "..\output\retarget.o" "..\output\drvgpio.o" "..\output\drvsys.o" "..\output\drvuart.o" "..\output\drvtimer.o" "..\output\drvpdma.o" "..\output\drvdpwm.o" --ro-base 0x00000000 --entry 0x00000000 --rw-base 0x20000000 --entry Reset_Handler --first __Vectors --strict --map --first='startup_ISD91xx.o(RESET)' --datacompressor=off --info=inline --entry Reset_Handler --autoat --summary_stderr --info summarysizes --map 
+--info sizes --info totals 
+ --list "..\list\TBA-2498GZL3.map" -o "..\output\TBA-2498GZL3.axf"

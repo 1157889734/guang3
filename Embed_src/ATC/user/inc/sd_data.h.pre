@@ -1,0 +1,229 @@
+
+#ifndef __SD_DATA_H
+#define __SD_DATA_H
+
+#include"config.h"
+#include"rtc_1337.h"
+#include"TCMS.h"
+
+#define FILEBUFLEN     512           //Î +10Ä¼þ»º´æ´óÐ¡
+#define CHARFILEBUFLEN FILEBUFLEN     //ÎÄ¼þ×Ö·û»º´æ´óÐ¡
+
+#define FREAMLEN   256                //Ö¡×î´ó³¤¶È
+
+#define TMS        0
+#define PIS        1
+#define TBA        2
+
+#define FRAMEOK    0
+#define FRAMEERR   1
+
+
+#define FREESPACE     1024*100  //Ê£Óà¿Õ¼ä×îÐ¡Öµ1024kb*50 =50M
+#define FILEMAXSIZE   1024*50 //ÎÄ¼þ×î´ó×Ö½ÚÊý
+
+typedef struct SD_TIME{
+    u8 sec;    
+    u8 min;
+    u8 hour;
+}_tsd_time;
+
+typedef struct SD_MODE{
+    uint8 head;            //Ö¡Í·
+    _tsd_time star_time;   //¿ªÊ¼Ê±¼ä
+    _tsd_time stop_time;   //½áÊøÊ±¼ä
+    uint8 num;             //´ÎÊý
+    uint8 rhead;           //ÖØ¸´Ö¡Í·
+    uint8 len;             //Êý¾Ý³¤¶È
+    uint8 buf[FREAMLEN];   //Êý¾Ý
+}_tsd_mode;
+typedef struct SD_MODE_PIS{
+    uint8 head;            //Ö¡Í·
+    _tsd_time star_time;   //¿ªÊ¼Ê±¼ä
+    uint8 rhead;           //ÖØ¸´Ö¡Í·
+    uint8 len;             //Êý¾Ý³¤¶È
+    uint8 buf[FREAMLEN];   //Êý¾Ý
+}_tsd_mode_pis;
+
+typedef struct SD_BUF{
+    uint16 len;
+    uint8 buf[FILEBUFLEN];
+}_tsd_file;
+
+void myatoi(char *src, uint8 *dest, uint16 len);
+void myitoa(uint8 *src, char *dest, uint16 len);
+
+/***********************************************************************************************************************
+*Function Nane    : get_use_file
+*Description      : ¼ì²éÎÄ¼þÊÇ·ñÔÚÊ¹ÓÃÖÐ
+*Input            :  path ÎÄ¼þÂ·¾¶
+*Output           :  ÎÞ
+*Return           :  1 Ê¹ÓÃÖÐ 0  ¿ÕÏÐÖÐ
+*Others           :  ÎÞ
+***********************************************************************************************************************/
+uint8  check_use_file(char *path);
+void form_normal_frame_pis(uint8 type,  tRtcTimer time, uint8 *buf, uint16 len);
+/***********************************************************************************************************************
+*Function Nane    :  get_sd_wp_state
+*Description      :  »ñÈ¡sd¿¨Ð´±£»¤×´Ì¬
+*Input            : ÎÞ
+*Output            :  ÎÞ
+*Return            :  ÎÞ
+*Others            :  ÎÞ
+***********************************************************************************************************************/
+uint8 get_sd_wp_state(void);
+
+/***********************************************************************************************************************
+*Function Nane   :  get_sd_state
+*Description      :  »ñÈ¡sd¿¨ÊÇ·ñ²åÈë
+*Input              : ÎÞ
+*Output            :  ÎÞ
+*Return            : 0  ²åÈë 1 Ã»ÓÐ²åÈë
+*Others            :  ÎÞ
+***********************************************************************************************************************/
+uint8 get_sd_state(void);
+/***********************************************************************************************************************
+*Function Nane   :  get_sd_ready
+*Description      : »ñÈ¡sdÊÇ·ñ×¼±¸¾ÍÐ÷
+*Input              : ÎÞ
+*Output            :  ÎÞ
+*Return            : 0  Ã»ÓÐ×¼±¸¾ÍÐ÷ 1 ×¼±¸¾ÍÐ÷
+*Others            :  ÎÞ
+***********************************************************************************************************************/
+uint8 get_sd_ready(void);
+
+/***************************************************************************************
+*Function Nane  : check_sd_state
+*Description      : ¼ì²ésd µÄ×´Ì¬
+*Input              :  ÎÞ
+*Output            :  ÎÞ
+*Return            :  ÎÞ
+*Others            :  ÎÞ
+*****************************************************************************************/
+void check_sd_state(void);
+
+/***********************************************************************************************************************
+*Function Nane    :  sd_init
+*Description      :  sd¿¨³õÊ¼»¯
+*Input            : ÎÞ
+*Output            :  ÎÞ
+*Return            :  ÎÞ
+*Others            :  ÎÞ
+***********************************************************************************************************************/
+void sd_init(void);
+
+/***********************************************************************************************************************
+*Function Nane  :  update_dir
+*Description      :  Ä¿Â¼
+*Input              :  ÎÞ            
+*Output            :  ÎÞ
+*Return            :  ÎÞ
+*Others            :  ÎÞ
+***********************************************************************************************************************/
+void update_dir(void);
+
+/***************************************************************************************
+*Function Nane  :  get_sd_space
+*Description      :  »ñÈ¡SD¿¨¿Õ¼äÐÅÏ¢
+*Input              :  ÎÞ
+*Output            :  total ×Ü¿Õ¼ä         µ¥Î»(KB)
+                          free   Ê£Óà¿Õ¼ä   µ¥Î»(KB)
+*Return            :  1 ³É¹¦ 0  Ê§°Ü
+*Others            :  ÎÞ
+*****************************************************************************************/
+uint8 get_sd_space(uint32 *total, uint32 *free);
+
+/***************************************************************************************
+*Function Nane  : get_dir_size
+*Description      :  »ñÈ¡Ä¿Â¼ÎÄ¼þµÄ´óÐ¡
+*Input              :  ÎÞ
+*Output            :  path Â·¾¶
+*Return            :  ÎÄ¼þ´óÐ¡
+*Others            :  ÎÞ
+*****************************************************************************************/
+uint32 get_dir_size(char *path);
+
+/***************************************************************************************
+*Function Nane  : sd_remove_file
+*Description      : É¾³ýÎÄ¼þ
+*Input              :  path ÎÄ¼þÂ·¾¶
+*Output            :  ÎÞ
+*Return            :  1³É¹¦ 0 Ê§°Ü
+*Others            :  ÎÞ
+*****************************************************************************************/
+uint8 sd_remove_file(char *path);
+
+/***********************************************************************************************************************
+*Function Nane  :  save_start_time
+*Description      :  ¼ÇÂ¼ÏµÍ³Æô¶¯Ê±¼ä
+*Input              :  ÎÞ                   
+*Output            :  ÎÞ
+*Return            :  ÎÞ
+*Others            :  ÎÞ
+***********************************************************************************************************************/
+void save_start_time(void);
+
+/***********************************************************************************************************************
+*Function Nane  : save_change_time
+*Description      :  ¼ÇÂ¼ÏµÍ³ÐÞ¸ÄÊ±¼ä
+*Input              :   oldtimer  ¾ÉÊ±¼ä
+                           newtimer ÐÐÊ±¼ä
+*Output            :  ÎÞ
+*Return            :  ÎÞ
+*Others            :  ÎÞ
+***********************************************************************************************************************/
+void save_change_time(tRtcTimer oldtimer, tRtcTimer newtimer);
+
+/***********************************************************************************************************************
+*Function Nane  :  form_sd_frame
+*Description      :  ×éÖ¯Ð´ÈëSD¿¨µÄÊý¾Ý
+*Input              :   type ÀàÐÍ         0 : tms       1: pis      2:train485
+                           mode Ê±¼ä¶Î  0 : ÆðÊ¼ 1 ÖÐ¼ä  2:½áÊø
+                           buf  Êý¾Ý
+                           len  Êý¾Ý³¤¶È
+*Output            :  ÎÞ
+*Return            :  ÎÞ
+*Others            :  ÎÞ
+***********************************************************************************************************************/
+void form_normal_frame(uint8 type,  uint8 mode, tRtcTimer time, uint8 *buf, uint16 len);
+
+/***********************************************************************************************************************
+*Function Nane  :  form_error_frame
+*Description      :  ×éÖ¯Ð´ÈëSD¿¨µÄÊý¾Ý
+*Input              :   type ÀàÐÍ         0 : tms       1: pis      2:train485
+                           mode Ê±¼ä¶Î  0 : ÆðÊ¼ 1 ÖÐ¼ä  2:½áÊø
+                           buf  Êý¾Ý
+                           len  Êý¾Ý³¤¶È
+*Output            :  ÎÞ
+*Return            :  ÎÞ
+*Others            :  ÎÞ
+***********************************************************************************************************************/
+void form_error_frame(uint8 type,  uint8 mode, tRtcTimer time, uint8 *buf, uint16 len);
+
+/***********************************************************************************************************************
+*Function Nane  :  sd_fflush
+*Description      :  Ç¿ÖÆ°ÑÎÄ¼þ»º´æÇøµÄÊý¾ÝÐ´ÈëÎÄ¼þ
+*Input              :   type  ÎÄ¼þÀàÐÍ  0 : tms       1: pis      2:tba
+                           mode Êý¾ÝÀàÐÍ FRAMEOK : Õý³£ FRAMEERR ´íÎó
+*Output            :  ÎÞ
+*Return            :  ÎÞ
+*Others            :  ÎÞ
+***********************************************************************************************************************/
+void sd_fflush(uint8 type, uint8 mode);
+
+void check_sd_space(void);
+
+void update_rec_data_dir(void);
+
+
+void SD_LED(void);
+
+
+#define MVB_REC 0
+#define MVB_SEND 1
+#define PIS_REC 2
+#define PIS_SEND 3
+#define OP_LOG 4
+
+void save_normal_data_pis(uint8 type, uint8 *buf, uint16 len);
+#endif

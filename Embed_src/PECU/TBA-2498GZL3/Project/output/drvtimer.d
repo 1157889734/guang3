@@ -1,0 +1,12 @@
+..\output\drvtimer.o: ..\..\ISD91XX_SDK\NuvotonPlatform_Keil\Src\Driver\DrvTimer.c
+..\output\drvtimer.o: ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD91xx\ISD9xx.h
+..\output\drvtimer.o: ..\..\ISD91XX_SDK\CMSIS\CM0\CoreSupport\core_cm0.h
+..\output\drvtimer.o: C:\Keil\ARM\RV31\INC\stdint.h
+..\output\drvtimer.o: ..\..\ISD91XX_SDK\CMSIS\CM0\CoreSupport\core_cmInstr.h
+..\output\drvtimer.o: ..\..\ISD91XX_SDK\CMSIS\CM0\CoreSupport\core_cmFunc.h
+..\output\drvtimer.o: ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD91xx\system_ISD9xx.h
+..\output\drvtimer.o: ..\..\ISD91XX_SDK\NuvotonPlatform_Keil\Include\System\SysInfra.h
+..\output\drvtimer.o: ..\..\ISD91XX_SDK\NuvotonPlatform_Keil\Include\System\ModuleID.h
+..\output\drvtimer.o: ..\..\ISD91XX_SDK\CMSIS\CM0\CoreSupport\core_cm0.h
+..\output\drvtimer.o: ..\..\ISD91XX_SDK\NuvotonPlatform_Keil\Include\Driver\DrvTimer.h
+..\output\drvtimer.o: ..\..\ISD91XX_SDK\NuvotonPlatform_Keil\Include\Driver\DrvSYS.h

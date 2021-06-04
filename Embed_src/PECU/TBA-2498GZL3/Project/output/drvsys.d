@@ -1,0 +1,12 @@
+..\output\drvsys.o: ..\..\ISD91XX_SDK\NuvotonPlatform_Keil\Src\Driver\DrvSYS.c
+..\output\drvsys.o: C:\Keil\ARM\RV31\INC\stdio.h
+..\output\drvsys.o: ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD91xx\ISD9xx.h
+..\output\drvsys.o: ..\..\ISD91XX_SDK\CMSIS\CM0\CoreSupport\core_cm0.h
+..\output\drvsys.o: C:\Keil\ARM\RV31\INC\stdint.h
+..\output\drvsys.o: ..\..\ISD91XX_SDK\CMSIS\CM0\CoreSupport\core_cmInstr.h
+..\output\drvsys.o: ..\..\ISD91XX_SDK\CMSIS\CM0\CoreSupport\core_cmFunc.h
+..\output\drvsys.o: ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD91xx\system_ISD9xx.h
+..\output\drvsys.o: ..\..\ISD91XX_SDK\NuvotonPlatform_Keil\Include\System\SysInfra.h
+..\output\drvsys.o: ..\..\ISD91XX_SDK\NuvotonPlatform_Keil\Include\System\ModuleID.h
+..\output\drvsys.o: ..\..\ISD91XX_SDK\CMSIS\CM0\CoreSupport\core_cm0.h
+..\output\drvsys.o: ..\..\ISD91XX_SDK\NuvotonPlatform_Keil\Include\Driver\DrvSYS.h

@@ -1,0 +1,277 @@
+C51 COMPILER V8.08   2COM                                                                  11/14/2014 14:07:30 PAGE 1   
+
+
+C51 COMPILER V8.08, COMPILATION OF MODULE 2COM
+OBJECT MODULE PLACED IN .\list\2com.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE 2com.c COMPACT OPTIMIZE(1,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\list\2co
+                    -m.lst) OBJECT(.\list\2com.obj)
+
+line level    source
+
+   1          /*
+   2          *******************************************************************************
+   3          **  Copyright (c) 2014, 深圳市北海轨道交通技术有限公司
+   4          **  All rights reserved.
+   5          **      
+   6          **  文件说明: 
+   7          **  创建日期: 2014.01.03
+   8          **
+   9          **  当前版本：1.0
+  10          **  作者：李军
+  11          *******************************************************************************
+  12          */
+  13          #include<stat_switch.h>
+  14          #include "timer.h"
+  15          #include "key.h"
+  16          #include "led_control.h"
+  17          #include "com.h"
+  18          
+  19          #define LCD_DATA_LEN      12
+  20          #define UART1_BUF_LEN      50
+  21          
+  22          static byte xdata LcdPacketBuf[LCD_DATA_LEN]={0};
+  23          static byte xdata gLcdRecvPacketBuf[UART1_BUF_LEN];
+  24          static byte xdata gLcdRecvPaketLength = 0;
+  25          
+  26          static byte xdata gBoxDataSendCnt = 0;
+  27          
+  28          static byte xdata gKeyTypeOld = 0;
+  29          
+  30          byte xdata gUart1TxBuf[UART1_BUF_LEN];
+  31          byte xdata gUart1TxIndex = 0;
+  32          byte xdata gUart1TxCnt = 0;
+  33          byte xdata uart1_recv_buf[UART1_BUF_LEN];
+  34          
+  35          byte uart1_recv_fifo_in = 0;
+  36          byte uart1_recv_fifo_out =0;
+  37          
+  38          byte uart1_send_cnt;
+  39          byte uart1_send_index;
+  40          
+  41          byte uart1_stat = 0;  // 1:send now    0:idle
+  42          
+  43          //byte repeat_send_now = 0;
+  44          
+  45          byte uart1_busy()
+  46          {
+  47   1              return uart1_stat;
+  48   1      }
+  49          
+  50          void uart1_set_busy()
+  51          {
+  52   1              uart1_stat = 1;
+  53   1      }
+  54          
+C51 COMPILER V8.08   2COM                                                                  11/14/2014 14:07:30 PAGE 2   
+
+  55          void uart1_clr_busy()
+  56          {
+  57   1              uart1_stat = 0;
+  58   1      }
+  59          
+  60          
+  61          byte uart1_read_char(byte *ch)
+  62          { 
+  63   1          if(uart1_recv_fifo_out == uart1_recv_fifo_in)
+  64   1              return 0;
+  65   1          *ch = uart1_recv_buf[uart1_recv_fifo_out++];
+  66   1          if(uart1_recv_fifo_out == UART1_BUF_LEN)
+  67   1              uart1_recv_fifo_out = 0;
+  68   1          return 1;
+  69   1      }
+  70          
+  71          
+  72          void UART1_int(void) interrupt 4
+  73          {
+  74   1              byte tmp;
+  75   1      
+  76   1              if(RI)
+  77   1              {
+  78   2                      RI = 0;
+  79   2                      tmp = SBUF;
+  80   2                      uart1_recv_buf[uart1_recv_fifo_in++] = (byte)tmp;
+  81   2                      if(uart1_recv_fifo_in >= UART1_BUF_LEN)
+  82   2                      {
+  83   3                              uart1_recv_fifo_in = 0;
+  84   3                      }
+  85   2                      
+  86   2              }
+  87   1              if (TI)
+  88   1              {
+  89   2                      TI= 0;
+  90   2                      if (gUart1TxCnt > 0)
+  91   2                      {
+  92   3                              SBUF = gUart1TxBuf[gUart1TxIndex];
+  93   3                              gUart1TxIndex ++;
+  94   3                              gUart1TxCnt --;
+  95   3                      }
+  96   2                      else 
+  97   2                      {
+  98   3                              uart1_clr_busy();
+  99   3                              //Com_R_W =0;
+ 100   3                      }
+ 101   2              }
+ 102   1      
+ 103   1      }
+ 104          
+ 105          void Uart1StartSend(byte *buf, byte len)
+ 106          {
+ 107   1              byte i;
+ 108   1      
+ 109   1              if (!uart1_busy())
+ 110   1              {
+ 111   2                      //Com_R_W = 1 ;  // 开发送
+ 112   2                      uart1_set_busy();       
+ 113   2                      for (i=0; i<len; i++)
+ 114   2                      {
+ 115   3                              gUart1TxBuf[i] = buf[i];
+ 116   3                      }
+C51 COMPILER V8.08   2COM                                                                  11/14/2014 14:07:30 PAGE 3   
+
+ 117   2                      SBUF = buf[0];
+ 118   2                      gUart1TxIndex = 1;
+ 119   2                      gUart1TxCnt = len-1;
+ 120   2              }
+ 121   1      }
+ 122          
+ 123          
+ 124          //发送到bcu数据
+ 125          byte LcdSend( byte* buf, byte length )
+ 126          {
+ 127   1              byte xdata sendBuf[50];
+ 128   1              byte sendLen;
+ 129   1              sendLen = PackageData( sendBuf, buf, length );
+ 130   1              Uart1StartSend( sendBuf, sendLen );
+ 131   1              return sendLen;
+ 132   1      }
+ 133          
+ 134          void LcdSendData(  )
+ 135          {
+ 136   1              byte buf[11] = { 0x00, 0x1a, 0x00, 0x19, 0x00, 0x01, 0xaa, 0xaa, 0xaa, 0xaa,0xaa};
+ 137   1      
+ 138   1              /*
+ 139   1              buf[6] = gKeyPASt;
+ 140   1              buf[7] = gKeyCcSt;
+ 141   1              buf[8] = gKeyPcSt;
+ 142   1              buf[9] = gKeyPttSt;
+ 143   1              buf[10]= gKeyPcRstSt;
+ 144   1              */
+ 145   1              LcdSend(buf, 11);
+ 146   1      }
+ 147          
+ 148          static void LcdDataSendRepeat()
+ 149          {
+ 150   1              static unsigned long tick;
+ 151   1              
+ 152   1              if (uart1_busy())  // car 485
+ 153   1              {
+ 154   2                      tick = gSys10msTick;
+ 155   2              }
+ 156   1              else 
+ 157   1              {
+ 158   2                      if (gSys10msTick - tick > 10)
+ 159   2                      {
+ 160   3                              LcdSendData();
+ 161   3                      }
+ 162   2              }
+ 163   1      }
+ 164          
+ 165          
+ 166          static byte LcdDataGetPacket(void)
+ 167          {
+ 168   1              byte temp;
+ 169   1              while(uart1_read_char(&temp))
+ 170   1              {                       
+ 171   2                      if(temp == 0x7e)
+ 172   2                      {
+ 173   3                              //判断长度 判断是否有数据
+ 174   3                              if(gLcdRecvPaketLength >= 3)
+ 175   3                              {
+ 176   4                                      return 1;
+ 177   4                              }
+ 178   3                              gLcdRecvPaketLength=0;
+C51 COMPILER V8.08   2COM                                                                  11/14/2014 14:07:30 PAGE 4   
+
+ 179   3                      }
+ 180   2                      //其他字符串直接送缓冲区
+ 181   2                      else
+ 182   2                      {
+ 183   3                              gLcdRecvPacketBuf[gLcdRecvPaketLength] = temp;
+ 184   3                              if( ++gLcdRecvPaketLength >= 255 )
+ 185   3                                      gLcdRecvPaketLength = 0;
+ 186   3                      }
+ 187   2              }
+ 188   1              return 0;
+ 189   1      }
+ 190          
+ 191          
+ 192          
+ 193          
+ 194          void LcdDataProc(void)
+ 195          {
+ 196   1              tHmiHeader *tHmidata;
+ 197   1              static byte token=0;
+ 198   1              static unsigned long  token_time = 0;
+ 199   1              byte buf[23] = { 0x00, 0xf2, 0x00, 0x19, 0x00, 0x011, };
+ 200   1              byte  len;
+ 201   1              byte temp;
+ 202   1              byte i;
+ 203   1              //eTalkStat talkStat;
+ 204   1      
+ 205   1              // 1. 收lcd数据
+ 206   1              if (LcdDataGetPacket()) 
+ 207   1              {
+ 208   2                      len = VerifyPaket( gLcdRecvPacketBuf, gLcdRecvPaketLength );
+ 209   2                      tHmidata = (tHmiHeader *)gLcdRecvPacketBuf;
+ 210   2                      if ( len > 0 && (((tHmidata->dest_device_id &0x0f) == 0x09)||
+ 211   2                              ((tHmidata->dest_device_id &0x0f) == 0x02)) )
+ 212   2                      {
+ 213   3                              for(i=0;i<LCD_DATA_LEN;i++)
+ 214   3                              {
+ 215   4                                      LcdPacketBuf[i] = gLcdRecvPacketBuf[6+i];
+ 216   4                              }
+ 217   3                              token = 1;
+ 218   3                              //LcdDataSendRepeat();
+ 219   3                      }               
+ 220   2                      gLcdRecvPaketLength = 0;
+ 221   2              }
+ 222   1      
+ 223   1              // 2. 发数据给bcu
+ 224   1              if(token)
+ 225   1              {
+ 226   2                      for(i=0;i<LCD_DATA_LEN;i++)
+ 227   2                      {
+ 228   3                              buf[6+i] = LcdPacketBuf[i];
+ 229   3                      }
+ 230   2                      //buf[];
+ 231   2                      BoxDataSend(buf , 23);
+ 232   2                      token = 0;
+ 233   2                      token_time = gSys10msTick ;
+ 234   2                      //BoxDataSendRepeat();
+ 235   2              }
+ 236   1      
+ 237   1              if(gSys10msTick - token_time > 15)
+ 238   1                      token =1;
+ 239   1      }
+*** WARNING C280 IN LINE 201 OF 2COM.C: 'temp': unreferenced local variable
+C51 COMPILER V8.08   2COM                                                                  11/14/2014 14:07:30 PAGE 5   
+
+ 240          
+ 241          
+ 242          
+ 243          
+ 244          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   1030    ----
+   CONSTANT SIZE    =     34    ----
+   XDATA SIZE       =    217    ----
+   PDATA SIZE       =     69    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)

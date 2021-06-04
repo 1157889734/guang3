@@ -1,0 +1,142 @@
+﻿  stdafx.cpp
+c:\pis\guan3_pis\windows_src\ptu\szptu\stdafx.h(317): warning C4200: 使用了非标准扩展: 结构/联合中的零大小数组
+  c:\pis\guan3_pis\windows_src\ptu\szptu\stdafx.h(317): note: 默认构造函数或 copy/move 赋值运算符将忽略此成员
+c:\pis\guan3_pis\windows_src\ptu\szptu\stdafx.h(339): warning C4200: 使用了非标准扩展: 结构/联合中的零大小数组
+  c:\pis\guan3_pis\windows_src\ptu\szptu\stdafx.h(339): note: 默认构造函数或 copy/move 赋值运算符将忽略此成员
+c:\pis\guan3_pis\windows_src\ptu\szptu\stdafx.h(353): warning C4200: 使用了非标准扩展: 结构/联合中的零大小数组
+  c:\pis\guan3_pis\windows_src\ptu\szptu\stdafx.h(353): note: 默认构造函数或 copy/move 赋值运算符将忽略此成员
+c:\pis\guan3_pis\windows_src\ptu\szptu\stdafx.h(361): warning C4200: 使用了非标准扩展: 结构/联合中的零大小数组
+  c:\pis\guan3_pis\windows_src\ptu\szptu\stdafx.h(361): note: 默认构造函数或 copy/move 赋值运算符将忽略此成员
+c:\pis\guan3_pis\windows_src\ptu\szptu\stdafx.h(375): warning C4200: 使用了非标准扩展: 结构/联合中的零大小数组
+  c:\pis\guan3_pis\windows_src\ptu\szptu\stdafx.h(375): note: 默认构造函数或 copy/move 赋值运算符将忽略此成员
+c:\pis\guan3_pis\windows_src\ptu\szptu\stdafx.h(396): warning C4200: 使用了非标准扩展: 结构/联合中的零大小数组
+  c:\pis\guan3_pis\windows_src\ptu\szptu\stdafx.h(396): note: 默认构造函数或 copy/move 赋值运算符将忽略此成员
+  BreakQueryTimeDlg.cpp
+c:\pis\guan3_pis\windows_src\ptu\szptu\breakquerytimedlg.cpp(650): warning C4101: “count”: 未引用的局部变量
+  CESeries.cpp
+  ComPro.cpp
+  CustomDlg.cpp
+  DeleteDlg.cpp
+  DeviceQueryCTCDlg.cpp
+  DevStatusQueryDlg.cpp
+c:\pis\guan3_pis\windows_src\ptu\szptu\devstatusquerydlg.cpp(137): warning C4244: “初始化”: 从“ULONGLONG”转换到“int”，可能丢失数据
+  DlgCtcSetRoute.cpp
+  DlgHistoricalView.cpp
+c:\pis\guan3_pis\windows_src\ptu\szptu\dlghistoricalview.cpp(129): warning C4333: “>>”: 右移位数过大，数据将丢失
+c:\pis\guan3_pis\windows_src\ptu\szptu\dlghistoricalview.cpp(133): warning C4333: “>>”: 右移位数过大，数据将丢失
+  DownByTypeDlg.cpp
+c:\pis\guan3_pis\windows_src\ptu\szptu\downbytypedlg.cpp(49): warning C4101: “fn”: 未引用的局部变量
+c:\pis\guan3_pis\windows_src\ptu\szptu\downbytypedlg.cpp(48): warning C4101: “line”: 未引用的局部变量
+  DownLoadLED.cpp
+  GridCell.cpp
+  GridCellBase.cpp
+  GridCtrl.cpp
+c:\pis\guan3_pis\windows_src\ptu\szptu\gridctrl_src\gridctrl.cpp(163): warning C4996: 'GetVersionExW': 被声明为已否决
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\sysinfoapi.h(387): note: 参见“GetVersionExW”的声明
+  GridDropTarget.cpp
+  InPlaceEdit.cpp
+  InPlaceList.cpp
+  TitleTip.cpp
+  IHListBox.cpp
+  LedParaSetDlg.cpp
+c:\pis\guan3_pis\windows_src\ptu\szptu\ledparasetdlg.cpp(47): warning C4244: “初始化”: 从“wchar_t”转换到“UCHAR”，可能丢失数据
+  正在编译...
+  LittaceSet.cpp
+c:\pis\guan3_pis\windows_src\ptu\szptu\littaceset.cpp(384): warning C4996: 'wcscpy': This function or variable may be unsafe. Consider using wcscpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\corecrt_wstring.h(123): note: 参见“wcscpy”的声明
+c:\pis\guan3_pis\windows_src\ptu\szptu\littaceset.cpp(431): warning C4018: “<”: 有符号/无符号不匹配
+c:\pis\guan3_pis\windows_src\ptu\szptu\littaceset.cpp(433): warning C4018: “>”: 有符号/无符号不匹配
+c:\pis\guan3_pis\windows_src\ptu\szptu\littaceset.cpp(438): warning C4018: “<”: 有符号/无符号不匹配
+c:\pis\guan3_pis\windows_src\ptu\szptu\littaceset.cpp(440): warning C4018: “>”: 有符号/无符号不匹配
+c:\pis\guan3_pis\windows_src\ptu\szptu\littaceset.cpp(476): warning C4018: “<=”: 有符号/无符号不匹配
+c:\pis\guan3_pis\windows_src\ptu\szptu\littaceset.cpp(481): warning C4018: “<=”: 有符号/无符号不匹配
+c:\pis\guan3_pis\windows_src\ptu\szptu\littaceset.cpp(500): warning C4018: “<=”: 有符号/无符号不匹配
+c:\pis\guan3_pis\windows_src\ptu\szptu\littaceset.cpp(1582): warning C4018: “<”: 有符号/无符号不匹配
+c:\pis\guan3_pis\windows_src\ptu\szptu\littaceset.cpp(1607): warning C4018: “<”: 有符号/无符号不匹配
+c:\pis\guan3_pis\windows_src\ptu\szptu\littaceset.cpp(1841): warning C4018: “<”: 有符号/无符号不匹配
+c:\pis\guan3_pis\windows_src\ptu\szptu\littaceset.cpp(1929): warning C4018: “<=”: 有符号/无符号不匹配
+c:\pis\guan3_pis\windows_src\ptu\szptu\littaceset.cpp(1931): warning C4018: “<=”: 有符号/无符号不匹配
+c:\pis\guan3_pis\windows_src\ptu\szptu\littaceset.cpp(1938): warning C4018: “<=”: 有符号/无符号不匹配
+c:\pis\guan3_pis\windows_src\ptu\szptu\littaceset.cpp(1940): warning C4018: “<=”: 有符号/无符号不匹配
+c:\pis\guan3_pis\windows_src\ptu\szptu\littaceset.cpp(1901): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\stdio.h(208): note: 参见“fopen”的声明
+  MainFrm.cpp
+  MyButton.cpp
+c:\pis\guan3_pis\windows_src\ptu\szptu\mybutton.cpp(125): warning C4244: “参数”: 从“int”转换到“Gdiplus::REAL”，可能丢失数据
+c:\pis\guan3_pis\windows_src\ptu\szptu\mybutton.cpp(180): warning C4244: “参数”: 从“int”转换到“Gdiplus::REAL”，可能丢失数据
+  MyEdit.cpp
+  OperateDlg.cpp
+  ParaSetDlg.cpp
+  PicDownDlg.cpp
+c:\pis\guan3_pis\windows_src\ptu\szptu\picdowndlg.cpp(503): warning C4101: “fn”: 未引用的局部变量
+c:\pis\guan3_pis\windows_src\ptu\szptu\picdowndlg.cpp(502): warning C4101: “line”: 未引用的局部变量
+c:\pis\guan3_pis\windows_src\ptu\szptu\picdowndlg.cpp(821): warning C4996: 'wcscpy': This function or variable may be unsafe. Consider using wcscpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\corecrt_wstring.h(123): note: 参见“wcscpy”的声明
+c:\pis\guan3_pis\windows_src\ptu\szptu\picdowndlg.cpp(854): warning C4018: “<”: 有符号/无符号不匹配
+c:\pis\guan3_pis\windows_src\ptu\szptu\picdowndlg.cpp(856): warning C4018: “>”: 有符号/无符号不匹配
+c:\pis\guan3_pis\windows_src\ptu\szptu\picdowndlg.cpp(861): warning C4018: “<”: 有符号/无符号不匹配
+c:\pis\guan3_pis\windows_src\ptu\szptu\picdowndlg.cpp(863): warning C4018: “>”: 有符号/无符号不匹配
+c:\pis\guan3_pis\windows_src\ptu\szptu\picdowndlg.cpp(884): warning C4018: “<=”: 有符号/无符号不匹配
+c:\pis\guan3_pis\windows_src\ptu\szptu\picdowndlg.cpp(889): warning C4018: “<=”: 有符号/无符号不匹配
+c:\pis\guan3_pis\windows_src\ptu\szptu\picdowndlg.cpp(908): warning C4018: “<=”: 有符号/无符号不匹配
+c:\pis\guan3_pis\windows_src\ptu\szptu\picdowndlg.cpp(1051): warning C4018: “<=”: 有符号/无符号不匹配
+c:\pis\guan3_pis\windows_src\ptu\szptu\picdowndlg.cpp(1053): warning C4018: “<=”: 有符号/无符号不匹配
+c:\pis\guan3_pis\windows_src\ptu\szptu\picdowndlg.cpp(1060): warning C4018: “<=”: 有符号/无符号不匹配
+c:\pis\guan3_pis\windows_src\ptu\szptu\picdowndlg.cpp(1062): warning C4018: “<=”: 有符号/无符号不匹配
+c:\pis\guan3_pis\windows_src\ptu\szptu\picdowndlg.cpp(1021): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\stdio.h(208): note: 参见“fopen”的声明
+  PicSaveDlg.cpp
+c:\pis\guan3_pis\windows_src\ptu\szptu\picsavedlg.cpp(118): warning C4101: “fn”: 未引用的局部变量
+c:\pis\guan3_pis\windows_src\ptu\szptu\picsavedlg.cpp(117): warning C4101: “line”: 未引用的局部变量
+  PisProtocol.cpp
+  PortLinkDlg.cpp
+  ProgramDownDlg.cpp
+  ProtocolAnalysis.cpp
+  RTCTimeSetdlg.cpp
+  SelFileDlg.cpp
+c:\pis\guan3_pis\windows_src\ptu\szptu\selfiledlg.cpp(152): warning C4267: “=”: 从“size_t”转换到“BYTE”，可能丢失数据
+c:\pis\guan3_pis\windows_src\ptu\szptu\selfiledlg.cpp(209): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+c:\pis\guan3_pis\windows_src\ptu\szptu\selfiledlg.cpp(255): warning C4267: “=”: 从“size_t”转换到“BYTE”，可能丢失数据
+c:\pis\guan3_pis\windows_src\ptu\szptu\selfiledlg.cpp(329): warning C4101: “count”: 未引用的局部变量
+  StationCfg.cpp
+  StationChaildCfg.cpp
+c:\pis\guan3_pis\windows_src\ptu\szptu\stationchaildcfg.cpp(194): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\stdio.h(208): note: 参见“fopen”的声明
+c:\pis\guan3_pis\windows_src\ptu\szptu\stationchaildcfg.cpp(234): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\stdio.h(208): note: 参见“fopen”的声明
+  SZPTU.cpp
+  SZPTUDoc.cpp
+  SZPTUView.cpp
+  TmsProtocol.cpp
+  正在编译...
+  HidUSB.cpp
+CL : warning : using obsolete header file usbioctl.h
+c:\pis\guan3_pis\windows_src\ptu\szptu\usb\usbioctl.h(437): warning C4200: 使用了非标准扩展: 结构/联合中的零大小数组
+  c:\pis\guan3_pis\windows_src\ptu\szptu\usb\usbioctl.h(437): note: 默认构造函数或 copy/move 赋值运算符将忽略此成员
+c:\pis\guan3_pis\windows_src\ptu\szptu\usb\usbioctl.h(493): warning C4200: 使用了非标准扩展: 结构/联合中的零大小数组
+  c:\pis\guan3_pis\windows_src\ptu\szptu\usb\usbioctl.h(493): note: 默认构造函数或 copy/move 赋值运算符将忽略此成员
+c:\pis\guan3_pis\windows_src\ptu\szptu\usb\hidpi.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+c:\pis\guan3_pis\windows_src\ptu\szptu\usb\hidpi.h(726): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+c:\pis\guan3_pis\windows_src\ptu\szptu\usb\hidpi.h(1295): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+c:\pis\guan3_pis\windows_src\ptu\szptu\usb\usbhead.h(31): error C2011: “_STORAGE_DEVICE_DESCRIPTOR”:“struct”类型重定义
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\winioctl.h(1138): note: 参见“_STORAGE_DEVICE_DESCRIPTOR”的声明
+c:\pis\guan3_pis\windows_src\ptu\szptu\usb\usbhead.h(47): error C2011: “_STORAGE_QUERY_TYPE”:“enum”类型重定义
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\winioctl.h(1042): note: 参见“_STORAGE_QUERY_TYPE”的声明
+c:\pis\guan3_pis\windows_src\ptu\szptu\usb\usbhead.h(55): error C2011: “_STORAGE_PROPERTY_ID”:“enum”类型重定义
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\winioctl.h(1053): note: 参见“_STORAGE_PROPERTY_ID”的声明
+c:\pis\guan3_pis\windows_src\ptu\szptu\usb\usbhead.h(62): error C2011: “_STORAGE_PROPERTY_QUERY”:“struct”类型重定义
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\um\winioctl.h(1093): note: 参见“_STORAGE_PROPERTY_QUERY”的声明
+c:\pis\guan3_pis\windows_src\ptu\szptu\usb\usbhead.h(74): warning C4200: 使用了非标准扩展: 结构/联合中的零大小数组
+  c:\pis\guan3_pis\windows_src\ptu\szptu\usb\usbhead.h(74): note: 默认构造函数或 copy/move 赋值运算符将忽略此成员
+c:\pis\guan3_pis\windows_src\ptu\szptu\usb\hidusb.cpp(161): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\string.h(90): note: 参见“strcat”的声明
+c:\pis\guan3_pis\windows_src\ptu\szptu\usb\hidusb.cpp(162): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\string.h(90): note: 参见“strcat”的声明
+c:\pis\guan3_pis\windows_src\ptu\szptu\usb\hidusb.cpp(164): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\string.h(90): note: 参见“strcat”的声明
+c:\pis\guan3_pis\windows_src\ptu\szptu\usb\hidusb.cpp(165): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\string.h(90): note: 参见“strcat”的声明
+c:\pis\guan3_pis\windows_src\ptu\szptu\usb\hidusb.cpp(158): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\string.h(338): note: 参见“strncpy”的声明
+c:\pis\guan3_pis\windows_src\ptu\szptu\usb\hidusb.cpp(159): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\string.h(338): note: 参见“strncpy”的声明

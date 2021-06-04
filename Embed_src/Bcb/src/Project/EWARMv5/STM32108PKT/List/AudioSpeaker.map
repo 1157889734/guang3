@@ -1,0 +1,730 @@
+###############################################################################
+#                                                                             #
+# IAR ELF Linker V5.30.2.51295/W32 for ARM              06/Nov/2015  14:25:38 #
+# Copyright 2007-2009 IAR Systems AB.                                         #
+#                                                                             #
+#    Output file  =  D:\svuen勿删\广3\新广播控制盒\Bcb_p2p\src\Project\EWARMv #
+#                    5\STM32108PKT\Exe\AudioSpeaker.out                       #
+#    Map file     =  D:\svuen勿删\广3\新广播控制盒\Bcb_p2p\src\Project\EWARMv #
+#                    5\STM32108PKT\List\AudioSpeaker.map                      #
+#    Command line =  D:\svuen勿删\广3\新广播控制盒\Bcb_p2p\src\Project\EWARMv #
+#                    5\STM32108PKT\Obj\core_cm3.o                             #
+#                    D:\svuen勿删\广3\新广播控制盒\Bcb_p2p\src\Project\EWARMv #
+#                    5\STM32108PKT\Obj\data_box.o                             #
+#                    D:\svuen勿删\广3\新广播控制盒\Bcb_p2p\src\Project\EWARMv #
+#                    5\STM32108PKT\Obj\data_public.o                          #
+#                    D:\svuen勿删\广3\新广播控制盒\Bcb_p2p\src\Project\EWARMv #
+#                    5\STM32108PKT\Obj\data_train.o                           #
+#                    D:\svuen勿删\广3\新广播控制盒\Bcb_p2p\src\Project\EWARMv #
+#                    5\STM32108PKT\Obj\device_info.o                          #
+#                    D:\svuen勿删\广3\新广播控制盒\Bcb_p2p\src\Project\EWARMv #
+#                    5\STM32108PKT\Obj\esu.o D:\svuen勿删\广3\新广播控制盒\Bc #
+#                    b_p2p\src\Project\EWARMv5\STM32108PKT\Obj\flash_if.o     #
+#                    D:\svuen勿删\广3\新广播控制盒\Bcb_p2p\src\Project\EWARMv #
+#                    5\STM32108PKT\Obj\hw_config.o                            #
+#                    D:\svuen勿删\广3\新广播控制盒\Bcb_p2p\src\Project\EWARMv #
+#                    5\STM32108PKT\Obj\led_control.o                          #
+#                    D:\svuen勿删\广3\新广播控制盒\Bcb_p2p\src\Project\EWARMv #
+#                    5\STM32108PKT\Obj\main.o D:\svuen勿删\广3\新广播控制盒\B #
+#                    cb_p2p\src\Project\EWARMv5\STM32108PKT\Obj\misc.o        #
+#                    D:\svuen勿删\广3\新广播控制盒\Bcb_p2p\src\Project\EWARMv #
+#                    5\STM32108PKT\Obj\progupdate.o                           #
+#                    D:\svuen勿删\广3\新广播控制盒\Bcb_p2p\src\Project\EWARMv #
+#                    5\STM32108PKT\Obj\set_vlum.o                             #
+#                    D:\svuen勿删\广3\新广播控制盒\Bcb_p2p\src\Project\EWARMv #
+#                    5\STM32108PKT\Obj\startup_stm32f10x_md_vl.o              #
+#                    D:\svuen勿删\广3\新广播控制盒\Bcb_p2p\src\Project\EWARMv #
+#                    5\STM32108PKT\Obj\stat_switch.o                          #
+#                    D:\svuen勿删\广3\新广播控制盒\Bcb_p2p\src\Project\EWARMv #
+#                    5\STM32108PKT\Obj\stm32f10x_dbgmcu.o                     #
+#                    D:\svuen勿删\广3\新广播控制盒\Bcb_p2p\src\Project\EWARMv #
+#                    5\STM32108PKT\Obj\stm32f10x_exti.o                       #
+#                    D:\svuen勿删\广3\新广播控制盒\Bcb_p2p\src\Project\EWARMv #
+#                    5\STM32108PKT\Obj\stm32f10x_flash.o                      #
+#                    D:\svuen勿删\广3\新广播控制盒\Bcb_p2p\src\Project\EWARMv #
+#                    5\STM32108PKT\Obj\stm32f10x_gpio.o                       #
+#                    D:\svuen勿删\广3\新广播控制盒\Bcb_p2p\src\Project\EWARMv #
+#                    5\STM32108PKT\Obj\stm32f10x_it.o                         #
+#                    D:\svuen勿删\广3\新广播控制盒\Bcb_p2p\src\Project\EWARMv #
+#                    5\STM32108PKT\Obj\stm32f10x_iwdg.o                       #
+#                    D:\svuen勿删\广3\新广播控制盒\Bcb_p2p\src\Project\EWARMv #
+#                    5\STM32108PKT\Obj\stm32f10x_pwr.o                        #
+#                    D:\svuen勿删\广3\新广播控制盒\Bcb_p2p\src\Project\EWARMv #
+#                    5\STM32108PKT\Obj\stm32f10x_rcc.o                        #
+#                    D:\svuen勿删\广3\新广播控制盒\Bcb_p2p\src\Project\EWARMv #
+#                    5\STM32108PKT\Obj\stm32f10x_usart.o                      #
+#                    D:\svuen勿删\广3\新广播控制盒\Bcb_p2p\src\Project\EWARMv #
+#                    5\STM32108PKT\Obj\system_stm32f10x.o                     #
+#                    D:\svuen勿删\广3\新广播控制盒\Bcb_p2p\src\Project\EWARMv #
+#                    5\STM32108PKT\Obj\systick.o                              #
+#                    D:\svuen勿删\广3\新广播控制盒\Bcb_p2p\src\Project\EWARMv #
+#                    5\STM32108PKT\Obj\uart1.o D:\svuen勿删\广3\新广播控制盒\ #
+#                    Bcb_p2p\src\Project\EWARMv5\STM32108PKT\Obj\uart2.o -o   #
+#                    D:\svuen勿删\广3\新广播控制盒\Bcb_p2p\src\Project\EWARMv #
+#                    5\STM32108PKT\Exe\AudioSpeaker.out --map                 #
+#                    D:\svuen勿删\广3\新广播控制盒\Bcb_p2p\src\Project\EWARMv #
+#                    5\STM32108PKT\List\AudioSpeaker.map --config             #
+#                    D:\svuen勿删\广3\新广播控制盒\Bcb_p2p\src\Project\EWARMv #
+#                    5\stm32f10x_flash.icf --semihosting --entry              #
+#                    __iar_program_start                                      #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+*******************************************************************************
+*** PLACEMENT SUMMARY
+***
+
+"A1":  place at mem:0x8000000 { ro section .intvec };
+"P1":  place in [from mem:0x8000000 to mem:0x807ffff] { ro };
+"P2":  place in [from mem:0x20000000 to mem:0x2000ffff] {
+          rw, block CSTACK, block HEAP };
+
+  Section            Kind        Address    Size  Object
+  -------            ----        -------    ----  ------
+"A1":                                      0x120
+  .intvec            ro code  0x08000000   0x120  startup_stm32f10x_md_vl.o [1]
+                            - 0x08000120   0x120
+
+"P1":                                     0x3910
+  .text              ro code  0x08000120   0x8e4  stat_switch.o [1]
+  .text              ro code  0x08000a04   0x5d8  set_vlum.o [1]
+  .text              ro code  0x08000fdc   0x5b0  progupdate.o [1]
+  .text              ro code  0x0800158c   0x536  data_train.o [1]
+  .text              ro code  0x08001ac4   0x43c  data_box.o [1]
+  .text              ro code  0x08001f00   0x368  main.o [1]
+  .text              ro code  0x08002268   0x300  stm32f10x_rcc.o [1]
+  .text              ro code  0x08002568   0x2d4  esu.o [1]
+  .text              ro code  0x0800283c   0x290  led_control.o [1]
+  .text              ro code  0x08002acc   0x264  stm32f10x_it.o [1]
+  .text              ro code  0x08002d30   0x168  stm32f10x_flash.o [1]
+  .text              ro code  0x08002e98   0x150  system_stm32f10x.o [1]
+  .text              ro code  0x08002fe8   0x138  stm32f10x_usart.o [1]
+  .text              ro code  0x08003120   0x126  data_public.o [1]
+  .text              ro code  0x08003248   0x124  uart2.o [1]
+  .text              ro code  0x0800336c   0x104  uart1.o [1]
+  .text              ro code  0x08003470    0xf2  stm32f10x_gpio.o [1]
+  .text              ro code  0x08003564    0xb8  systick.o [1]
+  .text              ro code  0x0800361c    0x9c  misc.o [1]
+  .text              ro code  0x080036b8    0x7c  device_info.o [1]
+  .text              ro code  0x08003734    0x70  ABImemcpy.o [4]
+  .text              ro code  0x080037a4    0x60  hw_config.o [1]
+  .text              ro code  0x08003804    0x3c  stm32f10x_exti.o [1]
+  .text              ro code  0x08003840    0x38  stm32f10x_iwdg.o [1]
+  .text              ro code  0x08003878    0x24  stm32f10x_dbgmcu.o [1]
+  .text              ro code  0x0800389c    0x24  copy_init2.o [4]
+  .iar.init_table    const    0x080038c0    0x24  - Linker created -
+  .text              ro code  0x080038e4    0x1c  data_init2.o [4]
+  .text              ro code  0x08003900    0x1a  zero_init2.o [4]
+  .text              ro code  0x0800391c    0x18  cmain.o [4]
+  .text              ro code  0x08003934    0x18  iarwstd.o [5]
+  .text              ro code  0x0800394c    0x14  exit.o [5]
+  .rodata            const    0x08003960    0x10  set_vlum.o [1]
+  .text              ro code  0x08003970    0x10  startup_stm32f10x_md_vl.o [1]
+  .text              ro code  0x08003980     0xe  data_box.o [1]
+  .text              ro code  0x08003990     0xa  cexit.o [4]
+  .text              ro code  0x0800399a     0x6  exit.o [3]
+  .rodata            const    0x080039a0     0x4  data_train.o [1]
+  .rodata            const    0x080039a4     0x4  system_stm32f10x.o [1]
+  .text              ro code  0x080039a8     0x4  low_level_init.o [3]
+  .text              ro code  0x080039ac     0x2  startup_stm32f10x_md_vl.o [1]
+  .text              ro code  0x080039ae     0x2  startup_stm32f10x_md_vl.o [1]
+  .text              ro code  0x080039b0     0x2  startup_stm32f10x_md_vl.o [1]
+  .text              ro code  0x080039b2     0x2  startup_stm32f10x_md_vl.o [1]
+  .text              ro code  0x080039b4     0x2  startup_stm32f10x_md_vl.o [1]
+  .text              ro code  0x080039b6     0x2  startup_stm32f10x_md_vl.o [1]
+  .text              ro code  0x080039b8     0x2  startup_stm32f10x_md_vl.o [1]
+  .text              ro code  0x080039ba     0x2  startup_stm32f10x_md_vl.o [1]
+  .text              ro code  0x080039bc     0x2  startup_stm32f10x_md_vl.o [1]
+  .text              ro code  0x080039be     0x2  startup_stm32f10x_md_vl.o [1]
+  .text              ro code  0x080039c0     0x2  startup_stm32f10x_md_vl.o [1]
+  .text              ro code  0x080039c2     0x2  startup_stm32f10x_md_vl.o [1]
+  .text              ro code  0x080039c4     0x2  startup_stm32f10x_md_vl.o [1]
+  .text              ro code  0x080039c6     0x2  startup_stm32f10x_md_vl.o [1]
+  .text              ro code  0x080039c8     0x2  startup_stm32f10x_md_vl.o [1]
+  .text              ro code  0x080039ca     0x2  startup_stm32f10x_md_vl.o [1]
+  .text              ro code  0x080039cc     0x2  startup_stm32f10x_md_vl.o [1]
+  .text              ro code  0x080039ce     0x2  startup_stm32f10x_md_vl.o [1]
+  .text              ro code  0x080039d0     0x2  startup_stm32f10x_md_vl.o [1]
+  .text              ro code  0x080039d2     0x2  startup_stm32f10x_md_vl.o [1]
+  .text              ro code  0x080039d4     0x2  startup_stm32f10x_md_vl.o [1]
+  .text              ro code  0x080039d6     0x2  startup_stm32f10x_md_vl.o [1]
+  .text              ro code  0x080039d8     0x2  startup_stm32f10x_md_vl.o [1]
+  .text              ro code  0x080039da     0x2  startup_stm32f10x_md_vl.o [1]
+  .text              ro code  0x080039dc     0x2  startup_stm32f10x_md_vl.o [1]
+  .text              ro code  0x080039de     0x2  startup_stm32f10x_md_vl.o [1]
+  .text              ro code  0x080039e0     0x2  startup_stm32f10x_md_vl.o [1]
+  .text              ro code  0x080039e2     0x2  startup_stm32f10x_md_vl.o [1]
+  .text              ro code  0x080039e4     0x2  startup_stm32f10x_md_vl.o [1]
+  .text              ro code  0x080039e6     0x2  startup_stm32f10x_md_vl.o [1]
+  .text              ro code  0x080039e8     0x2  startup_stm32f10x_md_vl.o [1]
+  .text              ro code  0x080039ea     0x2  startup_stm32f10x_md_vl.o [1]
+  .text              ro code  0x080039ec     0x2  startup_stm32f10x_md_vl.o [1]
+  .text              ro code  0x080039ee     0x2  startup_stm32f10x_md_vl.o [1]
+  .text              ro code  0x080039f0     0x2  startup_stm32f10x_md_vl.o [1]
+  .text              ro code  0x080039f2     0x2  startup_stm32f10x_md_vl.o [1]
+  .text              ro code  0x080039f4     0x2  startup_stm32f10x_md_vl.o [1]
+  .text              ro code  0x080039f6     0x2  startup_stm32f10x_md_vl.o [1]
+  .text              ro code  0x080039f8     0x2  startup_stm32f10x_md_vl.o [1]
+  .text              ro code  0x080039fa     0x2  startup_stm32f10x_md_vl.o [1]
+  .text              ro code  0x080039fc     0x2  startup_stm32f10x_md_vl.o [1]
+  .text              ro code  0x080039fe     0x2  startup_stm32f10x_md_vl.o [1]
+  .text              ro code  0x08003a00     0x2  startup_stm32f10x_md_vl.o [1]
+  .text              ro code  0x08003a02     0x2  startup_stm32f10x_md_vl.o [1]
+  .text              ro code  0x08003a04     0x2  startup_stm32f10x_md_vl.o [1]
+  .text              ro code  0x08003a06     0x2  startup_stm32f10x_md_vl.o [1]
+  .text              ro code  0x08003a08     0x2  startup_stm32f10x_md_vl.o [1]
+  .text              ro code  0x08003a0a     0x2  startup_stm32f10x_md_vl.o [1]
+  .text              ro code  0x08003a0c     0x2  startup_stm32f10x_md_vl.o [1]
+  .text              ro code  0x08003a0e     0x2  startup_stm32f10x_md_vl.o [1]
+  Initializer bytes  ro data  0x08003a10    0x20  <for P2 s0> (used: 0x1e)
+                            - 0x08003a30  0x3910
+
+"P2", part 1 of 3:                         0x400
+  CSTACK                      0x20000000   0x400  <Block>
+    CSTACK           uninit   0x20000000   0x400  <Block tail>
+                            - 0x20000400   0x400
+
+"P2", part 2 of 3:                        0x116c
+  .bss               zero     0x20000400   0x800  progupdate.o [1]
+  .bss               zero     0x20000c00   0x200  progupdate.o [1]
+  .bss               zero     0x20000e00   0x100  data_box.o [1]
+  .bss               zero     0x20000f00   0x100  data_train.o [1]
+  .bss               zero     0x20001000   0x100  uart1.o [1]
+  .bss               zero     0x20001100   0x100  uart1.o [1]
+  .bss               zero     0x20001200   0x100  uart2.o [1]
+  .bss               zero     0x20001300   0x100  uart2.o [1]
+  .bss               zero     0x20001400    0x2c  data_public.o [1]
+  .bss               zero     0x2000142c    0x2c  data_public.o [1]
+  .bss               zero     0x20001458    0x20  data_public.o [1]
+  .bss               zero     0x20001478    0x1c  esu.o [1]
+  .bss               zero     0x20001494    0x18  esu.o [1]
+  .bss               zero     0x200014ac    0x14  esu.o [1]
+  .bss               zero     0x200014c0     0xc  data_public.o [1]
+  .bss               zero     0x200014cc     0xc  data_train.o [1]
+  .bss               zero     0x200014d8     0xc  set_vlum.o [1]
+  .bss               zero     0x200014e4     0x4  data_box.o [1]
+  .bss               zero     0x200014e8     0x4  data_box.o [1]
+  .bss               zero     0x200014ec     0x4  data_box.o [1]
+  .bss               zero     0x200014f0     0x4  data_train.o [1]
+  .bss               zero     0x200014f4     0x4  esu.o [1]
+  .bss               zero     0x200014f8     0x4  led_control.o [1]
+  .bss               zero     0x200014fc     0x4  led_control.o [1]
+  .bss               zero     0x20001500     0x4  led_control.o [1]
+  .bss               zero     0x20001504     0x4  led_control.o [1]
+  .bss               zero     0x20001508     0x4  led_control.o [1]
+  .bss               zero     0x2000150c     0x4  main.o [1]
+  .bss               zero     0x20001510     0x4  progupdate.o [1]
+  .bss               zero     0x20001514     0x4  progupdate.o [1]
+  .bss               zero     0x20001518     0x4  progupdate.o [1]
+  .bss               zero     0x2000151c     0x4  progupdate.o [1]
+  .bss               zero     0x20001520     0x4  stat_switch.o [1]
+  .bss               zero     0x20001524     0x4  stm32f10x_it.o [1]
+  .bss               zero     0x20001528     0x4  stm32f10x_it.o [1]
+  .bss               zero     0x2000152c     0x4  systick.o [1]
+  .bss               zero     0x20001530     0x4  systick.o [1]
+  .bss               zero     0x20001534     0x4  systick.o [1]
+  .bss               zero     0x20001538     0x4  iarwstd.o [5]
+  .bss               zero     0x2000153c     0x2  progupdate.o [1]
+  .bss               zero     0x2000153e     0x2  progupdate.o [1]
+  .bss               zero     0x20001540     0x2  progupdate.o [1]
+  .bss               zero     0x20001542     0x2  uart1.o [1]
+  .bss               zero     0x20001544     0x2  uart1.o [1]
+  .bss               zero     0x20001546     0x2  uart1.o [1]
+  .bss               zero     0x20001548     0x2  uart1.o [1]
+  .bss               zero     0x2000154a     0x2  uart2.o [1]
+  .bss               zero     0x2000154c     0x2  uart2.o [1]
+  .bss               zero     0x2000154e     0x2  uart2.o [1]
+  .bss               zero     0x20001550     0x2  uart2.o [1]
+  .bss               zero     0x20001552     0x1  data_box.o [1]
+  .bss               zero     0x20001553     0x1  data_box.o [1]
+  .bss               zero     0x20001554     0x1  data_box.o [1]
+  .bss               zero     0x20001555     0x1  data_train.o [1]
+  .bss               zero     0x20001556     0x1  data_train.o [1]
+  .bss               zero     0x20001557     0x1  data_train.o [1]
+  .bss               zero     0x20001558     0x1  data_train.o [1]
+  .bss               zero     0x20001559     0x1  data_train.o [1]
+  .bss               zero     0x2000155a     0x1  device_info.o [1]
+  .bss               zero     0x2000155b     0x1  hw_config.o [1]
+  .bss               zero     0x2000155c     0x1  hw_config.o [1]
+  .bss               zero     0x2000155d     0x1  led_control.o [1]
+  .bss               zero     0x2000155e     0x1  led_control.o [1]
+  .bss               zero     0x2000155f     0x1  led_control.o [1]
+  .bss               zero     0x20001560     0x1  led_control.o [1]
+  .bss               zero     0x20001561     0x1  progupdate.o [1]
+  .bss               zero     0x20001562     0x1  set_vlum.o [1]
+  .bss               zero     0x20001563     0x1  set_vlum.o [1]
+  .bss               zero     0x20001564     0x1  stat_switch.o [1]
+  .bss               zero     0x20001565     0x1  stat_switch.o [1]
+  .bss               zero     0x20001566     0x1  stat_switch.o [1]
+  .bss               zero     0x20001567     0x1  stat_switch.o [1]
+  .bss               zero     0x20001568     0x1  stat_switch.o [1]
+  .bss               zero     0x20001569     0x1  stat_switch.o [1]
+  .bss               zero     0x2000156a     0x1  uart1.o [1]
+  .bss               zero     0x2000156b     0x1  uart2.o [1]
+                            - 0x2000156c  0x116c
+
+"P2", part 3 of 3:                          0x20
+  P2 s0                       0x2000156c    0x20  <Init block>
+    .data            inited   0x2000156c    0x10  stm32f10x_rcc.o [1]
+    .data            inited   0x2000157c     0x4  stm32f10x_rcc.o [1]
+    .data            inited   0x20001580     0x1  data_box.o [1]
+    .data            inited   0x20001581     0x1  data_box.o [1]
+    .data            inited   0x20001582     0x1  data_box.o [1]
+    .data            inited   0x20001583     0x1  data_box.o [1]
+    .data            inited   0x20001584     0x1  data_box.o [1]
+    .data            inited   0x20001585     0x1  device_info.o [1]
+    .data            inited   0x20001586     0x1  set_vlum.o [1]
+    .data            inited   0x20001587     0x1  set_vlum.o [1]
+    .data            inited   0x20001588     0x1  stat_switch.o [1]
+    .data            inited   0x20001589     0x1  stat_switch.o [1]
+                            - 0x2000158c    0x20
+
+
+*******************************************************************************
+*** INIT TABLE
+***
+
+          Address     Size
+          -------     ----
+Zero (__iar_zero_init2)
+    1 destination range, total size 0x116c:
+          0x20000400  0x116c
+
+Copy (__iar_copy_init2)
+    1 source range, total size 0x20 (106% of destination):
+           0x8003a10    0x20
+    1 destination range, total size 0x1e:
+          0x2000156c    0x1e
+
+
+*******************************************************************************
+*** MODULE SUMMARY
+***
+
+    Module                     ro code  ro data  rw data
+    ------                     -------  -------  -------
+D:\svuen勿删\广3\新广播控制盒\Bcb_p2p\src\Project\EWARMv5\STM32108PKT\Obj: [1]
+    data_box.o                   1 098        5      276
+    data_public.o                  294               132
+    data_train.o                 1 334        4      277
+    device_info.o                  124        1        2
+    esu.o                          724                76
+    hw_config.o                     96                 2
+    led_control.o                  656                24
+    main.o                         872                 4
+    misc.o                         156
+    progupdate.o                 1 456             2 583
+    set_vlum.o                   1 496       18       16
+    startup_stm32f10x_md_vl.o      404
+    stat_switch.o                2 276        2       12
+    stm32f10x_dbgmcu.o              36
+    stm32f10x_exti.o                60
+    stm32f10x_flash.o              360
+    stm32f10x_gpio.o               242
+    stm32f10x_it.o                 612                 8
+    stm32f10x_iwdg.o                56
+    stm32f10x_rcc.o                768       20       20
+    stm32f10x_usart.o              312
+    system_stm32f10x.o             336        4
+    systick.o                      184                12
+    uart1.o                        260               521
+    uart2.o                        292               521
+    ----------------------------------------------------
+    Total:                      14 504       54    4 486
+
+command line: [2]
+    ----------------------------------------------------
+    Total:
+
+dl7M_tl_in.a: [3]
+    exit.o                           6
+    low_level_init.o                 4
+    ----------------------------------------------------
+    Total:                          10
+
+rt7M_tl.a: [4]
+    ABImemcpy.o                    112
+    cexit.o                         10
+    cmain.o                         24
+    copy_init2.o                    36
+    data_init2.o                    28
+    zero_init2.o                    26
+    ----------------------------------------------------
+    Total:                         236
+
+shb_l.a: [5]
+    exit.o                          20
+    iarwstd.o                       24                 4
+    ----------------------------------------------------
+    Total:                          44                 4
+
+    Gaps                            10                 2
+    Linker created                           38    1 024
+--------------------------------------------------------
+    Grand Total:                14 804       92    5 516
+
+
+*******************************************************************************
+*** ENTRY LIST
+***
+
+Entry                      Address   Size  Type      Object
+-----                      -------   ----  ----      ------
+ADC1_IRQHandler         0x080039e3         Code  Wk  startup_stm32f10x_md_vl.o [1]
+ADCPrescTable           0x2000157c    0x4  Data  Lc  stm32f10x_rcc.o [1]
+APBAHBPrescTable        0x2000156c   0x10  Data  Lc  stm32f10x_rcc.o [1]
+BothSideKeySignalRingCtrl
+                        0x080001ed   0x6c  Code  Gb  stat_switch.o [1]
+BoxDataAlarmLedClsoe    0x08001b8b    0xa  Code  Gb  data_box.o [1]
+BoxDataAlarmLedFlash    0x08001b77    0xa  Code  Gb  data_box.o [1]
+BoxDataAlarmLedOpen     0x08001b81    0xa  Code  Gb  data_box.o [1]
+BoxDataGetPacket        0x08001b19   0x5e  Code  Gb  data_box.o [1]
+BoxDataInit             0x08001ee1   0x1a  Code  Gb  data_box.o [1]
+BoxDataProc             0x08001c25  0x29c  Code  Gb  data_box.o [1]
+BoxDataSend             0x08001ac5   0x54  Code  Gb  data_box.o [1]
+BusFault_Handler        0x08002ad3    0x2  Code  Gb  stm32f10x_it.o [1]
+CEC_IRQHandler          0x08003a0b         Code  Wk  startup_stm32f10x_md_vl.o [1]
+CSTACK$$Base            0x20000000          --   Gb  - Linker created -
+CSTACK$$Limit           0x20000400          --   Gb  - Linker created -
+ClearEhpStat            0x080026cd   0x52  Code  Gb  esu.o [1]
+DBGMCU_Config           0x08003879   0x24  Code  Gb  stm32f10x_dbgmcu.o [1]
+DMA1_Channel1_IRQHandler
+                        0x080039d5         Code  Wk  startup_stm32f10x_md_vl.o [1]
+DMA1_Channel2_IRQHandler
+                        0x080039d7         Code  Wk  startup_stm32f10x_md_vl.o [1]
+DMA1_Channel3_IRQHandler
+                        0x080039d9         Code  Wk  startup_stm32f10x_md_vl.o [1]
+DMA1_Channel4_IRQHandler
+                        0x080039db         Code  Wk  startup_stm32f10x_md_vl.o [1]
+DMA1_Channel5_IRQHandler
+                        0x080039dd         Code  Wk  startup_stm32f10x_md_vl.o [1]
+DMA1_Channel6_IRQHandler
+                        0x080039df         Code  Wk  startup_stm32f10x_md_vl.o [1]
+DMA1_Channel7_IRQHandler
+                        0x080039e1         Code  Wk  startup_stm32f10x_md_vl.o [1]
+DebugMon_Handler        0x08002ad9    0x2  Code  Gb  stm32f10x_it.o [1]
+EXTI0_IRQHandler        0x080039cb         Code  Wk  startup_stm32f10x_md_vl.o [1]
+EXTI15_10_IRQHandler    0x08003a07         Code  Wk  startup_stm32f10x_md_vl.o [1]
+EXTI1_IRQHandler        0x080039cd         Code  Wk  startup_stm32f10x_md_vl.o [1]
+EXTI2_IRQHandler        0x080039cf         Code  Wk  startup_stm32f10x_md_vl.o [1]
+EXTI3_IRQHandler        0x080039d1         Code  Wk  startup_stm32f10x_md_vl.o [1]
+EXTI4_IRQHandler        0x080039d3         Code  Wk  startup_stm32f10x_md_vl.o [1]
+EXTI9_5_IRQHandler      0x08002b65   0x14  Code  Gb  stm32f10x_it.o [1]
+EXTI_ClearITPendingBit  0x08003835    0x6  Code  Gb  stm32f10x_exti.o [1]
+EXTI_GetITStatus        0x08003805   0x28  Code  Gb  stm32f10x_exti.o [1]
+EhpAlarmCnctStatUpdate  0x08002643   0x30  Code  Gb  esu.o [1]
+EhpAlarmDelete          0x08002595   0x58  Code  Gb  esu.o [1]
+EhpAlarmDestroyStatUpdate
+                        0x08002673   0x26  Code  Gb  esu.o [1]
+EhpAlarmSetAllStat      0x08002569   0x2c  Code  Gb  esu.o [1]
+EhpClearPasHangUp       0x080026c5    0x8  Code  Gb  esu.o [1]
+EhpGetAllAlarmStep      0x080025ed   0x56  Code  Gb  esu.o [1]
+EhpIfPasHangUp          0x08002699   0x26  Code  Gb  esu.o [1]
+EhpLcuData              0x0800271f  0x10c  Code  Gb  esu.o [1]
+FLASH_ClearFlag         0x08002e0d    0x8  Code  Gb  stm32f10x_flash.o [1]
+FLASH_ErasePage         0x08002d95   0x68  Code  Gb  stm32f10x_flash.o [1]
+FLASH_GetStatus         0x08002e15   0x32  Code  Gb  stm32f10x_flash.o [1]
+FLASH_IRQHandler        0x080039c7         Code  Wk  startup_stm32f10x_md_vl.o [1]
+FLASH_If_Erase_Prog_Bak
+                        0x08001331   0x24  Code  Gb  progupdate.o [1]
+FLASH_If_Init           0x08001321    0xe  Code  Gb  progupdate.o [1]
+FLASH_Lock              0x08002d81   0x12  Code  Gb  stm32f10x_flash.o [1]
+FLASH_PrefetchBufferCmd
+                        0x08002d49   0x20  Code  Gb  stm32f10x_flash.o [1]
+FLASH_SetLatency        0x08002d31   0x18  Code  Gb  stm32f10x_flash.o [1]
+FLASH_Unlock            0x08002d69   0x18  Code  Gb  stm32f10x_flash.o [1]
+FLASH_WaitForLastOperation
+                        0x08002e4d   0x30  Code  Gb  stm32f10x_flash.o [1]
+GPIO_Configuration      0x08002029  0x14a  Code  Gb  main.o [1]
+GPIO_Init               0x08003471   0xcc  Code  Gb  stm32f10x_gpio.o [1]
+GPIO_ReadInputDataBit   0x0800353d   0x1a  Code  Gb  stm32f10x_gpio.o [1]
+GPIO_ResetBits          0x0800355d    0x6  Code  Gb  stm32f10x_gpio.o [1]
+GPIO_SetBits            0x08003557    0x6  Code  Gb  stm32f10x_gpio.o [1]
+GetDeviceId             0x080036b9    0x6  Code  Gb  device_info.o [1]
+GetDriverTalkStat       0x08000583    0x6  Code  Gb  stat_switch.o [1]
+GetKeySignal            0x0800370d    0x6  Code  Gb  device_info.o [1]
+GetKeyValue             0x08001b95   0x90  Code  Gb  data_box.o [1]
+GetLocalPaLineStat      0x080037ed    0x6  Code  Gb  hw_config.o [1]
+GetLocalPcLineStat      0x080037f9    0x6  Code  Gb  hw_config.o [1]
+GetNowBroadcastFlag     0x0800057d    0x6  Code  Gb  stat_switch.o [1]
+GetOtherPaLineStat      0x0800055d   0x14  Code  Gb  stat_switch.o [1]
+GetOtherPcLineStat      0x08000543   0x14  Code  Gb  stat_switch.o [1]
+GetOtherSideDriverTalkStat
+                        0x080017a9    0x6  Code  Gb  data_train.o [1]
+GetOtherSideKeySignal   0x080017b5    0x6  Code  Gb  data_train.o [1]
+GetOtherSidePaStat      0x080017af    0x6  Code  Gb  data_train.o [1]
+GetRequestBroadcastFlag
+                        0x08000575    0x8  Code  Gb  stat_switch.o [1]
+GetSoftwareVersion      0x080036bf    0xa  Code  Gb  device_info.o [1]
+GetTalkStat             0x08000121    0x8  Code  Gb  stat_switch.o [1]
+GetTrainComTick         0x08001819    0x6  Code  Gb  data_train.o [1]
+HardFault_Handler       0x08002acf    0x2  Code  Gb  stm32f10x_it.o [1]
+I2C1_ER_IRQHandler      0x080039f7         Code  Wk  startup_stm32f10x_md_vl.o [1]
+I2C1_EV_IRQHandler      0x080039f5         Code  Wk  startup_stm32f10x_md_vl.o [1]
+I2C2_ER_IRQHandler      0x080039fb         Code  Wk  startup_stm32f10x_md_vl.o [1]
+I2C2_EV_IRQHandler      0x080039f9         Code  Wk  startup_stm32f10x_md_vl.o [1]
+IWDG_Enable             0x0800386b    0xa  Code  Gb  stm32f10x_iwdg.o [1]
+IWDG_ReloadCounter      0x08003861    0xa  Code  Gb  stm32f10x_iwdg.o [1]
+IWDG_SetPrescaler       0x08003849    0xc  Code  Gb  stm32f10x_iwdg.o [1]
+IWDG_SetReload          0x08003855    0xc  Code  Gb  stm32f10x_iwdg.o [1]
+IWDG_WriteAccessCmd     0x08003841    0x8  Code  Gb  stm32f10x_iwdg.o [1]
+KeySignalChk            0x08003713   0x16  Code  Gb  device_info.o [1]
+LedBoxComCrtl           0x080028b7   0x1e  Code  Gb  led_control.o [1]
+LedBoxComFlash          0x0800286d   0x44  Code  Lc  led_control.o [1]
+LedDispDeviceId         0x08002a1d   0x8e  Code  Gb  led_control.o [1]
+LedPaCrtl               0x080029e7   0x30  Code  Gb  led_control.o [1]
+LedPaRequest            0x0800299d   0x44  Code  Gb  led_control.o [1]
+LedPcCall               0x080028d9   0x44  Code  Gb  led_control.o [1]
+LedPcCrtl               0x08002963   0x36  Code  Gb  led_control.o [1]
+LedPcDriverTalk         0x0800291d   0x40  Code  Gb  led_control.o [1]
+LedProc                 0x08002ab9   0x14  Code  Gb  led_control.o [1]
+LedRunCtrl              0x0800283d   0x30  Code  Lc  led_control.o [1]
+LedSetBoxDataStat       0x080028b1    0x6  Code  Gb  led_control.o [1]
+LedSetPaStat            0x080029e1    0x6  Code  Gb  led_control.o [1]
+LedSetPcStat            0x0800295d    0x6  Code  Gb  led_control.o [1]
+MemManage_Handler       0x08002ad1    0x2  Code  Gb  stm32f10x_it.o [1]
+MicBroadcast            0x08000631   0x40  Code  Gb  stat_switch.o [1]
+MicCC                   0x080006af   0x2e  Code  Gb  stat_switch.o [1]
+MoniBroadcast           0x080005e1   0x50  Code  Gb  stat_switch.o [1]
+Monipc                  0x08000675   0x3a  Code  Gb  stat_switch.o [1]
+NMI_Handler             0x08002acd    0x2  Code  Gb  stm32f10x_it.o [1]
+NVIC_Configuration      0x08001f45   0x52  Code  Gb  main.o [1]
+NVIC_Init               0x0800362d   0x74  Code  Gb  misc.o [1]
+NVIC_PriorityGroupConfig
+                        0x0800361d   0x10  Code  Gb  misc.o [1]
+NVIC_SetPriority        0x08003565   0x2c  Code  Lc  systick.o [1]
+NVIC_SetVectorTable     0x080036a5   0x14  Code  Gb  misc.o [1]
+PVD_IRQHandler          0x080039c1         Code  Wk  startup_stm32f10x_md_vl.o [1]
+PaArbitrate             0x0800181f   0xac  Code  Gb  data_train.o [1]
+PaLineStatUpdate        0x0800053d    0x6  Code  Gb  stat_switch.o [1]
+PackageData             0x0800319b   0xac  Code  Gb  data_public.o [1]
+PcLineStatUpdate        0x08000537    0x6  Code  Gb  stat_switch.o [1]
+PendSV_Handler          0x08002adb    0x2  Code  Gb  stm32f10x_it.o [1]
+ProgramUpdate           0x0800145d  0x130  Code  Gb  progupdate.o [1]
+RCC_ADCCLKConfig        0x080023d1   0x14  Code  Gb  stm32f10x_rcc.o [1]
+RCC_APB1PeriphClockCmd  0x080024f1   0x24  Code  Gb  stm32f10x_rcc.o [1]
+RCC_APB2PeriphClockCmd  0x080024cd   0x24  Code  Gb  stm32f10x_rcc.o [1]
+RCC_Configuration       0x08001f97   0x92  Code  Gb  main.o [1]
+RCC_DeInit              0x08002269   0x5c  Code  Gb  stm32f10x_rcc.o [1]
+RCC_GetClocksFreq       0x080023f1   0xd8  Code  Gb  stm32f10x_rcc.o [1]
+RCC_GetFlagStatus       0x08002515   0x44  Code  Gb  stm32f10x_rcc.o [1]
+RCC_GetSYSCLKSource     0x08002389    0xa  Code  Gb  stm32f10x_rcc.o [1]
+RCC_HCLKConfig          0x08002393   0x14  Code  Gb  stm32f10x_rcc.o [1]
+RCC_HSEConfig           0x080022c5   0x54  Code  Gb  stm32f10x_rcc.o [1]
+RCC_IRQHandler          0x080039c9         Code  Wk  startup_stm32f10x_md_vl.o [1]
+RCC_LSICmd              0x080023e5    0xc  Code  Gb  stm32f10x_rcc.o [1]
+RCC_PCLK1Config         0x080023a7   0x14  Code  Gb  stm32f10x_rcc.o [1]
+RCC_PCLK2Config         0x080023bb   0x16  Code  Gb  stm32f10x_rcc.o [1]
+RCC_PLLCmd              0x08002369    0xc  Code  Gb  stm32f10x_rcc.o [1]
+RCC_PLLConfig           0x08002351   0x16  Code  Gb  stm32f10x_rcc.o [1]
+RCC_SYSCLKConfig        0x08002375   0x14  Code  Gb  stm32f10x_rcc.o [1]
+RCC_WaitForHSEStartUp   0x08002319   0x38  Code  Gb  stm32f10x_rcc.o [1]
+RTCAlarm_IRQHandler     0x08003a09         Code  Wk  startup_stm32f10x_md_vl.o [1]
+RTC_IRQHandler          0x080039c5         Code  Wk  startup_stm32f10x_md_vl.o [1]
+Region$$Table$$Base     0x080038c0          --   Gb  - Linker created -
+Region$$Table$$Limit    0x080038e4          --   Gb  - Linker created -
+Reset_Handler           0x08003971         Code  Wk  startup_stm32f10x_md_vl.o [1]
+SPI1_IRQHandler         0x080039fd         Code  Wk  startup_stm32f10x_md_vl.o [1]
+SPI2_IRQHandler         0x080039ff         Code  Wk  startup_stm32f10x_md_vl.o [1]
+SPI_delay               0x08000d1b   0x2a  Code  Gb  set_vlum.o [1]
+SVC_Handler             0x08002ad7    0x2  Code  Gb  stm32f10x_it.o [1]
+SaveVolume              0x08000bdd  0x13e  Code  Gb  set_vlum.o [1]
+SetDeviceId             0x080036c9   0x40  Code  Gb  device_info.o [1]
+SetLocalPaLineStat      0x080037a5   0x24  Code  Gb  hw_config.o [1]
+SetLocalPcLineStat      0x080037c9   0x20  Code  Gb  hw_config.o [1]
+SetSysClock             0x08002ef1    0x8  Code  Lc  system_stm32f10x.o [1]
+SetSysClockTo72         0x08002ef9   0xe8  Code  Lc  system_stm32f10x.o [1]
+SetTalkStat             0x08000129    0x8  Code  Gb  stat_switch.o [1]
+SetVolClk               0x08000d45   0x1c  Code  Gb  set_vlum.o [1]
+SetVolData              0x08000d61   0x1c  Code  Gb  set_vlum.o [1]
+SetVolSendByte          0x08000d81   0x52  Code  Gb  set_vlum.o [1]
+SetVolume               0x08000dd5  0x204  Code  Gb  set_vlum.o [1]
+SysStatInit             0x08002173   0x86  Code  Gb  main.o [1]
+SysTick_Config          0x08003591   0x3c  Code  Lc  systick.o [1]
+SysTick_Configuration   0x080035cd   0x28  Code  Gb  systick.o [1]
+SysTick_Handler         0x08002add   0x88  Code  Gb  stm32f10x_it.o [1]
+SystemFrequency         0x080039a4    0x4  Data  Gb  system_stm32f10x.o [1]
+SystemInit              0x08002e99   0x58  Code  Gb  system_stm32f10x.o [1]
+TAMPER_IRQHandler       0x080039c3         Code  Wk  startup_stm32f10x_md_vl.o [1]
+TIM1_BRK_TIM15_IRQHandler
+                        0x080039e7         Code  Wk  startup_stm32f10x_md_vl.o [1]
+TIM1_CC_IRQHandler      0x080039ed         Code  Wk  startup_stm32f10x_md_vl.o [1]
+TIM1_TRG_COM_TIM17_IRQHandler
+                        0x080039eb         Code  Wk  startup_stm32f10x_md_vl.o [1]
+TIM1_UP_TIM16_IRQHandler
+                        0x080039e9         Code  Wk  startup_stm32f10x_md_vl.o [1]
+TIM2_IRQHandler         0x080039ef         Code  Wk  startup_stm32f10x_md_vl.o [1]
+TIM3_IRQHandler         0x080039f1         Code  Wk  startup_stm32f10x_md_vl.o [1]
+TIM4_IRQHandler         0x080039f3         Code  Wk  startup_stm32f10x_md_vl.o [1]
+TIM6_DAC_IRQHandler     0x08003a0d         Code  Wk  startup_stm32f10x_md_vl.o [1]
+TIM7_IRQHandler         0x08003a0f         Code  Wk  startup_stm32f10x_md_vl.o [1]
+TalkStatCCConnCreate    0x080002fb   0x46  Code  Gb  stat_switch.o [1]
+TalkStatCCConnDestroy   0x08000493   0xa4  Code  Gb  stat_switch.o [1]
+TalkStatEhpConnCreate   0x08000259   0x64  Code  Gb  stat_switch.o [1]
+TalkStatEhpConnDestroy  0x08000341   0x9a  Code  Gb  stat_switch.o [1]
+TalkStatInit            0x080009ed    0xe  Code  Gb  stat_switch.o [1]
+TalkStatPAConnCreate    0x080002bd   0x3e  Code  Gb  stat_switch.o [1]
+TalkStatPAConnDestroy   0x080003db   0xb8  Code  Gb  stat_switch.o [1]
+TalkStatPasAlarmLedCtrl
+                        0x08000131   0x36  Code  Gb  stat_switch.o [1]
+TalkStatPasAlarmRingCtrl
+                        0x08000167   0x86  Code  Gb  stat_switch.o [1]
+TalkStatSwitch          0x080006e1  0x2f8  Code  Gb  stat_switch.o [1]
+TimingDelay             0x2000152c    0x4  Data  Lc  systick.o [1]
+TimingDelay_Decrement   0x080035f5   0x1e  Code  Gb  systick.o [1]
+TrainDataBcbAnalyse     0x080017bb   0x4a  Code  Gb  data_train.o [1]
+TrainDataGetPacket      0x08001961   0x50  Code  Lc  data_train.o [1]
+TrainDataInit           0x08001ac1    0x2  Code  Gb  data_train.o [1]
+TrainDataPiscAnalyse    0x080018cd   0x90  Code  Gb  data_train.o [1]
+TrainDataProc           0x080019b1  0x104  Code  Gb  data_train.o [1]
+TrainDataSend           0x0800158d   0x26  Code  Gb  data_train.o [1]
+TrainDataTokenReply     0x080015b5  0x1f4  Code  Lc  data_train.o [1]
+USART1_IRQHandler       0x08002b79   0xd0  Code  Gb  stm32f10x_it.o [1]
+USART2_IRQHandler       0x08002c49   0xe4  Code  Gb  stm32f10x_it.o [1]
+USART3_IRQHandler       0x08003a05         Code  Wk  startup_stm32f10x_md_vl.o [1]
+USART_ClearFlag         0x08003119    0x8  Code  Gb  stm32f10x_usart.o [1]
+USART_Cmd               0x08003085   0x1a  Code  Gb  stm32f10x_usart.o [1]
+USART_GetFlagStatus     0x080030ff   0x1a  Code  Gb  stm32f10x_usart.o [1]
+USART_ITConfig          0x0800309f   0x50  Code  Gb  stm32f10x_usart.o [1]
+USART_Init              0x08002fe9   0x9c  Code  Gb  stm32f10x_usart.o [1]
+USART_ReceiveData       0x080030f7    0x8  Code  Gb  stm32f10x_usart.o [1]
+USART_SendData          0x080030ef    0x8  Code  Gb  stm32f10x_usart.o [1]
+UpdateDisableAllNVIC    0x08000fdd   0x24  Code  Lc  progupdate.o [1]
+UsageFault_Handler      0x08002ad5    0x2  Code  Gb  stm32f10x_it.o [1]
+VerifyPaket             0x08003121   0x7a  Code  Gb  data_public.o [1]
+VolumeGetMicBroadcast   0x08000a1d    0x8  Code  Gb  set_vlum.o [1]
+VolumeGetMicDriverTalk  0x08000a25    0x8  Code  Gb  set_vlum.o [1]
+VolumeGetMicPasTalk     0x08000a2d    0x8  Code  Gb  set_vlum.o [1]
+VolumeGetMoniBroadcast  0x08000a05    0x8  Code  Gb  set_vlum.o [1]
+VolumeGetMoniDriverTalk
+                        0x08000a0d    0x8  Code  Gb  set_vlum.o [1]
+VolumeGetMoniPasTalk    0x08000a15    0x8  Code  Gb  set_vlum.o [1]
+VolumeInit              0x08000acd  0x100  Code  Gb  set_vlum.o [1]
+WWDG_IRQHandler         0x080039bf         Code  Wk  startup_stm32f10x_md_vl.o [1]
+WaitRequestBroadcast    0x08000589   0x58  Code  Gb  stat_switch.o [1]
+WriteDataToFlash        0x08000a35   0x98  Code  Gb  set_vlum.o [1]
+__aeabi_memcpy          0x08003735         Code  Gb  ABImemcpy.o [4]
+__aeabi_memcpy4         0x0800374f         Code  Gb  ABImemcpy.o [4]
+__aeabi_memcpy8         0x0800374f         Code  Gb  ABImemcpy.o [4]
+__exit                  0x0800394d   0x14  Code  Gb  exit.o [5]
+__iar_copy_init2        0x0800389d   0x24  Code  Gb  copy_init2.o [4]
+__iar_data_init2        0x080038e5   0x1c  Code  Gb  data_init2.o [4]
+__iar_program_start     0x0800391d         Code  Gb  cmain.o [4]
+__iar_sh_stdout_close   0x08003935   0x14  Code  Gb  iarwstd.o [5]
+__iar_sh_stdout_handle  0x20001538    0x4  Data  Lc  iarwstd.o [5]
+__iar_zero_init2        0x08003901   0x1a  Code  Gb  zero_init2.o [4]
+__low_level_init        0x080039a9    0x4  Code  Gb  low_level_init.o [3]
+__vector_table          0x08000000         Data  Gb  startup_stm32f10x_md_vl.o [1]
+_exit                   0x08003991         Code  Gb  cexit.o [4]
+_main                   0x0800392f         Code  Gb  cmain.o [4]
+conn_tick               0x200014f4    0x4  Data  Lc  esu.o [1]
+cur_pack_num            0x2000153e    0x2  Data  Lc  progupdate.o [1]
+delay                   0x08002e7d   0x1c  Code  Lc  stm32f10x_flash.o [1]
+doubleKeyFlag           0x20001569    0x1  Data  Lc  stat_switch.o [1]
+esu_fill_shift          0x080039a0    0x4  Data  Gb  data_train.o [1]
+exit                    0x0800399b    0x6  Code  Gb  exit.o [3]
+gAlarmSt                0x20001478   0x1c  Data  Lc  esu.o [1]
+gAllAlarmSt             0x200014ac   0x14  Data  Gb  esu.o [1]
+gBcuData                0x20001458   0x20  Data  Gb  data_public.o [1]
+gBoxData                0x200014c0    0xc  Data  Gb  data_public.o [1]
+gBoxRecvPaketBuf        0x20000e00  0x100  Data  Lc  data_box.o [1]
+gBoxRecvPaketLength     0x20001552    0x1  Data  Lc  data_box.o [1]
+gDeviceId               0x20001585    0x1  Data  Lc  device_info.o [1]
+gDriverTalkStat         0x20001568    0x1  Data  Lc  stat_switch.o [1]
+gHmiData                0x2000142c   0x2c  Data  Gb  data_public.o [1]
+gKeyCcSt                0x20001581    0x1  Data  Lc  data_box.o [1]
+gKeyPASt                0x20001582    0x1  Data  Lc  data_box.o [1]
+gKeyPcRstSt             0x20001584    0x1  Data  Lc  data_box.o [1]
+gKeyPcSt                0x20001580    0x1  Data  Lc  data_box.o [1]
+gKeyPcStOld             0x20001553    0x1  Data  Lc  data_box.o [1]
+gKeyPttSt               0x20001583    0x1  Data  Lc  data_box.o [1]
+gKeySignal              0x2000155a    0x1  Data  Lc  device_info.o [1]
+gLcuTickBuf             0x20001494   0x18  Data  Gb  esu.o [1]
+gLedBoxComStat          0x2000155f    0x1  Data  Lc  led_control.o [1]
+gLedPaStat              0x2000155e    0x1  Data  Lc  led_control.o [1]
+gLedPcStat              0x2000155d    0x1  Data  Lc  led_control.o [1]
+gNoDataTick             0x200014e4    0x4  Data  Lc  data_box.o [1]
+gNoDataTick             0x200014f0    0x4  Data  Lc  data_train.o [1]
+gNowBroadcastFlag       0x20001567    0x1  Data  Lc  stat_switch.o [1]
+gOtherSideDriverTalk    0x20001556    0x1  Data  Lc  data_train.o [1]
+gOtherSideKeySignal     0x20001559    0x1  Data  Lc  data_train.o [1]
+gOtherSidePa            0x20001558    0x1  Data  Lc  data_train.o [1]
+gOtherSidePasTalk       0x20001557    0x1  Data  Lc  data_train.o [1]
+gPaChkTick              0x20001528    0x4  Data  Lc  stm32f10x_it.o [1]
+gPaLineStat             0x20001588    0x1  Data  Lc  stat_switch.o [1]
+gPaPriority             0x200014cc    0xc  Data  Lc  data_train.o [1]
+gPaTick                 0x20001520    0x4  Data  Lc  stat_switch.o [1]
+gPcLineStat             0x20001589    0x1  Data  Lc  stat_switch.o [1]
+gPcTick                 0x20001524    0x4  Data  Lc  stm32f10x_it.o [1]
+gPiscData               0x20001400   0x2c  Data  Gb  data_public.o [1]
+gRequestBroadcastFlag   0x20001566    0x1  Data  Lc  stat_switch.o [1]
+gSystemTick             0x20001534    0x4  Data  Gb  systick.o [1]
+gTalkStat               0x20001564    0x1  Data  Lc  stat_switch.o [1]
+gTalkStatOld            0x20001565    0x1  Data  Lc  stat_switch.o [1]
+gTrainRecvPacketBuf     0x20000f00  0x100  Data  Lc  data_train.o [1]
+gTrainRecvPaketLength   0x20001555    0x1  Data  Lc  data_train.o [1]
+gVolumeValue            0x200014d8    0xc  Data  Lc  set_vlum.o [1]
+last_pack_num           0x2000153c    0x2  Data  Lc  progupdate.o [1]
+main                    0x08002201   0x68  Code  Gb  main.o [1]
+map_flash_copy_func     0x08001045  0x2cc  Code  Gb  progupdate.o [1]
+memcpy                  0x08003981    0xe  Code  Wk  data_box.o [1]
+paLineSt                0x2000155b    0x1  Data  Lc  hw_config.o [1]
+pcLineSt                0x2000155c    0x1  Data  Lc  hw_config.o [1]
+program_rcv_len         0x20001514    0x4  Data  Lc  progupdate.o [1]
+programmlen             0x2000151c    0x4  Data  Lc  progupdate.o [1]
+rcv_len                 0x20001518    0x4  Data  Lc  progupdate.o [1]
+resetWatchDog           0x08001f3d    0x8  Code  Gb  main.o [1]
+startWatchdog           0x08001f01   0x3c  Code  Gb  main.o [1]
+time_clock              0x20001530    0x4  Data  Lc  systick.o [1]
+uart1_busy              0x0800336d    0x6  Code  Gb  uart1.o [1]
+uart1_clr_busy          0x0800337b    0x8  Code  Gb  uart1.o [1]
+uart1_config            0x08003389   0x48  Code  Gb  uart1.o [1]
+uart1_read_char         0x08003429   0x48  Code  Gb  uart1.o [1]
+uart1_recv_buf          0x20001000  0x100  Data  Gb  uart1.o [1]
+uart1_recv_fifo_in      0x20001542    0x2  Data  Gb  uart1.o [1]
+uart1_recv_fifo_out     0x20001544    0x2  Data  Gb  uart1.o [1]
+uart1_send_buf          0x20001100  0x100  Data  Gb  uart1.o [1]
+uart1_send_cnt          0x20001546    0x2  Data  Gb  uart1.o [1]
+uart1_send_index        0x20001548    0x2  Data  Gb  uart1.o [1]
+uart1_set_busy          0x08003373    0x8  Code  Gb  uart1.o [1]
+uart1_stat              0x2000156a    0x1  Data  Gb  uart1.o [1]
+uart1_write_buf         0x080033d1   0x54  Code  Gb  uart1.o [1]
+uart2_busy              0x08003249    0x6  Code  Gb  uart2.o [1]
+uart2_clr_busy          0x08003257    0x8  Code  Gb  uart2.o [1]
+uart2_config            0x08003265   0x50  Code  Gb  uart2.o [1]
+uart2_read_char         0x08003325   0x48  Code  Gb  uart2.o [1]
+uart2_recv_buf          0x20001200  0x100  Data  Gb  uart2.o [1]
+uart2_recv_fifo_in      0x2000154a    0x2  Data  Gb  uart2.o [1]
+uart2_recv_fifo_out     0x2000154c    0x2  Data  Gb  uart2.o [1]
+uart2_send_buf          0x20001300  0x100  Data  Gb  uart2.o [1]
+uart2_send_cnt          0x2000154e    0x2  Data  Gb  uart2.o [1]
+uart2_send_index        0x20001550    0x2  Data  Gb  uart2.o [1]
+uart2_set_busy          0x0800324f    0x8  Code  Gb  uart2.o [1]
+uart2_stat              0x2000156b    0x1  Data  Gb  uart2.o [1]
+uart2_write_buf         0x080032b5   0x68  Code  Gb  uart2.o [1]
+updat_rcv_packet_flag   0x20001561    0x1  Data  Lc  progupdate.o [1]
+update_copy_func        0x20000400  0x800  Data  Lc  progupdate.o [1]
+update_flash2flash_buffer
+                        0x20000c00  0x200  Data  Lc  progupdate.o [1]
+update_flash_copy_run   0x08001009   0x34  Code  Gb  progupdate.o [1]
+update_flash_erase      0x08001355    0xc  Code  Gb  progupdate.o [1]
+update_flash_init       0x08001001    0x8  Code  Gb  progupdate.o [1]
+update_func_addr        0x20001510    0x4  Data  Lc  progupdate.o [1]
+update_init             0x08001311   0x10  Code  Gb  progupdate.o [1]
+update_save_program     0x08001361   0xde  Code  Gb  progupdate.o [1]
+volume_table            0x08003960   0x10  Data  Gb  set_vlum.o [1]
+
+
+[1] = D:\svuen勿删\广3\新广播控制盒\Bcb_p2p\src\Project\EWARMv5\STM32108PKT\Obj
+[2] = command line
+[3] = dl7M_tl_in.a
+[4] = rt7M_tl.a
+[5] = shb_l.a
+
+  14 804 bytes of readonly  code memory
+      92 bytes of readonly  data memory
+   5 516 bytes of readwrite data memory
+
+Errors: none
+Warnings: none

@@ -1,0 +1,271 @@
+C51 COMPILER V8.08   LED_CONTROL                                                           11/14/2014 14:07:29 PAGE 1   
+
+
+C51 COMPILER V8.08, COMPILATION OF MODULE LED_CONTROL
+OBJECT MODULE PLACED IN .\list\led_control.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE led_control.c COMPACT OPTIMIZE(1,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\l
+                    -ist\led_control.lst) OBJECT(.\list\led_control.obj)
+
+line level    source
+
+   1          /*
+   2          *******************************************************************************
+   3          **  Copyright (c) 2014, 深圳市北海轨道交通技术有限公司
+   4          **  All rights reserved.
+   5          **      
+   6          **  文件说明: 
+   7          **  创建日期: 2014.01.03
+   8          **
+   9          **  当前版本：1.0
+  10          **  作者：李军
+  11          *******************************************************************************
+  12          */
+  13          #include<main.h>
+  14          
+  15          
+  16          eLedPcStat gFlashPcLed;  
+  17          eLedPcStat gFlashPaLed;  
+  18          eLedPcStat gFlashCcLed;  
+  19          
+  20          
+  21          
+  22          
+  23          
+  24          unsigned short gLedStat = 0;
+  25          unsigned short  gLedStatOld;
+  26          
+  27          void delay_50us(unsigned short tick)
+  28          {
+  29   1              byte i;
+  30   1              while(tick--)
+  31   1              {
+  32   2                      for (i=0; i<10; i++);
+  33   2              }
+  34   1      }
+  35          
+  36          void LedShiftOut()
+  37          {
+  38   1              char i;
+  39   1              unsigned short  temp;
+  40   1      
+  41   1              gLedStatOld = gLedStat;
+  42   1              temp = gLedStat;
+  43   1              SHIFT_CRTL_LE = 0;
+  44   1              for (i=0; i<16; i++)
+  45   1              {
+  46   2                      SHIFT_CRTL_CLK = 0;
+  47   2                      delay_50us(10);
+  48   2                      if (temp & 0x8000)
+  49   2                      {
+  50   3                              SHIFT_CRTL_DATA = 1;
+  51   3                      }
+  52   2                      else 
+  53   2                      {
+  54   3                              SHIFT_CRTL_DATA = 0;
+C51 COMPILER V8.08   LED_CONTROL                                                           11/14/2014 14:07:29 PAGE 2   
+
+  55   3                      }
+  56   2                      delay_50us(10);
+  57   2                      SHIFT_CRTL_CLK = 1;                             
+  58   2                      delay_50us(10);
+  59   2                      temp <<= 1;
+  60   2              }
+  61   1      
+  62   1              SHIFT_CRTL_LE = 0;
+  63   1              delay_50us(10);
+  64   1              SHIFT_CRTL_LE = 1;
+  65   1              delay_50us(10);
+  66   1              SHIFT_CRTL_LE = 0;
+  67   1      }
+  68          
+  69          
+  70          
+  71          void LedSwitch( unsigned short type, char stat)
+  72          {
+  73   1              if (LED_OPEN == stat)
+  74   1              {
+  75   2                      gLedStat |= type;
+  76   2              }
+  77   1              else 
+  78   1              {
+  79   2                      gLedStat &= ~type;
+  80   2              }
+  81   1      
+  82   1              if (gLedStatOld == gLedStat) return;
+  83   1              LedShiftOut();
+  84   1      }
+  85          
+  86          void WorkLed()
+  87          {
+  88   1              static char stat = 1;
+  89   1              
+  90   1      
+  91   1              if (gRunLedTick >= 50) {
+  92   2                      if (stat == LED_OPEN)
+  93   2                      {
+  94   3                              LedSwitch(LED_WORK, LED_CLOSE);
+  95   3                              stat = LED_CLOSE;
+  96   3                      }
+  97   2                      else 
+  98   2                      {
+  99   3                              LedSwitch(LED_WORK, LED_OPEN);
+ 100   3                              stat = LED_OPEN;
+ 101   3                      }
+ 102   2                      gRunLedTick = 0;
+ 103   2              }       
+ 104   1      }
+ 105          
+ 106          void SetPcStat(eLedPcStat stat)
+ 107          {
+ 108   1              gFlashPcLed = stat;
+ 109   1      }
+ 110          
+ 111          void SetPaStat(eLedPcStat stat)
+ 112          {
+ 113   1              gFlashPaLed = stat;
+ 114   1      }
+ 115          
+ 116          void SetCcStat(eLedPcStat stat)
+C51 COMPILER V8.08   LED_CONTROL                                                           11/14/2014 14:07:29 PAGE 3   
+
+ 117          {
+ 118   1              gFlashCcLed = stat;
+ 119   1      }
+ 120          
+ 121          void CcKeyLed()
+ 122          {
+ 123   1              static char stat;
+ 124   1      
+ 125   1      
+ 126   1              if (gFlashCcLed == LED_PC_CLOSE)
+ 127   1              {
+ 128   2                      LedSwitch(LED_CC, LED_CLOSE);
+ 129   2              }
+ 130   1              else if (gFlashCcLed == LED_PC_FLASH)
+ 131   1              {
+ 132   2                      if (gCcLedTick >= 50) {
+ 133   3                              if (stat == LED_OPEN)
+ 134   3                              {
+ 135   4                                      LedSwitch(LED_CC, LED_CLOSE);
+ 136   4                                      stat = LED_CLOSE;
+ 137   4                                      //BUZZER_CRTL_PIN = 1;
+ 138   4                              }
+ 139   3                              else 
+ 140   3                              {
+ 141   4                                      LedSwitch(LED_CC, LED_OPEN);
+ 142   4                                      stat = LED_OPEN;
+ 143   4                                      //BUZZER_CRTL_PIN = 0;
+ 144   4                              }
+ 145   3                              gCcLedTick = 0;
+ 146   3                      }       
+ 147   2              }
+ 148   1              else if(gFlashCcLed == LED_PC_OPEN)
+ 149   1              {
+ 150   2                      LedSwitch(LED_CC, LED_OPEN);
+ 151   2              }
+ 152   1      }
+ 153          void PaKeyLed()
+ 154          {
+ 155   1              static char stat;
+ 156   1      
+ 157   1      
+ 158   1              if (gFlashPaLed == LED_PC_CLOSE)
+ 159   1              {
+ 160   2                      LedSwitch(LED_PA, LED_CLOSE);
+ 161   2              }
+ 162   1              else if (gFlashPaLed == LED_PC_FLASH)
+ 163   1              {
+ 164   2                      if (gPaLedTick >= 50) {
+ 165   3                              if (stat == LED_OPEN)
+ 166   3                              {
+ 167   4                                      LedSwitch(LED_PA, LED_CLOSE);
+ 168   4                                      stat = LED_CLOSE;
+ 169   4                                      //BUZZER_CRTL_PIN = 1;
+ 170   4                              }
+ 171   3                              else 
+ 172   3                              {
+ 173   4                                      LedSwitch(LED_PA, LED_OPEN);
+ 174   4                                      stat = LED_OPEN;
+ 175   4                                      //BUZZER_CRTL_PIN = 0;
+ 176   4                              }
+ 177   3                              gPaLedTick = 0;
+ 178   3                      }       
+C51 COMPILER V8.08   LED_CONTROL                                                           11/14/2014 14:07:29 PAGE 4   
+
+ 179   2              }
+ 180   1              else if(gFlashPaLed == LED_PC_OPEN)
+ 181   1              {
+ 182   2                      LedSwitch(LED_PA, LED_OPEN);
+ 183   2              }
+ 184   1      }
+ 185          void PcKeyLed()
+ 186          {
+ 187   1              static char stat;
+ 188   1      
+ 189   1      
+ 190   1              if (gFlashPcLed == LED_PC_CLOSE)
+ 191   1              {
+ 192   2                      LedSwitch(LED_PC, LED_CLOSE);
+ 193   2              }
+ 194   1              else if (gFlashPcLed == LED_PC_FLASH)
+ 195   1              {
+ 196   2                      if (gPcLedTick >= 50) {
+ 197   3                              if (stat == LED_OPEN)
+ 198   3                              {
+ 199   4                                      LedSwitch(LED_PC, LED_CLOSE);
+ 200   4                                      stat = LED_CLOSE;
+ 201   4                                      //BUZZER_CRTL_PIN = 1;
+ 202   4                              }
+ 203   3                              else 
+ 204   3                              {
+ 205   4                                      LedSwitch(LED_PC, LED_OPEN);
+ 206   4                                      stat = LED_OPEN;
+ 207   4                                      //BUZZER_CRTL_PIN = 0;
+ 208   4                              }
+ 209   3                              gPcLedTick = 0;
+ 210   3                      }       
+ 211   2              }
+ 212   1              else if(gFlashPcLed == LED_PC_OPEN)
+ 213   1              {
+ 214   2                      LedSwitch(LED_PC, LED_OPEN);
+ 215   2              }
+ 216   1      }
+ 217          
+ 218          
+ 219          void LedRun(void)
+ 220          {
+ 221   1              WorkLed();
+ 222   1              PcKeyLed();
+ 223   1              PaKeyLed();
+ 224   1              CcKeyLed();
+ 225   1      }
+ 226          
+ 227          void LedAllOpen(void)
+ 228          {
+ 229   1              gLedStat = 0xffff;
+ 230   1              LedShiftOut();
+ 231   1      }
+ 232          
+ 233          void LedInit(void)
+ 234          {
+ 235   1              gFlashPcLed = LED_PC_CLOSE;
+ 236   1              gLedStat = 0;
+ 237   1      }
+ 238          
+ 239          
+
+C51 COMPILER V8.08   LED_CONTROL                                                           11/14/2014 14:07:29 PAGE 5   
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    804    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =     23    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

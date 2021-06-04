@@ -1,0 +1,6 @@
+-c --cpu Cortex-M3 -g -O1 --apcs=interwork -I.\stm32\CMSIS\CM3\CoreSupport -I.\stm32\lwip_v1.3.2\src\core\ipv4 -I.\stm32\lwip_v1.3.2\port\STM32F2x7\arch -I.\stm32\STM32_EVAL\Common -I.\stm32\STM32_EVAL\STM322xG_EVAL -I.\stm32\STM32_EVAL -I.\stm32\STM32_USB_Device_Library\Core\inc -I.\stm32\STM32_USB_Device_Library\Class\msc\inc -I.\stm32\STM32_USB_Device_Library\Class\hid\inc -I.\stm32\STM32_USB_Device_Library\Class\dfu\inc -I.\stm32\STM32_USB_Device_Library\Class\cdc\inc -I.\stm32\STM32_USB_OTG_Driver\inc -I.\stm32\STM32F2x7_ETH_Driver\inc -I.\stm32\STM32F2xx_StdPeriph_Driver\inc -I.\user\inc -I.\user\FatFs -I.\user\FatFs\option -I.\stm32\lwip_v1.3.2\src\include -I.\stm32\lwip_v1.3.2\port\STM32F2x7 -I.\stm32\lwip_v1.3.2\src\include\lwip -I.\stm32\lwip_v1.3.2\src\include\ipv4 -I.\stm32\lwip_v1.3.2\port\STM32F2x7\Standalone
+-I C:\Keil_v5\ARM\RV31\INC
+-I C:\Keil_v5\ARM\CMSIS\Include
+-I C:\Keil_v5\ARM\Inc\ST\STM32F2xx
+-D__UVISION_VERSION="514" -DUSE_STM322xG_EVAL -DSTM32F2XX -DUSE_STDPERIPH_DRIVER
+-o .\out\diskio.o --omf_browse .\out\diskio.crf --depend .\out\diskio.d "user\src\diskio.c"

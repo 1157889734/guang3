@@ -1,0 +1,6 @@
+
+G3_Bcu_p2pV1.5.bin
+	b6405705bc03b10e17a07b0d4146ad9f
+
+G3_Bcu_p2pV1.6.bin
+	bea899017de67d3c8943f7be47791cc4

@@ -1,0 +1,11 @@
+".\list\USART.obj",
+".\list\main.obj",
+".\list\delay.obj",
+".\list\com.obj",
+".\list\led_control.obj",
+".\list\stat_switch.obj",
+".\list\timer.obj",
+".\list\key.obj",
+".\list\2com.obj" 
+TO ".\list\box_p2p" 
+PRINT(".\list\box_p2p.m51") RAMSIZE(256) 

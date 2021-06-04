@@ -1,0 +1,321 @@
+---- eme_index Matches (9 in 2 files) ----
+LedDrv.c (src):		if ((eme_flag == 0) || (gTrigerValue.eme_index != frame_header->data_.urgent_broadcast_no)) {
+LedDrv.c (src):			gTrigerValue.eme_index = frame_header->data_.urgent_broadcast_no;
+LedDrv.c (src):		if ((eme_flag == 0) || (gTrigerValue.eme_index != frame_header->urgent_broadcast_no)) {
+LedDrv.c (src):			gTrigerValue.eme_index = frame_header->urgent_broadcast_no;
+LedDrv.c (src):		if ((eme_flag == 0) || (gTrigerValue.eme_index != frame_header->data_.urgent_broadcast_no)) {
+LedDrv.c (src):			gTrigerValue.eme_index = frame_header->data_.urgent_broadcast_no;
+LedDrv.c (src):			GetBmp(BMP_TYPE_EME, gTrigerValue.eme_index-1, gDispStat.curr_lang);
+LedDrv.c (src):			GetBmp(BMP_TYPE_EME, gTrigerValue.eme_index-1, gDispStat.curr_lang);
+TypeDef.h (inc):	u8 eme_index;   //下标从1开始
+---- EME_BASE_ADDR Matches (2 in 2 files) ----
+At45db161.c (src):			page = EME_BASE_ADDR + param.index*32;
+At45db161.h (inc):#define EME_BASE_ADDR							2882
+---- GetBmpStartPage Matches (37 in 3 files) ----
+At45db161.c (src):u16 GetBmpStartPage(tBmpParam param)
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):		page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):		page_buf[i] = GetBmpStartPage(param);
+At45db161.c (src):		page_buf[i] = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.h (inc):extern u16 GetBmpStartPage(tBmpParam param);
+STM322xG_EVAL.htm (mdk-arm\stm322xg_eval):<BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = ConnectMsg &rArr; GetBmpStartPage
+STM322xG_EVAL.htm (mdk-arm\stm322xg_eval):<BR>[Calls]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetBmpStartPage
+STM322xG_EVAL.htm (mdk-arm\stm322xg_eval):<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetBmpStartPage
+STM322xG_EVAL.htm (mdk-arm\stm322xg_eval):<P><STRONG><a name="[af]"></a>GetBmpStartPage</STRONG> (Thumb, 212 bytes, Stack size 12 bytes, at45db161.o(i.GetBmpStartPage))
+STM322xG_EVAL.htm (mdk-arm\stm322xg_eval):<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = GetBmpStartPage
+STM322xG_EVAL.htm (mdk-arm\stm322xg_eval):<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetBmpStartPage
+STM322xG_EVAL.htm (mdk-arm\stm322xg_eval):<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetBmpStartPage
+STM322xG_EVAL.htm (mdk-arm\stm322xg_eval):<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetBmpStartPage
+---- BMP_TYPE_EME Matches (4 in 3 files) ----
+At45db161.c (src):		case BMP_TYPE_EME:
+LedDrv.c (src):			GetBmp(BMP_TYPE_EME, gTrigerValue.eme_index-1, gDispStat.curr_lang);
+LedDrv.c (src):			GetBmp(BMP_TYPE_EME, gTrigerValue.eme_index-1, gDispStat.curr_lang);
+TypeDef.h (inc):	BMP_TYPE_EME = 6,
+---- VERSION_FLAG_ADDR Matches (7 in 3 files) ----
+At45db161.c (src):	write_byte((u8)(VERSION_FLAG_ADDR>>6));
+At45db161.c (src):	write_byte((u8)(VERSION_FLAG_ADDR<<2));
+At45db161.c (src):	write_byte((u8)(VERSION_FLAG_ADDR >> 6));
+At45db161.c (src):	write_byte((u8)(VERSION_FLAG_ADDR << 2));
+At45db161.c (src):		if (page > VERSION_FLAG_ADDR) return 1;
+At45db161.h (inc):#define VERSION_FLAG_ADDR						3523
+Main.c (src):for (i=LINE1_CONFIG_ADDR; i<VERSION_FLAG_ADDR; i++) {
+---- LED_IMAGE_MAX_WIDTH Matches (9 in 2 files) ----
+At45db161.c (src):u8 gLedImageBuf[16][(LED_IMAGE_MAX_WIDTH/8) + 36];
+At45db161.c (src)://u8 gLedImageBuf[16][(LED_IMAGE_MAX_WIDTH/8) + ];
+At45db161.c (src):	if(len > LED_IMAGE_MAX_WIDTH/8)
+At45db161.c (src):		len = LED_IMAGE_MAX_WIDTH/8; 	//限定最大缓冲区长度，防止溢出
+At45db161.c (src):		if (len > LED_IMAGE_MAX_WIDTH) return 1;
+At45db161.c (src):	if (gBmpWidth > LED_IMAGE_MAX_WIDTH) return 1;
+At45db161.h (inc):#define LED_IMAGE_MAX_WIDTH						(4096)
+At45db161.h (inc):extern u8 gLedImageBuf[16][(LED_IMAGE_MAX_WIDTH/8) + 36];
+At45db161.h (inc)://extern u8 gLedImageBuf[16][(LED_IMAGE_MAX_WIDTH/8)];
+---- BMP_TYPE_MSG Matches (7 in 4 files) ----
+At45db161.c (src):		case BMP_TYPE_MSG:
+At45db161.c (src):			param.type = (tBmpType)BMP_TYPE_MSG;
+At45db161.c (src):	param.type = BMP_TYPE_MSG;
+At45db161.c (src):	param.type = BMP_TYPE_MSG;
+LedDrv.c (src):			GetBmp(BMP_TYPE_MSG,8, gDispStat.curr_lang);
+Main.c (src):				GetBmp(BMP_TYPE_MSG,7, gDispStat.curr_lang);
+TypeDef.h (inc):	BMP_TYPE_MSG = 4,
+---- BMP_TYPE_MSG Matches (7 in 4 files) ----
+At45db161.c (src):		case BMP_TYPE_MSG:
+At45db161.c (src):			param.type = (tBmpType)BMP_TYPE_MSG;
+At45db161.c (src):	param.type = BMP_TYPE_MSG;
+At45db161.c (src):	param.type = BMP_TYPE_MSG;
+LedDrv.c (src):			GetBmp(BMP_TYPE_MSG,8, gDispStat.curr_lang);
+Main.c (src):				GetBmp(BMP_TYPE_MSG,7, gDispStat.curr_lang);
+TypeDef.h (inc):	BMP_TYPE_MSG = 4,
+---- BMP_TYPE_EME Matches (4 in 3 files) ----
+At45db161.c (src):		case BMP_TYPE_EME:
+LedDrv.c (src):			GetBmp(BMP_TYPE_EME, gTrigerValue.eme_index-1, gDispStat.curr_lang);
+LedDrv.c (src):			GetBmp(BMP_TYPE_EME, gTrigerValue.eme_index-1, gDispStat.curr_lang);
+TypeDef.h (inc):	BMP_TYPE_EME = 6,
+---- AD_BASE_ADDR Matches (2 in 2 files) ----
+At45db161.c (src):			page = AD_BASE_ADDR + param.index*32;
+At45db161.h (inc):#define AD_BASE_ADDR							1282
+---- BMP_TYPE_AD Matches (6 in 3 files) ----
+At45db161.c (src):		case BMP_TYPE_AD:
+LedDrv.c (src):					GetBmp(BMP_TYPE_AD, gTrigerValue.ad_english_buf[gTrigerValue.ad_english_index]-1, gDispStat.curr_lang);
+LedDrv.c (src):					GetBmp(BMP_TYPE_AD, gTrigerValue.ad_chinese_buf[gTrigerValue.ad_chinese_index]-1, gDispStat.curr_lang);
+LedDrv.c (src):					GetBmp(BMP_TYPE_AD, gTrigerValue.ad_english_buf[gTrigerValue.ad_english_index]-1, gDispStat.curr_lang);
+LedDrv.c (src):					GetBmp(BMP_TYPE_AD, gTrigerValue.ad_chinese_buf[gTrigerValue.ad_chinese_index]-1, gDispStat.curr_lang);
+TypeDef.h (inc):	BMP_TYPE_AD = 5,
+---- BMP_TYPE_AD Matches (6 in 3 files) ----
+At45db161.c (src):		case BMP_TYPE_AD:
+LedDrv.c (src):					GetBmp(BMP_TYPE_AD, gTrigerValue.ad_english_buf[gTrigerValue.ad_english_index]-1, gDispStat.curr_lang);
+LedDrv.c (src):					GetBmp(BMP_TYPE_AD, gTrigerValue.ad_chinese_buf[gTrigerValue.ad_chinese_index]-1, gDispStat.curr_lang);
+LedDrv.c (src):					GetBmp(BMP_TYPE_AD, gTrigerValue.ad_english_buf[gTrigerValue.ad_english_index]-1, gDispStat.curr_lang);
+LedDrv.c (src):					GetBmp(BMP_TYPE_AD, gTrigerValue.ad_chinese_buf[gTrigerValue.ad_chinese_index]-1, gDispStat.curr_lang);
+TypeDef.h (inc):	BMP_TYPE_AD = 5,
+---- VERSION_FLAG_ADDR Matches (7 in 3 files) ----
+At45db161.c (src):	write_byte((u8)(VERSION_FLAG_ADDR>>6));
+At45db161.c (src):	write_byte((u8)(VERSION_FLAG_ADDR<<2));
+At45db161.c (src):	write_byte((u8)(VERSION_FLAG_ADDR >> 6));
+At45db161.c (src):	write_byte((u8)(VERSION_FLAG_ADDR << 2));
+At45db161.c (src):		if (page > VERSION_FLAG_ADDR) return 1;
+At45db161.h (inc):#define VERSION_FLAG_ADDR						3523
+Main.c (src):for (i=LINE1_CONFIG_ADDR; i<VERSION_FLAG_ADDR; i++) {
+---- EME_BASE_ADDR Matches (2 in 2 files) ----
+At45db161.c (src):			page = EME_BASE_ADDR + param.index*32;
+At45db161.h (inc):#define EME_BASE_ADDR							2482//2882  //改小应该可以  2482
+---- MSTER_VERSION Matches (6 in 4 files) ----
+Com_proc.c (src):					buf[6] = MSTER_VERSION;
+Config.h (inc):#define MSTER_VERSION						1
+Config.h (inc):#define MSTER_VERSION						1
+Config.h (inc):#define MSTER_VERSION						1
+DeviceId.c (src):			temp = MSTER_VERSION;
+LedDrv.c (src):					gLedImageBuf[i][index+j] = num_image[MSTER_VERSION][i][j];
+---- BMP_TYPE_EME Matches (4 in 3 files) ----
+At45db161.c (src):		case BMP_TYPE_EME:
+LedDrv.c (src):			GetBmp(BMP_TYPE_EME, gTrigerValue.eme_index-1, gDispStat.curr_lang);
+LedDrv.c (src):			GetBmp(BMP_TYPE_EME, gTrigerValue.eme_index-1, gDispStat.curr_lang);
+TypeDef.h (inc):	BMP_TYPE_EME = 6,
+---- eme_index Matches (9 in 2 files) ----
+LedDrv.c (src):		if ((eme_flag == 0) || (gTrigerValue.eme_index != frame_header->data_.urgent_broadcast_no)) {
+LedDrv.c (src):			gTrigerValue.eme_index = frame_header->data_.urgent_broadcast_no;
+LedDrv.c (src):		if ((eme_flag == 0) || (gTrigerValue.eme_index != frame_header->urgent_broadcast_no)) {
+LedDrv.c (src):			gTrigerValue.eme_index = frame_header->urgent_broadcast_no;
+LedDrv.c (src):		if ((eme_flag == 0) || (gTrigerValue.eme_index != frame_header->data_.urgent_broadcast_no)) {
+LedDrv.c (src):			gTrigerValue.eme_index = frame_header->data_.urgent_broadcast_no;
+LedDrv.c (src):			GetBmp(BMP_TYPE_EME, gTrigerValue.eme_index-1, gDispStat.curr_lang);
+LedDrv.c (src):			GetBmp(BMP_TYPE_EME, gTrigerValue.eme_index-1, gDispStat.curr_lang);
+TypeDef.h (inc):	u8 eme_index;   //下标从1开始
+---- AD_BASE_ADDR Matches (2 in 2 files) ----
+At45db161.c (src):			page = AD_BASE_ADDR + param.index*32;
+At45db161.h (inc):#define AD_BASE_ADDR							1282
+---- GetBmpStartPage Matches (38 in 3 files) ----
+At45db161.c (src):u16 GetBmpStartPage(tBmpParam param)
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):		page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):		page_buf[i] = GetBmpStartPage(param);
+At45db161.c (src):		page_buf[i] = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.h (inc):extern u16 GetBmpStartPage(tBmpParam param);
+STM322xG_EVAL.htm (mdk-arm\stm322xg_eval):<BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = ConnectMsg &rArr; GetBmpStartPage
+STM322xG_EVAL.htm (mdk-arm\stm322xg_eval):<BR>[Calls]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetBmpStartPage
+STM322xG_EVAL.htm (mdk-arm\stm322xg_eval):<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetBmpStartPage
+STM322xG_EVAL.htm (mdk-arm\stm322xg_eval):<P><STRONG><a name="[af]"></a>GetBmpStartPage</STRONG> (Thumb, 186 bytes, Stack size 12 bytes, at45db161.o(i.GetBmpStartPage))
+STM322xG_EVAL.htm (mdk-arm\stm322xg_eval):<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = GetBmpStartPage
+STM322xG_EVAL.htm (mdk-arm\stm322xg_eval):<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetBmpStartPage
+STM322xG_EVAL.htm (mdk-arm\stm322xg_eval):<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetBmpStartPage
+STM322xG_EVAL.htm (mdk-arm\stm322xg_eval):<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetBmpStartPage
+---- LINE1_BASE_ADDR Matches (3 in 2 files) ----
+At45db161.c (src):			page = LINE1_BASE_ADDR + param.index*2;
+At45db161.h (inc):#define LINE1_BASE_ADDR							242
+At45db161.h (inc):	LINE1_BASE_ADDR,LINE2_BASE_ADDR,LINE3_BASE_ADDR,MSG_BASE_ADDR,
+---- GetBmpStartPage Matches (38 in 3 files) ----
+At45db161.c (src):u16 GetBmpStartPage(tBmpParam param)
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):		page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):		page_buf[i] = GetBmpStartPage(param);
+At45db161.c (src):		page_buf[i] = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.c (src):	page = GetBmpStartPage(param);
+At45db161.h (inc):extern u16 GetBmpStartPage(tBmpParam param);
+STM322xG_EVAL.htm (mdk-arm\stm322xg_eval):<BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = ConnectMsg &rArr; GetBmpStartPage
+STM322xG_EVAL.htm (mdk-arm\stm322xg_eval):<BR>[Calls]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetBmpStartPage
+STM322xG_EVAL.htm (mdk-arm\stm322xg_eval):<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetBmpStartPage
+STM322xG_EVAL.htm (mdk-arm\stm322xg_eval):<P><STRONG><a name="[af]"></a>GetBmpStartPage</STRONG> (Thumb, 186 bytes, Stack size 12 bytes, at45db161.o(i.GetBmpStartPage))
+STM322xG_EVAL.htm (mdk-arm\stm322xg_eval):<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = GetBmpStartPage
+STM322xG_EVAL.htm (mdk-arm\stm322xg_eval):<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetBmpStartPage
+STM322xG_EVAL.htm (mdk-arm\stm322xg_eval):<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetBmpStartPage
+STM322xG_EVAL.htm (mdk-arm\stm322xg_eval):<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetBmpStartPage
+---- BMP_TYPE_LINE1 Matches (6 in 2 files) ----
+At45db161.c (src):		case BMP_TYPE_LINE1:
+At45db161.c (src):	param.type = BMP_TYPE_LINE1;
+At45db161.c (src):	param.type = BMP_TYPE_LINE1;
+At45db161.c (src):	param.type = BMP_TYPE_LINE1;
+At45db161.c (src):	param.type = BMP_TYPE_LINE1;
+TypeDef.h (inc):	BMP_TYPE_LINE1 = 1,
+---- BMP_TYPE_LINE2 Matches (6 in 2 files) ----
+At45db161.c (src):		case BMP_TYPE_LINE2:
+At45db161.c (src):	param.type = BMP_TYPE_LINE2;
+At45db161.c (src):	param.type = BMP_TYPE_LINE2;
+At45db161.c (src):	param.type = BMP_TYPE_LINE2;
+At45db161.c (src):	param.type = BMP_TYPE_LINE2;
+TypeDef.h (inc):	BMP_TYPE_LINE2 = 2,
+---- BMP_TYPE_LINE3 Matches (4 in 2 files) ----
+At45db161.c (src):		case BMP_TYPE_LINE3:
+At45db161.c (src):	param.type = BMP_TYPE_LINE3;
+At45db161.c (src):	param.type = BMP_TYPE_LINE3;
+TypeDef.h (inc):	BMP_TYPE_LINE3 = 3,
+---- VERSION_FLAG_ADDR Matches (7 in 3 files) ----
+At45db161.c (src):	write_byte((u8)(VERSION_FLAG_ADDR>>6));
+At45db161.c (src):	write_byte((u8)(VERSION_FLAG_ADDR<<2));
+At45db161.c (src):	write_byte((u8)(VERSION_FLAG_ADDR >> 6));
+At45db161.c (src):	write_byte((u8)(VERSION_FLAG_ADDR << 2));
+At45db161.c (src):		if (page > VERSION_FLAG_ADDR) return 1;
+At45db161.h (inc):#define VERSION_FLAG_ADDR						3523
+Main.c (src):for (i=LINE1_CONFIG_ADDR; i<VERSION_FLAG_ADDR; i++) {
+---- LED_HEIGHT Matches (2 in 2 files) ----
+At45db161.c (src):	//if (gUpdateBmpSt.offset >= (LED_WIDTH/8)*LED_HEIGHT) gUpdateBmpSt.offset -= len;
+At45db161.h (inc):#define LED_HEIGHT								16
+---- LED_IMAGE_MAX_WIDTH Matches (9 in 2 files) ----
+At45db161.c (src):u8 gLedImageBuf[16][(LED_IMAGE_MAX_WIDTH/8) + 36];
+At45db161.c (src)://u8 gLedImageBuf[16][(LED_IMAGE_MAX_WIDTH/8) + ];
+At45db161.c (src):	if(len > LED_IMAGE_MAX_WIDTH/8)
+At45db161.c (src):		len = LED_IMAGE_MAX_WIDTH/8; 	//限定最大缓冲区长度，防止溢出
+At45db161.c (src):		if (len > LED_IMAGE_MAX_WIDTH) return 1;
+At45db161.c (src):	if (gBmpWidth > LED_IMAGE_MAX_WIDTH) return 1;
+At45db161.h (inc):#define LED_IMAGE_MAX_WIDTH						(4096)
+At45db161.h (inc):extern u8 gLedImageBuf[16][(LED_IMAGE_MAX_WIDTH/8) + 36];
+At45db161.h (inc)://extern u8 gLedImageBuf[16][(LED_IMAGE_MAX_WIDTH/8)];
+---- urgent_broadcast_no Matches (8 in 2 files) ----
+Com_proc.h (inc):	u8 urgent_broadcast_no;//紧急广播代码
+Com_proc.h (inc):	u8 urgent_broadcast_no;//紧急广播代码
+LedDrv.c (src):		if ((eme_flag == 0) || (gTrigerValue.eme_index != frame_header->data_.urgent_broadcast_no)) {
+LedDrv.c (src):			gTrigerValue.eme_index = frame_header->data_.urgent_broadcast_no;
+LedDrv.c (src):		if ((eme_flag == 0) || (gTrigerValue.eme_index != frame_header->urgent_broadcast_no)) {
+LedDrv.c (src):			gTrigerValue.eme_index = frame_header->urgent_broadcast_no;
+LedDrv.c (src):		if ((eme_flag == 0) || (gTrigerValue.eme_index != frame_header->data_.urgent_broadcast_no)) {
+LedDrv.c (src):			gTrigerValue.eme_index = frame_header->data_.urgent_broadcast_no;
+---- DMP Matches (1 in 1 files) ----
+Com_proc.h (inc):#define DMP						0x04
+---- IDU Matches (4 in 3 files) ----
+Com_proc.h (inc):#define IDU						0x06	//内部屏
+Config.h (inc):#define LOCAL_DEVICE_TYPE					IDU
+Config.h (inc):#define VERSION "IDU LED   2013-06-07 V1.9\r\n"
+STM322xG_EVAL.build_log.htm (mdk-arm\stm322xg_eval):After Build - User command #1: fromelf --bin --output .\binary\IDU.bin .\STM322xG_EVAL\STM322xG_EVAL.axf
+---- LOCAL_DEVICE_TYPE Matches (6 in 2 files) ----
+Com_proc.c (src):				if (frame_header->dest_eqnum.eq_type == LOCAL_DEVICE_TYPE) {
+Com_proc.c (src):					buf[3] |= LOCAL_DEVICE_TYPE;
+Com_proc.c (src):				if (frame_header->dest_eqnum.eq_type == LOCAL_DEVICE_TYPE) {
+Config.h (inc):#define LOCAL_DEVICE_TYPE					IDU
+Config.h (inc):#define LOCAL_DEVICE_TYPE					FDU
+Config.h (inc):#define LOCAL_DEVICE_TYPE					SDU
+---- IDU Matches (4 in 3 files) ----
+Com_proc.h (inc):#define IDU						0x06	//内部屏
+Config.h (inc):#define LOCAL_DEVICE_TYPE					IDU
+Config.h (inc):#define VERSION "IDU LED   2013-06-07 V1.9\r\n"
+STM322xG_EVAL.build_log.htm (mdk-arm\stm322xg_eval):After Build - User command #1: fromelf --bin --output .\binary\IDU.bin .\STM322xG_EVAL\STM322xG_EVAL.axf
+---- LOCAL_DEVICE_TYPE Matches (6 in 2 files) ----
+Com_proc.c (src):				if (frame_header->dest_eqnum.eq_type == LOCAL_DEVICE_TYPE) {
+Com_proc.c (src):					buf[3] |= LOCAL_DEVICE_TYPE;
+Com_proc.c (src):				if (frame_header->dest_eqnum.eq_type == LOCAL_DEVICE_TYPE) {
+Config.h (inc):#define LOCAL_DEVICE_TYPE					IDU
+Config.h (inc):#define LOCAL_DEVICE_TYPE					FDU
+Config.h (inc):#define LOCAL_DEVICE_TYPE					SDU
+---- com1_recv_length Matches (17 in 2 files) ----
+Com_proc.c (src):u8 com1_recv_length = 0;
+Com_proc.c (src):	com1_recv_length = 0;
+Com_proc.c (src):				com1_recv_length = myLen;
+Com_proc.c (src):				com1_recv_length = otherLen;
+Com_proc.c (src):				com1_recv_length = myLen;
+Com_proc.c (src):				com1_recv_length = otherLen;
+Com_proc.c (src):			if(com1_recv_length >= 3)
+Com_proc.c (src):			com1_recv_length=0;
+Com_proc.c (src):			com1_recv_buf[com1_recv_length] = temp;
+Com_proc.c (src):			if( ++com1_recv_length >= 512 )
+Com_proc.c (src):				com1_recv_length = 0;
+Com_proc.c (src):	com1_recv_length = 0;
+Com_proc.c (src):	   for(src_length=0; src_length<com1_recv_length; src_length++)
+Com_proc.c (src):		if(com1_recv_buf[src_length]==TBA_PACKET_DLE && src_length<com1_recv_length-1)
+LedDrv.c (src):extern u8 com1_recv_length ;
+LedDrv.c (src):	if ((frame_header->receiverKeyword == 0xaa)&&(com1_recv_length ==17))
+LedDrv.c (src):	else if (com1_recv_length >17)

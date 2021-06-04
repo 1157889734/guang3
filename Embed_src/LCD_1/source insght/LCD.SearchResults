@@ -1,0 +1,178 @@
+---- on_init_choose_line_buttons_clicked Matches (3 in 2 files) ----
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):	connect(pushButton_choose_line_group,SIGNAL(buttonClicked(int)),this,SLOT(on_init_choose_line_buttons_clicked(int)));
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):void MainForm::on_init_choose_line_buttons_clicked( int choose_line_id)
+MainForm.h (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):	void on_init_choose_line_buttons_clicked(int choose_line_id);
+---- pushButton_choose_line Matches (154 in 3 files) ----
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):QPushButton *pushButton_choose_line[LINE_COUNT];
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):	ui->pushButton_choose_line->show();	
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[0]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[1]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[2]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[3]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[4]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[5]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[6]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[7]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[8]->show();//隐藏自定义
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[9]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[10]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):    pushButton_choose_line[0] = ui->pushButton_choose_line_1;
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):    pushButton_choose_line[1] = ui->pushButton_choose_line_2;
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):    pushButton_choose_line[2] = ui->pushButton_choose_line_3;  
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):    pushButton_choose_line[3] = ui->pushButton_choose_line_4; 
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):    pushButton_choose_line[4] = ui->pushButton_choose_line_5; 
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):    pushButton_choose_line[5] = ui->pushButton_choose_line_6;
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):    pushButton_choose_line[6] = ui->pushButton_choose_line_7;
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):    pushButton_choose_line[7] = ui->pushButton_choose_line_8;
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):    pushButton_choose_line[8] = ui->pushButton_choose_line_9;
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):	pushButton_choose_line[9] = ui->pushButton_choose_line_10;
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):	pushButton_choose_line[10] = ui->pushButton_choose_line_11;
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):    pushButton_choose_line[11] = ui->pushButton_choose_line_12;
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):    pushButton_choose_line[12] = ui->pushButton_choose_line_13;
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):    pushButton_choose_line[13] = ui->pushButton_choose_line_14;
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):    pushButton_choose_line[14] = ui->pushButton_choose_line_15;
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line_group->addButton(pushButton_choose_line[i],i);
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):            pushButton_choose_line[choose_line_id]->setStyleSheet(QString("border-image: url(:/yellow_square.png);"));        
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):            pushButton_choose_line[i]->setStyleSheet(QString("border-image: url(0);"));
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):	//pushButton_choose_line[chooseed_line]->setStyleSheet(QString("border-image: url(0);")); 
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[0]->show();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[1]->show();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[2]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[3]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[4]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[5]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[6]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[7]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[9]->hide();//番禺-机场北
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[10]->hide();//机场北-番禺
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[8]->show();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):        pushButton_choose_line[11]->hide();//
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):        pushButton_choose_line[12]->hide();//
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):        pushButton_choose_line[13]->hide();//
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):        pushButton_choose_line[14]->hide();//
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[0]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[1]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[2]->show();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[3]->show();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[4]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[5]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[6]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[7]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[9]->hide();//番禺-机场北
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[10]->hide();//机场北-番禺
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[8]->show();//?????
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):        pushButton_choose_line[11]->hide();//
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):        pushButton_choose_line[12]->hide();//
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):        pushButton_choose_line[13]->hide();//
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):        pushButton_choose_line[14]->hide();//
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[0]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[1]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[2]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[3]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[4]->show();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[5]->show();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[6]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[7]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[9]->hide();//番禺-机场北
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[10]->hide();//机场北-番禺
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[8]->show();//?????
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):        pushButton_choose_line[11]->hide();//
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):        pushButton_choose_line[12]->hide();//
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):        pushButton_choose_line[13]->hide();//
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):        pushButton_choose_line[14]->hide();//
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[0]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[1]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[2]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[3]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[4]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[5]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[6]->show();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[7]->show();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[9]->hide();//番禺-机场北
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[10]->hide();//机场北-番禺
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[8]->show();//?????
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):        pushButton_choose_line[11]->hide();//
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):        pushButton_choose_line[12]->hide();//
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):        pushButton_choose_line[13]->hide();//
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):        pushButton_choose_line[14]->hide();//
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[0]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[1]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[2]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[3]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[4]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[5]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[6]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[7]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[9]->show();//番禺-机场北
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[10]->show();//机场北-番禺
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[8]->show();//?????
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):        pushButton_choose_line[11]->hide();//
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):        pushButton_choose_line[12]->hide();//
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):        pushButton_choose_line[13]->hide();//
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):        pushButton_choose_line[14]->hide();//
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[0]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[1]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[2]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[3]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[4]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[5]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[6]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[7]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[9]->hide();//
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[10]->hide();//
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[11]->show();//
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[12]->show();//
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):        pushButton_choose_line[13]->hide();//
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):        pushButton_choose_line[14]->hide();//
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[8]->show();//?????
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[0]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[1]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[2]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[3]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[4]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[5]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[6]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[7]->hide();
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[9]->hide();//
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[10]->hide();//
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[11]->hide();//
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[12]->hide();//
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[13]->show();//
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[14]->show();//
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):		pushButton_choose_line[8]->show();//?????
+ui_MainForm.h (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src):    QPushButton *pushButton_choose_line;
+ui_MainForm.h (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src):        pushButton_choose_line = new QPushButton(tab_main);
+ui_MainForm.h (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src):        pushButton_choose_line->setObjectName(QString::fromUtf8("pushButton_choose_line"));
+ui_MainForm.h (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src):        pushButton_choose_line->setGeometry(QRect(620, 640, 101, 101));
+ui_MainForm.h (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src):        pushButton_choose_line->setFont(font2);
+ui_MainForm.h (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src):        pushButton_choose_line->setStyleSheet(QString::fromUtf8("QPushButton\n"
+ui_MainForm.h (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src):        pushButton_choose_line->setFlat(true);
+ui_MainForm.h (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src):        pushButton_choose_line->raise();
+ui_MainForm.h (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src):        pushButton_choose_line->setText(QString());
+ui_MainForm1.h (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src):    QPushButton *pushButton_choose_line;
+ui_MainForm1.h (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src):        pushButton_choose_line = new QPushButton(tab);
+ui_MainForm1.h (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src):        pushButton_choose_line->setObjectName(QString::fromUtf8("pushButton_choose_line"));
+ui_MainForm1.h (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src):        pushButton_choose_line->setGeometry(QRect(720, 670, 111, 111));
+ui_MainForm1.h (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src):        pushButton_choose_line->setFont(font1);
+ui_MainForm1.h (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src):        pushButton_choose_line->setStyleSheet(QString::fromUtf8("QPushButton\n"
+ui_MainForm1.h (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src):        pushButton_choose_line->raise();
+ui_MainForm1.h (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src):        pushButton_choose_line->setText(QApplication::translate("MainForm", "Route", 0, QApplication::UnicodeUTF8));
+---- on_pushButton_choose_route_7_clicked Matches (2 in 2 files) ----
+MainForm.cpp (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):void MainForm::on_pushButton_choose_route_7_clicked()
+MainForm.h (c:\pis\guan3_广州地铁3#pis\embed_src\lcd\src\form\mainform):	void on_pushButton_choose_route_7_clicked();
+---- update_choose_next_station Matches (5 in 2 files) ----
+MainForm.cpp (c:\pis\guan3_pis\embed_src\lcd\src\form\mainform):void MainForm::update_choose_next_station()
+MainForm.cpp (c:\pis\guan3_pis\embed_src\lcd\src\form\mainform):	update_choose_next_station();
+MainForm.cpp (c:\pis\guan3_pis\embed_src\lcd\src\form\mainform):	update_choose_next_station();
+MainForm.cpp (c:\pis\guan3_pis\embed_src\lcd\src\form\mainform):	update_choose_next_station();
+MainForm.h (c:\pis\guan3_pis\embed_src\lcd\src\form\mainform):	void update_choose_next_station();
+---- on_pushButton_choose_line_affirm_clicked Matches (4 in 3 files) ----
+MainForm.cpp (c:\pis\guan3_pis\embed_src\lcd\src\form\mainform):void MainForm::on_pushButton_choose_line_affirm_clicked()
+MainForm.h (c:\pis\guan3_pis\embed_src\lcd\src\form\mainform):	void on_pushButton_choose_line_affirm_clicked();
+moc_MainForm.cpp (c:\pis\guan3_pis\embed_src\lcd\src):    "on_pushButton_choose_line_affirm_clicked()\0"
+moc_MainForm.cpp (c:\pis\guan3_pis\embed_src\lcd\src):        case 21: on_pushButton_choose_line_affirm_clicked(); break;
+---- on_pushButton_choose_route_7_clicked Matches (4 in 3 files) ----
+MainForm.cpp (c:\pis\guan3_pis\embed_src\lcd\src\form\mainform):void MainForm::on_pushButton_choose_route_7_clicked()
+MainForm.h (c:\pis\guan3_pis\embed_src\lcd\src\form\mainform):	void on_pushButton_choose_route_7_clicked();
+moc_MainForm.cpp (c:\pis\guan3_pis\embed_src\lcd\src):    "on_pushButton_choose_route_7_clicked()\0"
+moc_MainForm.cpp (c:\pis\guan3_pis\embed_src\lcd\src):        case 28: on_pushButton_choose_route_7_clicked(); break;

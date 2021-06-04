@@ -1,0 +1,372 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="头文件\GridCtrl">
+      <UniqueIdentifier>{78fe1339-2698-410e-8b59-5fca9f0cdb43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="usb">
+      <UniqueIdentifier>{47a85507-9875-4e97-b579-d1a479bde635}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Protocol Parser">
+      <UniqueIdentifier>{ce2737f0-3416-434b-95dc-d1ed882e8713}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="源文件\GridCtrl">
+      <UniqueIdentifier>{90e19795-87a0-47d6-9986-ee535089aa43}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CESeries.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ComPro.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CustomDlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DeleteDlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DeviceQueryCTCDlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DevStatusQueryDlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgCtcSetRoute.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgHistoricalView.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DownByTypeDlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DownLoadLED.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="IHListBox.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="LedParaSetDlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="LittaceSet.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MainFrm.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MyButton.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MyEdit.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="OperateDlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ParaSetDlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="PicDownDlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="PicSaveDlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="PortLinkDlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ProgramDownDlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RTCTimeSetdlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SelFileDlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="StationCfg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SZPTU.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SZPTUDoc.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SZPTUView.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="BreakQueryTimeDlg.h">
+      <Filter>头文件\GridCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="GridCtrl_src\GridCell.h">
+      <Filter>头文件\GridCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="GridCtrl_src\GridCellBase.h">
+      <Filter>头文件\GridCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="GridCtrl_src\GridCtrl.h">
+      <Filter>头文件\GridCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="GridCtrl_src\GridDropTarget.h">
+      <Filter>头文件\GridCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="GridCtrl_src\InPlaceEdit.h">
+      <Filter>头文件\GridCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="GridCtrl_src\InPlaceList.h">
+      <Filter>头文件\GridCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="GridCtrl_src\MemDC.h">
+      <Filter>头文件\GridCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="GridCtrl_src\TitleTip.h">
+      <Filter>头文件\GridCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="usb\devioctl.h">
+      <Filter>usb</Filter>
+    </ClInclude>
+    <ClInclude Include="usb\hidpi.h">
+      <Filter>usb</Filter>
+    </ClInclude>
+    <ClInclude Include="usb\hidsdi.h">
+      <Filter>usb</Filter>
+    </ClInclude>
+    <ClInclude Include="usb\hidusage.h">
+      <Filter>usb</Filter>
+    </ClInclude>
+    <ClInclude Include="usb\HidUSB.h">
+      <Filter>usb</Filter>
+    </ClInclude>
+    <ClInclude Include="usb\usb100.h">
+      <Filter>usb</Filter>
+    </ClInclude>
+    <ClInclude Include="usb\usbdi.h">
+      <Filter>usb</Filter>
+    </ClInclude>
+    <ClInclude Include="usb\usbhead.h">
+      <Filter>usb</Filter>
+    </ClInclude>
+    <ClInclude Include="usb\usbioctl.h">
+      <Filter>usb</Filter>
+    </ClInclude>
+    <ClInclude Include="usb\usbiodef.h">
+      <Filter>usb</Filter>
+    </ClInclude>
+    <ClInclude Include="PisProtocol.h">
+      <Filter>Protocol Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="ProtocolAnalysis.h">
+      <Filter>Protocol Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="TmsProtocol.h">
+      <Filter>Protocol Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="GridCtrl_src\CellRange.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ProgramDownDlg.cpp">
+      <Filter>头文件</Filter>
+    </ClCompile>
+    <ClCompile Include="usb\HidUSB.cpp">
+      <Filter>usb</Filter>
+    </ClCompile>
+    <ClCompile Include="PisProtocol.cpp">
+      <Filter>Protocol Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="ProtocolAnalysis.cpp">
+      <Filter>Protocol Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="TmsProtocol.cpp">
+      <Filter>Protocol Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="BreakQueryTimeDlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CESeries.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ComPro.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CustomDlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DeleteDlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DeviceQueryCTCDlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DevStatusQueryDlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgCtcSetRoute.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgHistoricalView.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DownByTypeDlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DownLoadLED.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="IHListBox.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="LedParaSetDlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="LittaceSet.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="MainFrm.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="MyButton.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="MyEdit.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="OperateDlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ParaSetDlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="PicDownDlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="PicSaveDlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="PortLinkDlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="RTCTimeSetdlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SelFileDlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="StationCfg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="StationChaildCfg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SZPTU.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SZPTUDoc.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SZPTUView.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="GridCtrl_src\GridCell.cpp">
+      <Filter>源文件\GridCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="GridCtrl_src\GridCellBase.cpp">
+      <Filter>源文件\GridCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="GridCtrl_src\GridCtrl.cpp">
+      <Filter>源文件\GridCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="GridCtrl_src\GridDropTarget.cpp">
+      <Filter>源文件\GridCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="GridCtrl_src\InPlaceEdit.cpp">
+      <Filter>源文件\GridCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="GridCtrl_src\InPlaceList.cpp">
+      <Filter>源文件\GridCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="GridCtrl_src\TitleTip.cpp">
+      <Filter>源文件\GridCtrl</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\back2.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\BKbmp.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\email.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\exit.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\help.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\LED图像升级图标.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\pre.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\SZPTU.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\SZPTUDoc.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\Toolbar.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\UpDownArrow.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\wzd.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\系统图标.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="SZPTU.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\SZPTU.rc2">
+      <Filter>资源文件</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+</Project>

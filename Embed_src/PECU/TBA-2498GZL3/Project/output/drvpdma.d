@@ -1,0 +1,12 @@
+..\output\drvpdma.o: ..\..\ISD91XX_SDK\NuvotonPlatform_Keil\Src\Driver\DrvPDMA.c
+..\output\drvpdma.o: C:\Keil\ARM\RV31\INC\stdio.h
+..\output\drvpdma.o: ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD91xx\ISD9xx.h
+..\output\drvpdma.o: ..\..\ISD91XX_SDK\CMSIS\CM0\CoreSupport\core_cm0.h
+..\output\drvpdma.o: C:\Keil\ARM\RV31\INC\stdint.h
+..\output\drvpdma.o: ..\..\ISD91XX_SDK\CMSIS\CM0\CoreSupport\core_cmInstr.h
+..\output\drvpdma.o: ..\..\ISD91XX_SDK\CMSIS\CM0\CoreSupport\core_cmFunc.h
+..\output\drvpdma.o: ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD91xx\system_ISD9xx.h
+..\output\drvpdma.o: ..\..\ISD91XX_SDK\NuvotonPlatform_Keil\Include\System\SysInfra.h
+..\output\drvpdma.o: ..\..\ISD91XX_SDK\NuvotonPlatform_Keil\Include\System\ModuleID.h
+..\output\drvpdma.o: ..\..\ISD91XX_SDK\CMSIS\CM0\CoreSupport\core_cm0.h
+..\output\drvpdma.o: ..\..\ISD91XX_SDK\NuvotonPlatform_Keil\Include\Driver\DrvPDMA.h

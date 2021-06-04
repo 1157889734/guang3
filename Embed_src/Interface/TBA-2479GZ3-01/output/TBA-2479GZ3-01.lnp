@@ -1,0 +1,3 @@
+".\output\TBA-2479GZ3-01.obj" 
+TO ".\output\TBA-2479GZ3-01" 
+PRINT(".\list\TBA-2479GZ3-01.m51") RAMSIZE(256) 

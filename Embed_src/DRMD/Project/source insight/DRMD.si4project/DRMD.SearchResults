@@ -1,0 +1,101 @@
+---- LED_COLOR_RED Matches (8 in 3 files) ----
+LedSetColour in LedDrv.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :         case LED_COLOR_RED:
+DispTypeInit in LedDrv.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :             LedSetColour(LED_COLOR_RED);
+DispTypeInit in LedDrv.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :             LedSetColour(LED_COLOR_RED);
+DispTypeInit in LedDrv.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :             LedSetColour(LED_COLOR_RED);
+DispTypeInit in LedDrv.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :             LedSetColour(LED_COLOR_RED);
+DispFun_DS in LedDrv.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :         if ( temp == 1) gTrigerValue.disp_color = LED_COLOR_RED;
+main in main.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :             LedSetColour(LED_COLOR_RED);
+TypeDef.h (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\inc) line 16 : 	LED_COLOR_RED = 1,
+---- DISP_TYPE_NO_PROCESS Matches (17 in 5 files) ----
+UpdateBmp in at45db161.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) : 			DispTypeInit(DISP_TYPE_NO_PROCESS);
+UpdateConfig in at45db161.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) : 		DispTypeInit(DISP_TYPE_NO_PROCESS);
+UpdateStationConfig in at45db161.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) : //		DispTypeInit(DISP_TYPE_NO_PROCESS);
+com1_proc in com_proc.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :             DispTypeInit(DISP_TYPE_NO_PROCESS);
+com1_proc in com_proc.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :             if (gDispStat.disp_type != DISP_TYPE_DOWNING) DispTypeInit(DISP_TYPE_NO_PROCESS);
+LoadRowData in LedDrv.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :                 DispTypeInit(DISP_TYPE_NO_PROCESS);
+LoadRowData in LedDrv.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :     else if (gDispStat.disp_type == DISP_TYPE_NO_PROCESS)
+DispTypeInit in LedDrv.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :         case DISP_TYPE_NO_PROCESS:
+DispTypeInit in LedDrv.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :             if (gDispStat.disp_type == DISP_TYPE_NO_PROCESS) break;
+DispTypeInit in LedDrv.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :             gDispStat.disp_type = DISP_TYPE_NO_PROCESS;
+PorcessDataNewSystem in LedDrv.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :             DispTypeInit(DISP_TYPE_NO_PROCESS);
+main in main.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :     DispTypeInit(DISP_TYPE_NO_PROCESS);
+main in main.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :         DispTypeInit(DISP_TYPE_NO_PROCESS);
+main in main.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :     DispTypeInit(DISP_TYPE_NO_PROCESS);
+main in main.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :                 //DispTypeInit(DISP_TYPE_NO_PROCESS);
+main in main.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :             gDispStat.disp_type = DISP_TYPE_NO_PROCESS;
+TypeDef.h (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\inc) line 78 : 	DISP_TYPE_NO_PROCESS,
+---- DISP_TYPE_ERROR_DOWN Matches (9 in 4 files) ----
+UpdateFirmware in Debug.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) : 		if(gDispStat.disp_type == DISP_TYPE_ERROR_DOWN)
+UpdateFirmware in Debug.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) : 				DispTypeInit(DISP_TYPE_ERROR_DOWN);
+LoadRowData in LedDrv.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :     if ((gDownFirmware == 1) && (gDispStat.disp_type != DISP_TYPE_ERROR_DOWN))gDispStat.disp_type = DISP_TYPE_DOWNING;
+LoadRowData in LedDrv.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :     else if (gDispStat.disp_type == DISP_TYPE_ERROR_DOWN)
+DispTypeInit in LedDrv.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :         case DISP_TYPE_ERROR_DOWN:
+DispTypeInit in LedDrv.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :             if (gDispStat.disp_type == DISP_TYPE_ERROR_DOWN) break;
+DispTypeInit in LedDrv.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :             gDispStat.disp_type = DISP_TYPE_ERROR_DOWN;
+SysTick_Handler in stm32f2xx_it.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) : 	if((gDispStat.disp_type == DISP_TYPE_ERROR)||(gDispStat.disp_type == DISP_TYPE_ERROR_DOWN))
+TypeDef.h (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\inc) line 76 : 	DISP_TYPE_ERROR_DOWN,
+---- DISP_TYPE_DARK Matches (15 in 4 files) ----
+GetBmp in at45db161.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) : 	DispTypeInit(DISP_TYPE_DARK);
+ConnectBmp in at45db161.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) : 	DispTypeInit(DISP_TYPE_DARK);
+LedDrv.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) line 704 :         DispTypeInit(DISP_TYPE_DARK);
+ChangeDispLanguage in LedDrv.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :         if (gDispStat.disp_type == DISP_TYPE_DARK) return;
+ChangeDispLanguage in LedDrv.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :             DispTypeInit(DISP_TYPE_DARK);
+ChangeDispLanguage in LedDrv.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :                 DispTypeInit(DISP_TYPE_DARK);
+DispTypeInit in LedDrv.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :             //if (gDispStat.disp_type == DISP_TYPE_DARK) break;
+DispTypeInit in LedDrv.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :         case DISP_TYPE_DARK:
+DispTypeInit in LedDrv.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :             gDispStat.disp_type = DISP_TYPE_DARK;
+PorcessDataNormalSystem in LedDrv.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :             DispTypeInit(DISP_TYPE_DARK);
+PorcessDataNormalSystem in LedDrv.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :             DispTypeInit(DISP_TYPE_DARK);
+PorcessDataNormalSystem in LedDrv.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :             DispTypeInit(DISP_TYPE_DARK);
+PorcessDataNormalSystem in LedDrv.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :             DispTypeInit(DISP_TYPE_DARK);
+main in main.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :     gDispStat.disp_type = DISP_TYPE_DARK;
+TypeDef.h (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\inc) line 77 : 	DISP_TYPE_DARK,
+---- DISP_TYPE_ERROR Matches (31 in 5 files) ----
+GetStationConfig in at45db161.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) : 		DispTypeInit(DISP_TYPE_ERROR);
+UpdateBmp in at45db161.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) : 		DispTypeInit(DISP_TYPE_ERROR);
+UpdateBmp in at45db161.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) : 			DispTypeInit(DISP_TYPE_ERROR);
+UpdateBmp in at45db161.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) : 			DispTypeInit(DISP_TYPE_ERROR);
+GetBmpUpdateFlag in at45db161.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) : 		DispTypeInit(DISP_TYPE_ERROR);
+GetBmp in at45db161.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) : 		DispTypeInit(DISP_TYPE_ERROR);
+Do_ConnectBmp in at45db161.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) : 		DispTypeInit(DISP_TYPE_ERROR);
+LoadBmpAndWriteToImageBuf in at45db161.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) : 		DispTypeInit(DISP_TYPE_ERROR);
+LoadConnect in at45db161.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) : 				DispTypeInit(DISP_TYPE_ERROR);
+UpdateConfig in at45db161.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) : 		DispTypeInit(DISP_TYPE_ERROR);
+UpdateStationConfig in at45db161.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) : 		DispTypeInit(DISP_TYPE_ERROR);
+UpdateFirmware in Debug.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) : 			DispTypeInit(DISP_TYPE_ERROR);
+UpdateFirmware in Debug.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) : 			DispTypeInit(DISP_TYPE_ERROR);
+UpdateFirmware in Debug.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) : 			DispTypeInit(DISP_TYPE_ERROR);
+LoadRowData in LedDrv.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :                 DispTypeInit(DISP_TYPE_ERROR);
+LoadRowData in LedDrv.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :     else if (gDispStat.disp_type == DISP_TYPE_ERROR)
+DispTypeInit in LedDrv.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :         case DISP_TYPE_ERROR:
+DispTypeInit in LedDrv.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :             if (gDispStat.disp_type == DISP_TYPE_ERROR) break;
+DispTypeInit in LedDrv.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :             gDispStat.disp_type = DISP_TYPE_ERROR;
+DispTypeInit in LedDrv.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :             if (gDispStat.disp_type == DISP_TYPE_ERROR) break;
+DispTypeInit in LedDrv.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :             if (gDispStat.disp_type == DISP_TYPE_ERROR) break;
+DispTypeInit in LedDrv.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :             //if (gDispStat.disp_type == DISP_TYPE_ERROR) break;
+GetAdBuf in LedDrv.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :             DispTypeInit(DISP_TYPE_ERROR);
+GetAdBuf in LedDrv.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :             DispTypeInit(DISP_TYPE_ERROR);
+DispFun_DS in LedDrv.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :         DispTypeInit(DISP_TYPE_ERROR);
+DispFun_DS in LedDrv.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :             DispTypeInit(DISP_TYPE_ERROR);
+DispFun_DS in LedDrv.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :             DispTypeInit(DISP_TYPE_ERROR);
+DispFun_DS in LedDrv.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :             DispTypeInit(DISP_TYPE_ERROR);
+DispFun_NDS in LedDrv.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :         DispTypeInit(DISP_TYPE_ERROR);
+SysTick_Handler in stm32f2xx_it.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) : 	if((gDispStat.disp_type == DISP_TYPE_ERROR)||(gDispStat.disp_type == DISP_TYPE_ERROR_DOWN))
+TypeDef.h (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\inc) line 75 : 	DISP_TYPE_ERROR,
+---- DISP_TYPE_ERROR_DOWN Matches (9 in 4 files) ----
+UpdateFirmware in Debug.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) : 		if(gDispStat.disp_type == DISP_TYPE_ERROR_DOWN)
+UpdateFirmware in Debug.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) : 				DispTypeInit(DISP_TYPE_ERROR_DOWN);
+LoadRowData in LedDrv.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :     if ((gDownFirmware == 1) && (gDispStat.disp_type != DISP_TYPE_ERROR_DOWN))gDispStat.disp_type = DISP_TYPE_DOWNING;
+LoadRowData in LedDrv.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :     else if (gDispStat.disp_type == DISP_TYPE_ERROR_DOWN)
+DispTypeInit in LedDrv.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :         case DISP_TYPE_ERROR_DOWN:
+DispTypeInit in LedDrv.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :             if (gDispStat.disp_type == DISP_TYPE_ERROR_DOWN) break;
+DispTypeInit in LedDrv.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :             gDispStat.disp_type = DISP_TYPE_ERROR_DOWN;
+SysTick_Handler in stm32f2xx_it.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) : 	if((gDispStat.disp_type == DISP_TYPE_ERROR)||(gDispStat.disp_type == DISP_TYPE_ERROR_DOWN))
+TypeDef.h (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\inc) line 76 : 	DISP_TYPE_ERROR_DOWN,
+---- error_image Matches (3 in 1 files) ----
+LedDrv.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) line 342 : const u8 error_image[16][IMAGE_ERROR_IMAGE_WIDTH] =
+LoadRowData in LedDrv.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :         for (i = 0; i < IMAGE_ERROR_IMAGE_WIDTH; i++) SpiDmaBuf[i] = error_image[gDispStat.row_index][i];
+LoadRowData in LedDrv.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) :         for (i = 0; i < IMAGE_ERROR_IMAGE_WIDTH; i++) SpiDmaBuf[i] = error_image[gDispStat.row_index][i];
+---- error_image Matches (1 in 1 files) ----
+LedDrv.c (C:\PIS\guan3_PIS\Embed_src\DRMD\Project\src) line 342 : const u8 error_image[16][IMAGE_ERROR_IMAGE_WIDTH] =

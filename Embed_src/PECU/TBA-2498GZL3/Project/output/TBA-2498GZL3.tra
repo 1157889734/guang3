@@ -1,0 +1,35 @@
+*** Creating Trace Output File '..\output\TBA-2498GZL3.tra' Ok.
+### Preparing for ADS-LD.
+### Creating ADS-LD Command Line
+### List of Objects: adding '"..\output\main.o"'
+### List of Objects: adding '"..\output\uart.o"'
+### List of Objects: adding '"..\output\hw_config.o"'
+### List of Objects: adding '"..\output\timer.o"'
+### List of Objects: adding '"..\output\playpcm.o"'
+### List of Objects: adding '"..\output\play_ctrl.o"'
+### List of Objects: adding '"..\output\audio_file.o"'
+### List of Objects: adding '"..\output\pecu.o"'
+### List of Objects: adding '"..\output\startup_isd91xx.o"'
+### List of Objects: adding '"..\output\core_cm0.o"'
+### List of Objects: adding '"..\output\system_isd9xx.o"'
+### List of Objects: adding '"..\output\retarget.o"'
+### List of Objects: adding '"..\output\drvgpio.o"'
+### List of Objects: adding '"..\output\drvsys.o"'
+### List of Objects: adding '"..\output\drvuart.o"'
+### List of Objects: adding '"..\output\drvtimer.o"'
+### List of Objects: adding '"..\output\drvpdma.o"'
+### List of Objects: adding '"..\output\drvdpwm.o"'
+### ADS-LD Command completed:
+--cpu Cortex-M0 "..\output\main.o" "..\output\uart.o" "..\output\hw_config.o" "..\output\timer.o" "..\output\playpcm.o" "..\output\play_ctrl.o" "..\output\audio_file.o" "..\output\pecu.o" "..\output\startup_isd91xx.o" "..\output\core_cm0.o" "..\output\system_isd9xx.o" "..\output\retarget.o" "..\output\drvgpio.o" "..\output\drvsys.o" "..\output\drvuart.o" "..\output\drvtimer.o" "..\output\drvpdma.o" "..\output\drvdpwm.o" --ro-base 0x00000000 --entry 0x00000000 --rw-base 0x20000000 --entry Reset_Handler --first __Vectors --strict --map --first='startup_ISD91xx.o(RESET)' --datacompressor=off --info=inline --entry Reset_Handler --autoat --summary_stderr --info summarysizes --map 
+--info sizes --info totals 
+ --list "..\list\TBA-2498GZL3.map" -o "..\output\TBA-2498GZL3.axf"### Preparing Environment (PrepEnvAds)
+### ADS-LD Output File: '..\output\TBA-2498GZL3.axf'
+### ADS-LD Command File: '..\output\TBA-2498GZL3.lnp'
+### Checking for dirty Components...
+### Creating CmdFile '..\output\TBA-2498GZL3.lnp', Handle=0x0000064C
+### Writing '.lnp' file
+### ADS-LD Command file '..\output\TBA-2498GZL3.lnp' is ready.
+### ADS-LD: About to start ADS-LD Thread.
+### ADS-LD: executed with 0 errors
+### Updating obj list
+### LDADS_file() completed.

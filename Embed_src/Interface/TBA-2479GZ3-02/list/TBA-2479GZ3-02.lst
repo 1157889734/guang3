@@ -1,0 +1,585 @@
+C51 COMPILER V7.06   TBA_2479GZ3_02                                                        10/05/2014 16:11:04 PAGE 1   
+
+
+C51 COMPILER V7.06, COMPILATION OF MODULE TBA_2479GZ3_02
+OBJECT MODULE PLACED IN .\output\TBA-2479GZ3-02.obj
+COMPILER INVOKED BY: D:\Keil\C51\BIN\C51.EXE TBA-2479GZ3-02.c BROWSE DEBUG OBJECTEXTEND PRINT(.\list\TBA-2479GZ3-02.lst)
+                    - OBJECT(.\output\TBA-2479GZ3-02.obj)
+
+stmt level    source
+
+   1          #include <stc12c5620ad.h>
+   2          #include <intrins.h>
+   3          #include "TBA-2479GZ3-02.h"
+   4          
+   5          #define DEBUG
+   6          
+   7          #define DEBUG_SWITCH                    0x10
+   8          #define VERSION                                 0x20
+   9          
+  10          unsigned char data base_volumn = 3;                                                             // 2014-04-02–ﬁ∏ƒ£¨volume_AGC_val“≤–Ë–ﬁ∏ƒŒ™volume_AGC_val[2] = 
+             -{3, 0};                                                        unsigned char data base_volumn = 6;                                     // ª˘¥°“Ù¡ø÷µŒ™6
+  11          
+  12          volatile unsigned char data com_timeout = TIMEOUT;
+  13          
+  14          unsigned char data debug_switch = 0;
+  15          
+  16          unsigned char data pa_on_status = 1;                                                    // PA_ON◊¥Ã¨±Í÷æ£¨»± °Œ™∏ﬂµÁ∆Ω£ª∏˘æ›PA_ON“˝Ω≈◊¥Ã¨Ω¯––∏ﬂ°¢µÕµÁ∆Ω
+             -«–ªª
+  17          unsigned char data pc_on_status = 1;                                                    // PC_ON◊¥Ã¨±Í÷æ£¨»± °Œ™∏ﬂµÁ∆Ω£ª∏˘æ›PC_ON“˝Ω≈◊¥Ã¨Ω¯––∏ﬂ°¢µÕµÁ∆Ω
+             -«–ªª
+  18          unsigned char data radio_on_status = 1;                                                 // RADIO_ON◊¥Ã¨±Í÷æ£¨»± °Œ™∏ﬂµÁ∆Ω£ª∏˘æ›RADIO_ON“˝Ω≈◊¥Ã¨Ω¯––∏
+             -ﬂ°¢µÕµÁ∆Ω«–ªª
+  19          
+  20          unsigned char data pa_on_ctrl_self = 1;                                                 // PA_ON_CTRL“˝Ω≈∂Ø◊˜±Í÷æ£ªµ±PA_ON_CTRL“˝Ω≈¿≠µÕ ±£¨…Ë÷√pa_on
+             -_ctrl_selfŒ™0£ªµ±PA_ON_CTRL“˝Ω≈Ãß∏ﬂ ±£¨…Ë÷√pa_on_ctrl_selfŒ™1£ª»± °Œ™1
+  21          unsigned char data pc_on_ctrl_self = 1;                                                 // PC_ON_CTRL“˝Ω≈∂Ø◊˜±Í÷æ£ªµ±PC_ON_CTRL“˝Ω≈¿≠µÕ ±£¨…Ë÷√pc_on
+             -_ctrl_selfŒ™0£ªµ±PA_ON_CTRL“˝Ω≈Ãß∏ﬂ ±£¨…Ë÷√pc_on_ctrl_selfŒ™1£ª»± °Œ™1
+  22          
+  23          void main(void)
+  24          {
+  25   1              device_init();
+  26   1              
+  27   1      #ifdef  DEBUG
+  28   1              get_ver_info(); 
+  29   1      #endif
+  30   1              
+  31   1              while(1)
+  32   1              {
+  33   2                      chk_bus_level();                        // ºÏ≤‚“Ù∆µ◊‹œﬂπ§◊˜µÁ∆Ω
+  34   2                       
+  35   2                      PA_PC_ctrl();
+  36   2      
+  37   2                      prc_rx_data();
+  38   2                      
+  39   2                      if(com_timeout == TIMEOUT)
+  40   2                              act_led_blink(50);                                      // π§◊˜÷∏ æµ∆º‰∏Ù500ms¡¡√1¥Œ£¨∂® ±∆˜º‰∏Ù10ms÷–∂œ“ª¥Œ
+  41   2              }
+  42   1      }
+  43          
+  44          void PA_PC_ctrl(void)
+  45          {
+  46   1              switch(bus_level)
+  47   1              {
+  48   2              case LEVEL_BUS_0V:
+C51 COMPILER V7.06   TBA_2479GZ3_02                                                        10/05/2014 16:11:04 PAGE 2   
+
+  49   2                      break;
+  50   2      
+  51   2              case LEVEL_BUS_20V:                             // ∂‘Ω≤
+  52   2                      PA_PC_SWITCH = BUS_PC_USE;      // “Ù∆µ◊‹œﬂ«–ªªŒ™∂‘Ω≤◊‹œﬂ
+  53   2      
+  54   2                      PC_STATE_CTRL = 0;                      // ∂‘Ω≤◊¥Ã¨œﬂ¿≠µÕ£¨ ‰≥ˆ∂‘Ω≤◊¥Ã¨
+  55   2      
+  56   2                      PA_STATE_CTRL = 1;                      // π„≤•◊¥Ã¨œﬂÃß∏ﬂ£¨ ‰≥ˆπ„≤•◊¥Ã¨
+  57   2      
+  58   2                      break;
+  59   2      
+  60   2              case LEVEL_BUS_39V:                             // π„≤•
+  61   2                      PA_PC_SWITCH = BUS_PA_USE;      // “Ù∆µ◊‹œﬂ«–ªªŒ™π„≤•◊‹œﬂ
+  62   2      
+  63   2                      PC_STATE_CTRL = 1;                      // ∂‘Ω≤◊¥Ã¨œﬂÃß∏ﬂ£¨ ‰≥ˆ∂‘Ω≤◊¥Ã¨
+  64   2      
+  65   2                      PA_STATE_CTRL = 0;                      // π„≤•◊¥Ã¨œﬂ¿≠µÕ£¨ ‰≥ˆπ„≤•◊¥Ã¨
+  66   2      
+  67   2                      break;
+  68   2      
+  69   2              case LEVEL_BUS_51V:                             // ø’œ–
+  70   2                      PA_PC_SWITCH = BUS_PC_USE;      // “Ù∆µ◊‹œﬂ«–ªªŒ™π„≤•◊‹œﬂ
+  71   2      
+  72   2                      PC_STATE_CTRL = 1;                      // ∂‘Ω≤◊¥Ã¨œﬂÃß∏ﬂ£¨ ‰≥ˆ∂‘Ω≤◊¥Ã¨
+  73   2      
+  74   2                      PA_STATE_CTRL = 1;                      // π„≤•◊¥Ã¨œﬂÃß∏ﬂ£¨ ‰≥ˆπ„≤•◊¥Ã¨
+  75   2      
+  76   2                      break;
+  77   2      
+  78   2              default:
+  79   2                      break;   
+  80   2              }       
+  81   1      }
+  82          
+  83          void chk_bus_level(void)                                                // ºÏ≤‚“Ù∆µ◊‹œﬂπ§◊˜µÁ∆Ω
+  84          {
+  85   1              unsigned char bus_level_chk;
+  86   1              unsigned char tmp_bus_level_chk;
+  87   1      
+  88   1              tmp_bus_level_chk = P2 & 0x07;                  // ∂¡»°P2ø⁄µÕ3Œª÷µ
+  89   1              delay_50us(200);                                                // —” ±10ms
+  90   1              bus_level_chk = P2 & 0x07;                              // ‘Ÿ¥Œ∂¡»°P2ø⁄µÕ3Œª÷µ
+  91   1              if(bus_level_chk != tmp_bus_level_chk)
+  92   1                      return;                                                         // ¡Ω¥Œ∂¡»°÷µ≤ªÕ¨£¨ÕÀ≥ˆ∫Ø ˝
+  93   1      
+  94   1              switch(bus_level_chk)                                   // RADIO_STATE_CHK - P2.2    PC_STATE_CHK - P2.1    PA_STATE_CHK - P2.0
+  95   1              {
+  96   2              case 7:                 // 51V
+  97   2                      bus_level = LEVEL_BUS_51V;
+  98   2      
+  99   2      #ifdef DEBUG
+ 100   2                      put_n_char("“Ù∆µ◊‹œﬂµÁ∆ΩŒ™51V\r\n", 19);
+ 101   2      #endif
+ 102   2                      break;
+ 103   2      
+ 104   2              case 6:                 // 39V
+ 105   2                      bus_level = LEVEL_BUS_39V;
+ 106   2      
+ 107   2      #ifdef DEBUG
+ 108   2                      put_n_char("“Ù∆µ◊‹œﬂµÁ∆ΩŒ™39V\r\n", 19);
+ 109   2      #endif
+ 110   2                      break;
+C51 COMPILER V7.06   TBA_2479GZ3_02                                                        10/05/2014 16:11:04 PAGE 3   
+
+ 111   2      
+ 112   2              case 4:                 // 20V
+ 113   2                      bus_level = LEVEL_BUS_20V;
+ 114   2      
+ 115   2      #ifdef DEBUG
+ 116   2                      put_n_char("“Ù∆µ◊‹œﬂµÁ∆ΩŒ™20V\r\n", 19);
+ 117   2      #endif
+ 118   2                      break;
+ 119   2      
+ 120   2              case 0:                 // 0V
+ 121   2                      bus_level = LEVEL_BUS_0V;
+ 122   2      
+ 123   2      #ifdef DEBUG
+ 124   2                      put_n_char("“Ù∆µ◊‹œﬂµÁ∆ΩŒ™0V\r\n", 18);
+ 125   2      #endif
+ 126   2                      break;
+ 127   2      
+ 128   2              default:
+ 129   2                      bus_level = 0xff;
+ 130   2      
+ 131   2      #ifdef DEBUG
+ 132   2                      put_n_char("“Ù∆µ◊‹œﬂµÁ∆ΩŒ™Œ¥÷™\r\n", 20);
+ 133   2      #endif
+ 134   2                      break;          
+ 135   2              }
+ 136   1      }
+ 137          
+ 138          void act_led_blink(unsigned char interval)
+ 139          {
+ 140   1              if(act_led_blink_interval >= interval)
+ 141   1              {
+ 142   2                      ACT_LED = ~ACT_LED;
+ 143   2                      act_led_blink_interval = 0;             
+ 144   2              }
+ 145   1      }
+ 146          
+ 147          void get_ver_info(void)
+ 148          {
+ 149   1              put_n_char("\r\n\r\n\t…Ë±∏√˚≥∆:  “Ù¡øµ˜Ω⁄ƒ£øÈ  TBA-2474SZ1-26\r\n", 46);
+ 150   1              put_n_char("\tœÓƒø√˚≥∆:  …Ó€⁄µÿÃ˙1∫≈œﬂ26¡–≥µ∏ƒ‘Ï\r\n", 37);
+ 151   1              put_n_char("\t∞Ê±æ–≈œ¢:  Ver 1.1  2014-04-04\r\n", 33);
+ 152   1              put_n_char("\t÷∆‘Ï…Ã:    …Ó€⁄ –±±∫£πÏµ¿ΩªÕ®ºº ı”–œﬁπ´Àæ\r\n", 44);
+ 153   1      }
+ 154          
+ 155          unsigned char chksum(unsigned char *buf, unsigned char n)
+ 156          {
+ 157   1              unsigned char idata i;
+ 158   1              unsigned char idata tmp = 0;
+ 159   1      
+ 160   1              for(i = 0; i < n; i++)
+ 161   1                      tmp += buf[i];
+ 162   1      
+ 163   1              return(tmp);
+ 164   1      }
+ 165          
+ 166          void prc_rx_data(void)
+ 167          {
+ 168   1              unsigned char data tmp; 
+ 169   1              static unsigned int data rx_data_len = 0;
+ 170   1              static unsigned char data tmp_rx_chksum;
+ 171   1              static unsigned char data rx_chksum; 
+ 172   1      
+C51 COMPILER V7.06   TBA_2479GZ3_02                                                        10/05/2014 16:11:04 PAGE 4   
+
+ 173   1              while(get_char(&tmp))
+ 174   1              {
+ 175   2                      switch(rx_status)
+ 176   2                      {
+ 177   3                      case COM_RX_HEAD:
+ 178   3                              if(0x7e == tmp)
+ 179   3                              {
+ 180   4                                      rx_status = COM_RX_DATA;
+ 181   4                                      rx_data_len = 0;
+ 182   4                                      tmp_rx_chksum = 0;
+ 183   4                              }
+ 184   3                              else
+ 185   3                                      rx_status = COM_RX_HEAD;
+ 186   3                              break;
+ 187   3      
+ 188   3                      case COM_RX_DATA:
+ 189   3                              if(0x7e == tmp)
+ 190   3                              {
+ 191   4                                      if(rx_data_len > 0)
+ 192   4                                      {
+ 193   5                                              rx_status = COM_RX_HEAD;
+ 194   5                                              tmp_rx_chksum -= rx_chksum;
+ 195   5                                              //if(rx_chksum != (0x55 - tmp_rx_chksum))
+ 196   5                                              //      break;
+ 197   5                                              prase_rx_data(rx_data_len);
+ 198   5      
+ 199   5                                              rx_data_len = 0;
+ 200   5                                      }
+ 201   4                                      else
+ 202   4                                              rx_status = COM_RX_DATA;
+ 203   4                              }
+ 204   3                              else if(0x7f == tmp)
+ 205   3                                      rx_status = COM_RX_DLE;
+ 206   3                              else
+ 207   3                              {
+ 208   4                                      rx_buffer[rx_data_len++] = tmp;
+ 209   4                                      tmp_rx_chksum += tmp;
+ 210   4                                      rx_chksum = tmp;
+ 211   4      
+ 212   4                                      rx_status = COM_RX_DATA;
+ 213   4                              }
+ 214   3                              break;
+ 215   3      
+ 216   3                      case COM_RX_DLE:
+ 217   3                              rx_status = COM_RX_DATA;
+ 218   3                              if(0x80 == tmp)
+ 219   3                              {
+ 220   4                                      rx_buffer[rx_data_len++] = 0x7e;
+ 221   4                                      tmp_rx_chksum += 0x7e;
+ 222   4                                      rx_chksum = 0x7e;
+ 223   4                              }
+ 224   3                              else if(0x81 == tmp)
+ 225   3                              {
+ 226   4                                      rx_buffer[rx_data_len++] = 0x7f;
+ 227   4                                      tmp_rx_chksum += 0x7f;
+ 228   4                                      rx_chksum = 0x7f;
+ 229   4                              }
+ 230   3                              else
+ 231   3                                      rx_status = COM_RX_HEAD;
+ 232   3                              break;
+ 233   3                      }
+ 234   2              }
+C51 COMPILER V7.06   TBA_2479GZ3_02                                                        10/05/2014 16:11:04 PAGE 5   
+
+ 235   1      }
+ 236          
+ 237          void prase_rx_data(unsigned char len)
+ 238          {
+ 239   1              FRAME_HEADER *ptr_frame_header;
+ 240   1      
+ 241   1              ptr_frame_header = (FRAME_HEADER *)rx_buffer;
+ 242   1      
+ 243   1              if(len < 7)
+ 244   1                      return;
+ 245   1      
+ 246   1              switch(ptr_frame_header->cmd.bits.packet_type)
+ 247   1              {
+ 248   2              case PROCESS_PACKET:
+ 249   2                      break;
+ 250   2      
+ 251   2              case P2P_PACKET:
+ 252   2                      break;
+ 253   2      
+ 254   2              case TOKEN_PACKET:
+ 255   2                      if(ptr_frame_header->len != 1)
+ 256   2                              return;
+ 257   2      
+ 258   2                      cmd_type = rx_buffer[6];
+ 259   2      
+ 260   2                      switch(cmd_type & 0xf0)
+ 261   2                      {
+ 262   3                      case DEBUG_SWITCH:
+ 263   3                                      debug_switch = cmd_type & 0x01;
+ 264   3                              break;
+ 265   3      
+ 266   3                      case VERSION:
+ 267   3                              get_ver_info();
+ 268   3                              break;
+ 269   3                      }
+ 270   2      
+ 271   2                      break;
+ 272   2      
+ 273   2              case DOWNLOAD_PACKET:
+ 274   2                      break;
+ 275   2              }
+ 276   1      
+ 277   1              return;
+ 278   1      }
+ 279          
+ 280          unsigned char ISP_IAP_byte_read(unsigned int addr)
+ 281          {
+ 282   1              ISP_ADDRH = (unsigned char)(addr >> 8);
+ 283   1              ISP_ADDRL = (unsigned char)(addr & 0x00ff);
+ 284   1              ISP_CMD &= 0xf8;
+ 285   1              ISP_CMD |= ISP_IAP_BYTE_READ;
+ 286   1              ISP_IAP_enable();
+ 287   1              ISP_TRIG = 0x46;
+ 288   1              ISP_TRIG = 0xb9;
+ 289   1              _nop_();
+ 290   1              ISP_IAP_disable();
+ 291   1      
+ 292   1              return(ISP_DATA);
+ 293   1      }
+ 294          
+ 295          void ISP_IAP_n_byte_read(unsigned int addr, unsigned int n, unsigned char *buf)
+ 296          {
+C51 COMPILER V7.06   TBA_2479GZ3_02                                                        10/05/2014 16:11:04 PAGE 6   
+
+ 297   1              unsigned int data i;
+ 298   1      
+ 299   1              for(i = 0; i < n; i++)
+ 300   1                      buf[i] = ISP_IAP_byte_read(addr++);
+ 301   1      }
+ 302          
+ 303          unsigned char ISP_IAP_n_byte_program(unsigned int addr, unsigned int n, unsigned char *buf)
+ 304          {
+ 305   1              unsigned int data i = 0;
+ 306   1              unsigned int data in_sector_begin_addr = 0;
+ 307   1              unsigned int data sector_addr = 0;
+ 308   1      
+ 309   1              if(n > 256)
+ 310   1                      return 0;
+ 311   1      
+ 312   1              in_sector_begin_addr = addr & 0x1ff;
+ 313   1              if((in_sector_begin_addr + n) > 128)
+ 314   1                      return 0;
+ 315   1      
+ 316   1              sector_addr = (addr & 0xfe00);
+ 317   1              ISP_ADDRH = (unsigned char)(sector_addr >> 8);
+ 318   1              ISP_ADDRL = 0;
+ 319   1              ISP_CMD &= 0xf8;
+ 320   1              ISP_CMD |= ISP_IAP_SECTOR_ERASE;
+ 321   1              ISP_IAP_enable();
+ 322   1              ISP_TRIG = 0x46;
+ 323   1              ISP_TRIG = 0xb9;
+ 324   1              _nop_();
+ 325   1      
+ 326   1              for(i = 0; i < n; i++)
+ 327   1              {
+ 328   2                      ISP_ADDRH = (unsigned char)(addr >> 8);
+ 329   2                      ISP_ADDRL = (unsigned char)(addr & 0x00ff);
+ 330   2                      ISP_DATA = buf[i];
+ 331   2                      ISP_CMD &= 0xf8;
+ 332   2                      ISP_CMD |= ISP_IAP_BYTE_PROGRAM;
+ 333   2                      ISP_TRIG = 0x46;
+ 334   2                      ISP_TRIG = 0xb9;
+ 335   2                      _nop_();
+ 336   2      
+ 337   2                      ISP_DATA = 0;
+ 338   2                      ISP_CMD &= 0xf8;
+ 339   2                      ISP_CMD |= ISP_IAP_BYTE_READ;
+ 340   2                      ISP_TRIG = 0x46;
+ 341   2                      ISP_TRIG = 0xb9;
+ 342   2                      _nop_();
+ 343   2      
+ 344   2                      if(ISP_DATA != buf[i])
+ 345   2                      {
+ 346   3                              ISP_IAP_disable();
+ 347   3                              return 0;
+ 348   3                      }
+ 349   2      
+ 350   2                      addr++;
+ 351   2              }
+ 352   1      
+ 353   1              ISP_IAP_disable();
+ 354   1      
+ 355   1              return 1;
+ 356   1      }
+ 357          
+ 358          void ISP_IAP_erase(unsigned int sector_addr)
+C51 COMPILER V7.06   TBA_2479GZ3_02                                                        10/05/2014 16:11:04 PAGE 7   
+
+ 359          {
+ 360   1              ISP_ADDRH = (unsigned char)(sector_addr >> 8);
+ 361   1              ISP_ADDRL = 0;
+ 362   1      
+ 363   1              ISP_CMD &= 0xf8;
+ 364   1              ISP_CMD |= ISP_IAP_SECTOR_ERASE;
+ 365   1              ISP_IAP_enable();
+ 366   1              ISP_TRIG = 0x46;
+ 367   1              ISP_TRIG = 0xb9;
+ 368   1              _nop_();
+ 369   1              ISP_IAP_disable();
+ 370   1      }
+ 371          
+ 372          void ISP_IAP_enable(void)
+ 373          {
+ 374   1              EA = 0;
+ 375   1              ISP_CONTR &= 0x18;
+ 376   1              ISP_CONTR |= ISP_IAP_WAIT_TIME;
+ 377   1              ISP_CONTR |= 0x80;
+ 378   1      }
+ 379          
+ 380          void ISP_IAP_disable(void)
+ 381          {
+ 382   1              ISP_CONTR &= 0x7f;
+ 383   1              ISP_TRIG = 0x00;
+ 384   1              EA = 1;
+ 385   1      }
+ 386          
+ 387          
+ 388          void timer0(void) interrupt 1 using 1           // º‰∏Ù10ms÷–∂œ
+ 389          {
+ 390   1              ET0 = 0;
+ 391   1              TR0 = 0;
+ 392   1              TL0 = T0_INTERVAL_L;
+ 393   1              TH0 = T0_INTERVAL_H;
+ 394   1      
+ 395   1              act_led_blink_interval++;
+ 396   1      
+ 397   1              if(com_timeout > TIMEOUT)
+ 398   1                      com_timeout--;
+ 399   1      
+ 400   1      
+ 401   1              TR0 = 1;
+ 402   1              ET0 = 1;
+ 403   1      }
+ 404          
+ 405          void serial(void) interrupt 4
+ 406          {
+ 407   1              if(RI)
+ 408   1              {
+ 409   2                      RI = 0;
+ 410   2                      rxbuf[rx_wr_index++] = SBUF;
+ 411   2                      if(rx_wr_index >= RX_BUF_LEN)
+ 412   2                              rx_wr_index = 0;
+ 413   2                      rx_counter++;
+ 414   2              }
+ 415   1      }
+ 416          
+ 417          unsigned char get_char(unsigned char *pchar)
+ 418          {       
+ 419   1              if(0 == rx_counter)
+ 420   1                      return(0);
+C51 COMPILER V7.06   TBA_2479GZ3_02                                                        10/05/2014 16:11:04 PAGE 8   
+
+ 421   1              
+ 422   1              *pchar = rxbuf[rx_rd_index++];
+ 423   1              if(rx_rd_index >= RX_BUF_LEN)
+ 424   1                      rx_rd_index = 0;
+ 425   1              ES = 0;
+ 426   1              rx_counter--;
+ 427   1              ES = 1; 
+ 428   1      
+ 429   1              return(1);
+ 430   1      }
+ 431          
+ 432          void put_n_char(unsigned char *buf, unsigned char n)
+ 433          {
+ 434   1              unsigned char data i;
+ 435   1      
+ 436   1              com_timeout = 200;
+ 437   1              
+ 438   1              ACT_LED = 0;
+ 439   1      
+ 440   1              for(i = 0; i < n; i++)
+ 441   1                      put_char(buf[i]);
+ 442   1      
+ 443   1              ACT_LED = 1;    
+ 444   1      }
+ 445          
+ 446          void put_char(unsigned char c)
+ 447          {
+ 448   1              SBUF = c;
+ 449   1              while(!TI);
+ 450   1              TI = 0;
+ 451   1      }
+ 452          
+ 453          void hex2ascii(unsigned char *buf, unsigned char hex)
+ 454          {
+ 455   1              unsigned char tmp, tmp_B, tmp_S, tmp_G;
+ 456   1      
+ 457   1              tmp_B = hex /100;
+ 458   1              tmp = hex % 100;
+ 459   1              if(tmp_B > 0)
+ 460   1                      *buf++ = tmp_B + 0x30;
+ 461   1              else
+ 462   1                      *buf++ = 0x20;
+ 463   1      
+ 464   1              tmp_S = tmp / 10;
+ 465   1              tmp_G = tmp % 10;
+ 466   1      
+ 467   1              if(tmp_B == 0 && tmp_S == 0)
+ 468   1                      *buf++ = 0x20;
+ 469   1              else
+ 470   1                      *buf++ = tmp_S + 0x30;
+ 471   1      
+ 472   1              *buf++ = tmp_G + 0x30;
+ 473   1      
+ 474   1      }
+ 475          
+ 476          void delay_50us(unsigned int _50us)     // delay 50 us for STC12C5410AD
+ 477          {
+ 478   1              unsigned int data i;
+ 479   1              unsigned char data j;
+ 480   1      
+ 481   1              for(i = 0; i < _50us; i++)
+ 482   1              {
+C51 COMPILER V7.06   TBA_2479GZ3_02                                                        10/05/2014 16:11:04 PAGE 9   
+
+ 483   2                      j = 50;
+ 484   2                      while(j--);     
+ 485   2              }
+ 486   1      }
+ 487          
+ 488          void device_init(void)
+ 489          {
+ 490   1              EA = 0;
+ 491   1      
+ 492   1              TMOD = 0x21;                                    // T1 mode 2, T0 mode 1
+ 493   1              TH0 = T0_INTERVAL_H;                    // 10ms interrupt @11.0592MHz, time = (65536 - previous) * period *12
+ 494   1              TL0 = T0_INTERVAL_L;                    //
+ 495   1              ET0 = 1;                                                // enable T0 interrupt
+ 496   1              TR0 = 1;                                                // start up T0
+ 497   1       
+ 498   1              SCON = 0x50;                                    // UART mode 1, 8 bit, REN = 1 
+ 499   1              PCON = 0x00;                                    // SMOD = 0;
+ 500   1              TH1 = 0xfd;                                             // Baud 9600 @11.0592MHz
+ 501   1              TL1 = 0xfd;
+ 502   1              TR1 = 1;                                                // start up T1
+ 503   1              ES = 1;                                                 // enable UART interrupt
+ 504   1      
+ 505   1              // STC12C5620œµ¡–µ•∆¨ª˙…œµÁ∏¥Œª∫ÛŒ™◊ºÀ´œÚø⁄/»ı…œ¿≠(¥´Õ≥8051µƒI/Oø⁄)ƒ£ Ω°£
+ 506   1              // 2V“‘…œ «Œ™∏ﬂµÁ∆Ω£¨0.8V“‘œ¬ ±Œ™µÕµÁ∆Ω°£√ø∏ˆI/Oø⁄«˝∂Øƒ‹¡¶æ˘ø…¥ÔµΩ20mA£¨
+ 507   1              // µ´’˚∏ˆ–æ∆¨◊Ó¥Û≤ªµ√≥¨π˝55mA
+ 508   1              // ª˘”⁄“‘…œ√Ë ˆ£¨VAUƒ£øÈ π”√µƒøÿ÷∆I/Oø⁄≤ª–Ë÷ÿ–¬≈‰÷√£¨∞¥»± °≈‰÷√º¥ø…
+ 509   1              ACT_LED = 0;                                    // π§◊˜◊¥Ã¨÷∏ æµ∆I/Oø⁄…œµÁŒ™µÕµÁ∆Ω£¨π§◊˜◊¥Ã¨÷∏ æµ∆¥¶”⁄µ„¡¡◊¥Ã¨
+ 510   1      
+ 511   1              // P0∂Àø⁄…Ë÷√
+ 512   1              P0M0 = 0x00;
+ 513   1              P0M1 = 0x08;                                    // P0.3…ËŒ™«øÕ∆ÕÏ
+ 514   1      
+ 515   1              PA_ON_CTRL = 1;                                 // π„≤•◊¥Ã¨œﬂøÿ÷∆I/Oø⁄…œµÁŒ™∏ﬂµÁ∆Ω£¨I/Oø⁄Œ™ ‰≥ˆø⁄£ªπ„≤•“Ù∆µ±‰—π∆˜÷––ƒ≥ÈÕ∑µÁ—πŒ™51V
+ 516   1              PC_ON_CTRL = 1;                                 // ∂‘Ω≤◊¥Ã¨œﬂøÿ÷∆I/Oø⁄…œµÁŒ™∏ﬂµÁ∆Ω£¨I/Oø⁄Œ™ ‰≥ˆø⁄£ªπ„≤•“Ù∆µ±‰—π∆˜÷––ƒ≥ÈÕ∑µÁ—πŒ™51V
+ 517   1              RADIO_ON_CTRL = 1;                              // Œﬁœﬂπ„≤•◊¥Ã¨øÿ÷∆I/Oø⁄…œµÁŒ™∏ﬂµÁ∆Ω£¨I/Oø⁄Œ™ ‰≥ˆø⁄£ªπ„≤•“Ù∆µ±‰—π∆˜÷––ƒ≥ÈÕ∑µÁ—πŒ™51
+             -V
+ 518   1              PA_PC_SWITCH = BUS_PC_USE;                              // π„≤•°¢∂‘Ω≤«–ªªøÿ÷∆I/Oø⁄…œµÁŒ™µÕµÁ∆Ω£¨I/Oø⁄Œ™ ‰≥ˆø⁄£ª»± ° ±“Ù∆µ◊‹œﬂ◊˜∂‘Ω≤
+             -◊‹œﬂ π”√
+ 519   1      
+ 520   1              // P2∂Àø⁄…Ë÷√
+ 521   1              PA_STATE_CHK = 1;                               // ◊‹œﬂπ„≤•◊¥Ã¨ºÏ≤‚I/Oø⁄…œµÁŒ™∏ﬂµÁ∆Ω£¨I/Oø⁄Œ™ ‰»Îø⁄
+ 522   1              PC_STATE_CHK = 1;                               // ◊‹œﬂ∂‘Ω≤◊¥Ã¨ºÏ≤‚I/Oø⁄…œµÁŒ™∏ﬂµÁ∆Ω£¨I/Oø⁄Œ™ ‰»Îø⁄
+ 523   1              RADIO_STATE_CHK = 1;                    // ◊‹œﬂŒﬁœﬂπ„≤•◊¥Ã¨ºÏ≤‚I/Oø⁄…œµÁŒ™∏ﬂµÁ∆Ω£¨I/Oø⁄Œ™ ‰»Îø⁄
+ 524   1              PA_ON_CHK = 1;                                  // ƒ⁄≤øπ„≤•øÿ÷∆ºÏ≤‚I/Oø⁄…œµÁŒ™∏ﬂµÁ∆Ω£¨I/Oø⁄Œ™ ‰»Îø⁄
+ 525   1              PC_ON_CHK = 1;                                  // ƒ⁄≤ø∂‘Ω≤øÿ÷∆ºÏ≤‚I/Oø⁄…œµÁŒ™∏ﬂµÁ∆Ω£¨I/Oø⁄Œ™ ‰»Îø⁄
+ 526   1              PADIO_CTRL_CHK = 1;                             // Œﬁœﬂπ„≤•◊¥Ã¨ºÏ≤‚I/Oø⁄…œµÁŒ™∏ﬂµÁ∆Ω£¨I/Oø⁄Œ™ ‰»Îø⁄
+ 527   1              PA_STATE_CTRL = 1;                              // ƒ⁄≤øπ„≤•◊¥Ã¨øÿ÷∆I/O…œµÁŒ™∏ﬂµÁ∆Ω£¨I/Oø⁄Œ™ ‰≥ˆø⁄£ª»± °Œ™∏ﬂµÁ∆Ω 
+ 528   1              PC_STATE_CTRL = 1;                              // ƒ⁄≤ø∂‘Ω≤◊¥Ã¨øÿ÷∆I/O…œµÁŒ™∏ﬂµÁ∆Ω£¨I/Oø⁄Œ™ ‰≥ˆø⁄£ª»± °Œ™∏ﬂµÁ∆Ω
+ 529   1      
+ 530   1              com_rx_status = COM_RX_HEAD;
+ 531   1      
+ 532   1              bus_level = LEVEL_BUS_51V;              // ≥ı ºªØ◊‹œﬂµÁ∆ΩŒ™51V
+ 533   1              
+ 534   1              EA = 1; 
+ 535   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   1339    ----
+   CONSTANT SIZE    =    264    ----
+   XDATA SIZE       =    176    ----
+   PDATA SIZE       =   ----    ----
+C51 COMPILER V7.06   TBA_2479GZ3_02                                                        10/05/2014 16:11:04 PAGE 10  
+
+   DATA SIZE        =     24      31
+   IDATA SIZE       =   ----       2
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

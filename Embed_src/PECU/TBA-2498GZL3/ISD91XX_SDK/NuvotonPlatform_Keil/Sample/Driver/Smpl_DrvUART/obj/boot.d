@@ -1,0 +1,11 @@
+.\obj\boot.o: ..\..\..\..\CMSIS\CM0\DeviceSupport\NUVOTON\ISD91xx\boot_ISD9xx.c
+.\obj\boot.o: D:\Keil\ARM\RV31\INC\rt_misc.h
+.\obj\boot.o: ..\..\..\..\CMSIS\CM0\DeviceSupport\NUVOTON\ISD91xx\ISD9xx.h
+.\obj\boot.o: ..\..\..\..\CMSIS\CM0\CoreSupport\core_cm0.h
+.\obj\boot.o: D:\Keil\ARM\RV31\INC\stdint.h
+.\obj\boot.o: ..\..\..\..\CMSIS\CM0\CoreSupport\core_cmInstr.h
+.\obj\boot.o: ..\..\..\..\CMSIS\CM0\CoreSupport\core_cmFunc.h
+.\obj\boot.o: ..\..\..\..\CMSIS\CM0\DeviceSupport\NUVOTON\ISD91xx\system_ISD9xx.h
+.\obj\boot.o: ..\..\..\Include\System\SysInfra.h
+.\obj\boot.o: ..\..\..\Include\System\ModuleID.h
+.\obj\boot.o: ..\..\..\..\CMSIS\CM0\CoreSupport\core_cm0.h

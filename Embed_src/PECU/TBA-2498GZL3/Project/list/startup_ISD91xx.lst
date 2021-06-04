@@ -1,0 +1,2683 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ;/*-----------------------------------------------------
+                       ----------------------------------------------------*/
+    2 00000000         ;/*                                                     
+                                                                           */
+    3 00000000         ;/* Copyright(c) 2009 Nuvoton Technology Corp. All right
+                       s reserved.                                         */
+    4 00000000         ;/*                                                     
+                                                                           */
+    5 00000000         ;/*-----------------------------------------------------
+                       ----------------------------------------------------*/
+    6 00000000         
+    7 00000000         ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    8 00000000         
+    9 00000000 50000200 
+                       CLK_BA_base
+                               EQU              0x50000200
+   10 00000000 00000000 
+                       PWRCON  EQU              0x00
+   11 00000000 00000004 
+                       AHBCLK  EQU              0x04
+   12 00000000 00000008 
+                       APBCLK  EQU              0x08
+   13 00000000 00000010 
+                       CLKSEL0 EQU              0x10
+   14 00000000 00000014 
+                       CLKSEL1 EQU              0x14
+   15 00000000 00000018 
+                       CLKDIV  EQU              0x18
+   16 00000000 00000020 
+                       PLLCON  EQU              0x20
+   17 00000000 00000030 
+                       TEST_S  EQU              0x30
+   18 00000000         
+   19 00000000 50000208 
+                       CLK_BA_APBCLK
+                               EQU              0x50000208
+   20 00000000         
+   21 00000000         ;// Define clock enable registers  
+   22 00000000         
+   23 00000000 50000208 
+                       ADC_COMP_CLK
+                               EQU              0x50000208
+   24 00000000 10000000 
+                       ADC_enable
+                               EQU              0x10000000
+   25 00000000 40000000 
+                       COMP_enable
+                               EQU              0x40000000
+   26 00000000         
+   27 00000000 50000204 
+                       PDMA_CLK
+                               EQU              0x50000204
+   28 00000000 00000003 
+                       PDMA_enable
+                               EQU              0x00000003
+   29 00000000         
+   30 00000000         ;;  bit 0  CPU_EN
+   31 00000000         ;; bit 1  PDMA_EN
+   32 00000000         
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+   33 00000000         
+   34 00000000         ;// BIQ/AGC registers
+   35 00000000 400B0000 
+                       BIQ_base
+                               EQU              0x400B0000
+   36 00000000 00000000 
+                       BIQcoeff0
+                               EQU              0x00
+   37 00000000 00000004 
+                       BIQcoeff1
+                               EQU              0x04
+   38 00000000 00000008 
+                       BIQcoeff2
+                               EQU              0x08
+   39 00000000 0000000C 
+                       BIQcoeff3
+                               EQU              0x0c
+   40 00000000 00000010 
+                       BIQcoeff4
+                               EQU              0x10
+   41 00000000 00000014 
+                       BIQcoeff5
+                               EQU              0x14
+   42 00000000 00000018 
+                       BIQcoeff6
+                               EQU              0x18
+   43 00000000 0000001C 
+                       BIQcoeff7
+                               EQU              0x1c
+   44 00000000 00000020 
+                       BIQcoeff8
+                               EQU              0x20
+   45 00000000 00000024 
+                       BIQcoeff9
+                               EQU              0x24
+   46 00000000 00000028 
+                       BIQcoeff10
+                               EQU              0x28
+   47 00000000 0000002C 
+                       BIQcoeff11
+                               EQU              0x2c
+   48 00000000 00000030 
+                       BIQcoeff12
+                               EQU              0x30
+   49 00000000 00000034 
+                       BIQcoeff13
+                               EQU              0x34
+   50 00000000 00000038 
+                       BIQcoeff14
+                               EQU              0x38
+   51 00000000 0000003C 
+                       BIQcoeff15
+                               EQU              0x3c
+   52 00000000 00000040 
+                       BIQ16   EQU              0x40
+   53 00000000 00000044 
+                       BIQ17   EQU              0x44
+   54 00000000 00000048 
+                       ALCR    EQU              0x48
+
+
+
+ARM Macro Assembler    Page 3 
+
+
+   55 00000000         
+   56 00000000         ;// Define COMP registers base
+   57 00000000 400D0000 
+                       COMP_base
+                               EQU              0x400D0000
+   58 00000000 00000000 
+                       CMP1CR  EQU              0x00
+   59 00000000 00000004 
+                       CMP2CR  EQU              0x04
+   60 00000000 00000008 
+                       CMPSR   EQU              0x08
+   61 00000000         
+   62 00000000         ;// Define ADC registers base
+   63 00000000 400E0000 
+                       ADC_base
+                               EQU              0x400E0000
+   64 00000000 00000000 
+                       ADDR0   EQU              0x00
+   65 00000000 00000004 
+                       ADDR1   EQU              0x04
+   66 00000000 00000008 
+                       ADDR2   EQU              0x08
+   67 00000000 0000000C 
+                       ADDR3   EQU              0x0c
+   68 00000000 00000010 
+                       ADDR4   EQU              0x10
+   69 00000000 00000014 
+                       ADDR5   EQU              0x14
+   70 00000000 00000018 
+                       ADDR6   EQU              0x18
+   71 00000000 0000001C 
+                       ADDR7   EQU              0x1c
+   72 00000000 00000020 
+                       ADCR    EQU              0x20
+   73 00000000 00000024 
+                       ADCHER  EQU              0x24
+   74 00000000 00000028 
+                       ADCMPR0 EQU              0x28
+   75 00000000 0000002C 
+                       ADCMPR1 EQU              0x2c
+   76 00000000 00000030 
+                       ADSR    EQU              0x30
+   77 00000000 00000034 
+                       ADCALR  EQU              0x34
+   78 00000000 00000038 
+                       ADCFCR  EQU              0x38
+   79 00000000 0000003C 
+                       ADCALD  EQU              0x3c
+   80 00000000         
+   81 00000000         ;// Pattern Table
+   82 00000000 55555555 
+                       pattern_55555555
+                               EQU              0x55555555
+   83 00000000 AAAAAAAA 
+                       pattern_aaaaaaaa
+                               EQU              0xaaaaaaaa
+   84 00000000 00005555 
+                       pattern_00005555
+                               EQU              0x00005555
+
+
+
+ARM Macro Assembler    Page 4 
+
+
+   85 00000000 0000AAAA 
+                       pattern_0000aaaa
+                               EQU              0x0000aaaa
+   86 00000000 05550515 
+                       pattern_05550515
+                               EQU              0x05550515
+   87 00000000 0AAA0A2A 
+                       pattern_0aaa0a2a
+                               EQU              0x0aaa0a2a
+   88 00000000         
+   89 00000000         ;// Define PDMA regsiter base
+   90 00000000 50008000 
+                       PDMA_BA_ch0_base
+                               EQU              0x50008000
+   91 00000000 50008100 
+                       PDMA_BA_ch1_base
+                               EQU              0x50008100
+   92 00000000 50008200 
+                       PDMA_BA_ch2_base
+                               EQU              0x50008200
+   93 00000000 50008300 
+                       PDMA_BA_ch3_base
+                               EQU              0x50008300
+   94 00000000 50008400 
+                       PDMA_BA_ch4_base
+                               EQU              0x50008400
+   95 00000000 50008500 
+                       PDMA_BA_ch5_base
+                               EQU              0x50008500
+   96 00000000 50008600 
+                       PDMA_BA_ch6_base
+                               EQU              0x50008600
+   97 00000000 50008700 
+                       PDMA_BA_ch7_base
+                               EQU              0x50008700
+   98 00000000         
+   99 00000000 50008F00 
+                       PDMA_BA_GCR
+                               EQU              0x50008F00
+  100 00000000 50008F00 
+                       PDMA_BA_GCR_base
+                               EQU              0x50008F00
+  101 00000000         
+  102 00000000 00000000 
+                       PDMA_GCRCSR
+                               EQU              0X00
+  103 00000000 00000004 
+                       PDMA_PDSSR2
+                               EQU              0X04
+  104 00000000 00000008 
+                       PDMA_PDSSR1
+                               EQU              0X08        ;; PDMA channel sel
+                                                            ect   0x77000000
+  105 00000000 0000000C 
+                       PDMA_GCRISR
+                               EQU              0X0C
+  106 00000000         
+  107 00000000 0000FF00 
+                       PDMA_GLOBAL_enable
+
+
+
+ARM Macro Assembler    Page 5 
+
+
+                               EQU              0x0000FF00
+  108 00000000         
+  109 00000000         
+  110 00000000 00000000 
+                       PDMA_CSR
+                               EQU              0X00
+  111 00000000 00000004 
+                       PDMA_SAR
+                               EQU              0X04
+  112 00000000 00000008 
+                       PDMA_DAR
+                               EQU              0X08
+  113 00000000 0000000C 
+                       PDMA_BCR
+                               EQU              0X0C
+  114 00000000 00000014 
+                       PDMA_CSAR
+                               EQU              0X14
+  115 00000000 00000018 
+                       PDMA_CDAR
+                               EQU              0X18
+  116 00000000 0000001C 
+                       PDMA_CBSR
+                               EQU              0X1C
+  117 00000000 00000020 
+                       PDMA_IER
+                               EQU              0X20
+  118 00000000 00000024 
+                       PDMA_ISR
+                               EQU              0X24
+  119 00000000 00000028 
+                       PDMA_CTCSR
+                               EQU              0X28
+  120 00000000 0000002C 
+                       PDMA_SASOCR
+                               EQU              0X2C
+  121 00000000 00000030 
+                       PDMA_DASOCR
+                               EQU              0X30
+  122 00000000 00000080 
+                       PDMA_SBUF0
+                               EQU              0X80
+  123 00000000 00000084 
+                       PDMA_SBUF1
+                               EQU              0X84
+  124 00000000 00000088 
+                       PDMA_SBUF2
+                               EQU              0X88
+  125 00000000 0000008C 
+                       PDMA_SBUF3
+                               EQU              0X8C
+  126 00000000         
+  127 00000000         
+  128 00000000         ;// Define VIC control register
+  129 00000000 FFFF0000 
+                       VIC_base
+                               EQU              0xFFFF0000
+  130 00000000 0000003C 
+                       VIC_SCR15
+
+
+
+ARM Macro Assembler    Page 6 
+
+
+                               EQU              0x003c
+  131 00000000 000000BC 
+                       VIC_SVR15
+                               EQU              0x00bc
+  132 00000000 00000040 
+                       VIC_SCR16
+                               EQU              0x0040
+  133 00000000 000000C0 
+                       VIC_SVR16
+                               EQU              0x00c0
+  134 00000000 00000078 
+                       VIC_SCR30
+                               EQU              0x0078
+  135 00000000 000000F8 
+                       VIC_SVR30
+                               EQU              0x00f8
+  136 00000000 00000318 
+                       VIC_MECR
+                               EQU              0x0318
+  137 00000000 0000031C 
+                       VIC_MDCR
+                               EQU              0x031c
+  138 00000000 00000130 
+                       VIC_EOSCR
+                               EQU              0x0130
+  139 00000000         
+  140 00000000         ;//==================================
+  141 00000000 50000300 
+                       INT_BA_base
+                               EQU              0x50000300
+  142 00000000         
+  143 00000000         
+  144 00000000         ;// Parameter table
+  145 00000000 00002980 
+                       ADC_PDMA_CFG
+                               EQU              0x00002980
+  146 00000000 C0000000 
+                       ADC_PDMA_DST
+                               EQU              0xC0000000
+  147 00000000 E0024200 
+                       ADC_PDMA_SRC
+                               EQU              0xE0024200
+  148 00000000 00030008 
+                       ADC_PDMA_TCBL
+                               EQU              0x00030008
+  149 00000000         
+  150 00000000         ;//==================================
+  151 00000000         
+  152 00000000         
+  153 00000000 50004000 
+                       GPIO_base
+                               EQU              0x50004000
+  154 00000000 00000040 
+                       GPIOB_PMD
+                               EQU              0x0040
+  155 00000000 00000044 
+                       GPIOB_OFFD
+                               EQU              0x0044
+  156 00000000 00000048 
+
+
+
+ARM Macro Assembler    Page 7 
+
+
+                       GPIOB_DOUT
+                               EQU              0x0048
+  157 00000000 0000004C 
+                       GPIOB_DMASK
+                               EQU              0x004C
+  158 00000000 00000050 
+                       GPIOB_PIN
+                               EQU              0x0050
+  159 00000000 00000054 
+                       GPIOB_DBEN
+                               EQU              0x0054
+  160 00000000 00000058 
+                       GPIOB_IMD
+                               EQU              0x0058
+  161 00000000 0000005C 
+                       GPIOB_IEN
+                               EQU              0x005C
+  162 00000000 00000060 
+                       GPIOB_ISRC
+                               EQU              0x0060
+  163 00000000         
+  164 00000000         ;//==================================
+  165 00000000         
+  166 00000000         
+  167 00000000 50000000 
+                       GCR_base
+                               EQU              0x50000000
+  168 00000000 00000034 
+                       GPB_MFP EQU              0x0034
+  169 00000000         
+  170 00000000         
+  171 00000000         
+  172 00000000         
+  173 00000000         
+  174 00000000         ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  175 00000000         
+  176 00000000         ;; Stack set to 14kB
+  177 00000000         ;; Stack_Size      EQU     0x00003800
+  178 00000000         ;; Stack set to 6kB
+  179 00000000         ;;Stack_Size      EQU     0x00001800
+  180 00000000         ;; Stack set to 9-10kB
+  181 00000000         ;;Stack_Size      EQU     0x00002500
+  182 00000000         ;; Stack set to 9-10kB
+  183 00000000         ;;Stack_Size      EQU     0x00002500
+  184 00000000         ;; Stack set to 400B
+  185 00000000         ;; Stack set to 500B
+  186 00000000         ;;Stack_Size      EQU     0x00000500
+  187 00000000         
+  188 00000000                 AREA             STACK, NOINIT, READWRITE, ALIGN
+=3
+  189 00000000                 IF               :DEF:SD_DEMO
+  192 00000000 00000400 
+                       Stack_Size
+                               EQU              0x00000400
+  193 00000000         
+  194 00000000         
+  195 00000000         
+  196 00000000                 ENDIF
+  197 00000000         
+
+
+
+ARM Macro Assembler    Page 8 
+
+
+  198 00000000         Stack_Mem
+                               SPACE            Stack_Size
+  199 00000400         __initial_sp
+  200 00000400         
+  201 00000400         
+  202 00000400         ; <h> Heap Configuration
+  203 00000400         ;   <o>  Heap Size (in Bytes) <0x0-0xFFFFFFFF:8>
+  204 00000400         ; </h>
+  205 00000400         
+  206 00000400 00000100 
+                       Heap_Size
+                               EQU              0x00000100  ; 1536 bytes for he
+                                                            ap
+  207 00000400         
+  208 00000400                 AREA             HEAP, NOINIT, READWRITE, ALIGN=
+3
+  209 00000000         __heap_base
+  210 00000000         Heap_Mem
+                               SPACE            Heap_Size
+  211 00000100         __heap_limit
+  212 00000100         
+  213 00000100         
+  214 00000100                 PRESERVE8
+  215 00000100                 THUMB
+  216 00000100         
+  217 00000100         
+  218 00000100         ; Vector Table Mapped to Address 0 at Reset
+  219 00000100                 AREA             RESET, DATA, READONLY
+  220 00000000                 EXPORT           __Vectors
+  221 00000000         
+  222 00000000 00000000 
+                       __Vectors
+                               DCD              __initial_sp ; Top of Stack
+  223 00000004 00000000        DCD              Reset_Handler ; Reset Handler
+  224 00000008 00000000        DCD              NMI_Handler ; NMI Handler
+  225 0000000C 00000000        DCD              HardFault_Handler ; Hard Fault 
+                                                            Handler
+  226 00000010 00000000        DCD              0           ; Reserved
+  227 00000014 00000000        DCD              0           ; Reserved
+  228 00000018 00000000        DCD              0           ; Reserved
+  229 0000001C 00000000        DCD              0           ; Reserved
+  230 00000020 00000000        DCD              0           ; Reserved
+  231 00000024 00000000        DCD              0           ; Reserved
+  232 00000028 00000000        DCD              0           ; Reserved
+  233 0000002C 00000000        DCD              SVC_Handler ; SVCall Handler
+  234 00000030 00000000        DCD              0           ; Reserved
+  235 00000034 00000000        DCD              0           ; Reserved
+  236 00000038 00000000        DCD              PendSV_Handler ; PendSV Handler
+                                                            
+  237 0000003C 00000000        DCD              SysTick_Handler 
+                                                            ; SysTick Handler
+  238 00000040         
+  239 00000040         ; External Interrupts
+  240 00000040         ; maximum of 32 External Interrupts are possible
+  241 00000040 00000000        DCD              BOD_IRQHandler
+  242 00000044 00000000        DCD              WDT_IRQHandler
+  243 00000048 00000000        DCD              EINT0_IRQHandler
+  244 0000004C 00000000        DCD              EINT1_IRQHandler
+  245 00000050 00000000        DCD              GPAB_IRQHandler
+
+
+
+ARM Macro Assembler    Page 9 
+
+
+  246 00000054 00000000        DCD              0
+  247 00000058 00000000        DCD              PWMA_IRQHandler
+  248 0000005C 00000000        DCD              0
+  249 00000060 00000000        DCD              TMR0_IRQHandler
+  250 00000064 00000000        DCD              TMR1_IRQHandler
+  251 00000068 00000000        DCD              TMR2_IRQHandler
+  252 0000006C 00000000        DCD              TMR3_IRQHandler
+  253 00000070 00000000        DCD              UART02_IRQHandler
+  254 00000074 00000000        DCD              UART1_IRQHandler
+  255 00000078 00000000        DCD              SPI0_IRQHandler
+  256 0000007C 00000000        DCD              SPI1_IRQHandler
+  257 00000080 00000000        DCD              SPI2_IRQHandler
+  258 00000084 00000000        DCD              SPI3_IRQHandler
+  259 00000088 00000000        DCD              I2C0_IRQHandler
+  260 0000008C 00000000        DCD              I2C1_IRQHandler
+  261 00000090 00000000        DCD              CAN0_IRQHandler
+  262 00000094 00000000        DCD              Default_Handler
+  263 00000098 00000000        DCD              Default_Handler
+  264 0000009C 00000000        DCD              USBD_IRQHandler
+  265 000000A0 00000000        DCD              PS2_IRQHandler
+  266 000000A4 00000000        DCD              ACMP_IRQHandler
+  267 000000A8 00000000        DCD              PDMA_IRQHandler
+  268 000000AC 00000000        DCD              I2S_IRQHandler
+  269 000000B0 00000000        DCD              PWRWU_IRQHandler
+  270 000000B4 00000000        DCD              SDADC_IRQHandler
+  271 000000B8 00000000        DCD              Default_Handler
+  272 000000BC 00000000        DCD              RTC_IRQHandler
+  273 000000C0         
+  274 000000C0         
+  275 000000C0         
+  276 000000C0         
+  277 000000C0         
+  278 000000C0         
+  279 000000C0         
+  280 000000C0                 AREA             |.text|, CODE, READONLY
+  281 00000000         
+  282 00000000         
+  283 00000000         
+  284 00000000         ; Reset Handler 
+  285 00000000         
+  286 00000000                 ENTRY
+  287 00000000         
+  288 00000000         Reset_Handler
+                               PROC
+  289 00000000                 EXPORT           Reset_Handler             [WEAK
+]
+  290 00000000                 IMPORT           __main
+  291 00000000         
+  292 00000000         ; Check PB.15 to hold CPU               
+  293 00000000 4810            LDR              R0, =0x50004000
+  294 00000002 4A11            LDR              R2, =0x8000
+  295 00000004         1
+  296 00000004         ;                LDR     R1, [R0, #0x50]
+  297 00000004         ;                ANDS    R1, R1, R2
+  298 00000004         ;                BEQ     %B1
+  299 00000004         
+  300 00000004         ;LDR     R1, [R0, #0x50]
+  301 00000004         ;ANDS    R1, R1, R2
+  302 00000004         ;BEQ     %B1
+
+
+
+ARM Macro Assembler    Page 10 
+
+
+  303 00000004         
+  304 00000004         
+  305 00000004 4811            LDR              R0, =0x50000100
+  306 00000006         
+  307 00000006         ; Unlock Register                
+  308 00000006 4912            LDR              R1, =0x59
+  309 00000008 6001            STR              R1, [R0]
+  310 0000000A 4912            LDR              R1, =0x16
+  311 0000000C 6001            STR              R1, [R0]
+  312 0000000E 4912            LDR              R1, =0x88
+  313 00000010 6001            STR              R1, [R0]
+  314 00000012         
+  315 00000012         ; Init clock
+  316 00000012 6901            LDR              R1, [R0, #0x10]
+  317 00000014 293F            CMP              R1, #0x3F
+  318 00000016 D101            BNE              %F0
+  319 00000018         
+  320 00000018 4910            LDR              R1, =0x20
+  321 0000001A 6101            STR              R1, [R0, #0x10]
+  322 0000001C         0
+  323 0000001C         ; Init POR
+  324 0000001C 4A10            LDR              R2, =0x50000024
+  325 0000001E 4911            LDR              R1, =0x00005AA5
+  326 00000020 6011            STR              R1, [R2]
+  327 00000022         
+  328 00000022         ; Lock register
+  329 00000022 2100            MOVS             R1, #0
+  330 00000024 6001            STR              R1, [R0]
+  331 00000026         
+  332 00000026 4810            LDR              R0, =__main
+  333 00000028 4700            BX               R0
+  334 0000002A                 ENDP
+  335 0000002A         
+  336 0000002A         
+  337 0000002A         ; Dummy Exception Handlers (infinite loops which can be 
+                       modified)                
+  338 0000002A         
+  339 0000002A         NMI_Handler
+                               PROC
+  340 0000002A                 EXPORT           NMI_Handler               [WEAK
+]
+  341 0000002A E7FE            B                .
+  342 0000002C                 ENDP
+  344 0000002C         HardFault_Handler
+                               PROC
+  345 0000002C                 EXPORT           HardFault_Handler         [WEAK
+]
+  346 0000002C E7FE            B                .
+  347 0000002E                 ENDP
+  348 0000002E         SVC_Handler
+                               PROC
+  349 0000002E                 EXPORT           SVC_Handler               [WEAK
+]
+  350 0000002E E7FE            B                .
+  351 00000030                 ENDP
+  352 00000030         PendSV_Handler
+                               PROC
+  353 00000030                 EXPORT           PendSV_Handler            [WEAK
+]
+
+
+
+ARM Macro Assembler    Page 11 
+
+
+  354 00000030 E7FE            B                .
+  355 00000032                 ENDP
+  356 00000032         SysTick_Handler
+                               PROC
+  357 00000032                 EXPORT           SysTick_Handler           [WEAK
+]
+  358 00000032 E7FE            B                .
+  359 00000034                 ENDP
+  360 00000034         
+  361 00000034         Default_Handler
+                               PROC
+  362 00000034         
+  363 00000034                 EXPORT           BOD_IRQHandler            [WEAK
+]
+  364 00000034                 EXPORT           WDT_IRQHandler            [WEAK
+]
+  365 00000034                 EXPORT           EINT0_IRQHandler          [WEAK
+]
+  366 00000034                 EXPORT           EINT1_IRQHandler          [WEAK
+]
+  367 00000034                 EXPORT           GPAB_IRQHandler           [WEAK
+]
+  368 00000034                 EXPORT           GPCDE_IRQHandler          [WEAK
+]
+  369 00000034                 EXPORT           PWMA_IRQHandler           [WEAK
+]
+  370 00000034                 EXPORT           PWMB_IRQHandler           [WEAK
+]
+  371 00000034                 EXPORT           TMR0_IRQHandler           [WEAK
+]
+  372 00000034                 EXPORT           TMR1_IRQHandler           [WEAK
+]
+  373 00000034                 EXPORT           TMR2_IRQHandler           [WEAK
+]
+  374 00000034                 EXPORT           TMR3_IRQHandler           [WEAK
+]
+  375 00000034                 EXPORT           UART02_IRQHandler         [WEAK
+]
+  376 00000034                 EXPORT           UART1_IRQHandler          [WEAK
+]
+  377 00000034                 EXPORT           SPI0_IRQHandler           [WEAK
+]
+  378 00000034                 EXPORT           SPI1_IRQHandler           [WEAK
+]
+  379 00000034                 EXPORT           SPI2_IRQHandler           [WEAK
+]
+  380 00000034                 EXPORT           SPI3_IRQHandler           [WEAK
+]
+  381 00000034                 EXPORT           I2C0_IRQHandler           [WEAK
+]
+  382 00000034                 EXPORT           I2C1_IRQHandler           [WEAK
+]
+  383 00000034                 EXPORT           CAN0_IRQHandler           [WEAK
+]
+  384 00000034                 EXPORT           USBD_IRQHandler           [WEAK
+]
+  385 00000034                 EXPORT           PS2_IRQHandler            [WEAK
+]
+  386 00000034                 EXPORT           ACMP_IRQHandler           [WEAK
+
+
+
+ARM Macro Assembler    Page 12 
+
+
+]
+  387 00000034                 EXPORT           PDMA_IRQHandler           [WEAK
+]
+  388 00000034                 EXPORT           I2S_IRQHandler            [WEAK
+]
+  389 00000034                 EXPORT           PWRWU_IRQHandler          [WEAK
+]
+  390 00000034                 EXPORT           SDADC_IRQHandler            [WE
+AK]
+  391 00000034                 EXPORT           RTC_IRQHandler            [WEAK
+]
+  392 00000034         
+  393 00000034         BOD_IRQHandler
+  394 00000034         WDT_IRQHandler
+  395 00000034         EINT0_IRQHandler
+  396 00000034         EINT1_IRQHandler
+  397 00000034         GPAB_IRQHandler
+  398 00000034         GPCDE_IRQHandler
+  399 00000034         PWMA_IRQHandler
+  400 00000034         PWMB_IRQHandler
+  401 00000034         TMR0_IRQHandler
+  402 00000034         TMR1_IRQHandler
+  403 00000034         TMR2_IRQHandler
+  404 00000034         TMR3_IRQHandler
+  405 00000034         UART02_IRQHandler
+  406 00000034         UART1_IRQHandler
+  407 00000034         SPI0_IRQHandler
+  408 00000034         SPI1_IRQHandler
+  409 00000034         SPI2_IRQHandler
+  410 00000034         SPI3_IRQHandler
+  411 00000034         I2C0_IRQHandler
+  412 00000034         I2C1_IRQHandler
+  413 00000034         CAN0_IRQHandler
+  414 00000034         USBD_IRQHandler
+  415 00000034         PS2_IRQHandler
+  416 00000034         ACMP_IRQHandler
+  417 00000034         PDMA_IRQHandler
+  418 00000034         I2S_IRQHandler
+  419 00000034         PWRWU_IRQHandler
+  420 00000034         SDADC_IRQHandler
+  421 00000034         RTC_IRQHandler
+  422 00000034 E7FE            B                .
+  423 00000036                 ENDP
+  424 00000036         
+  425 00000036         
+  426 00000036 00 00           ALIGN
+  427 00000038         
+  428 00000038         
+  429 00000038         ; User Initial Stack & Heap
+  430 00000038         
+  431 00000038                 IF               :DEF:__MICROLIB
+  438 00000038         
+  439 00000038                 IMPORT           __use_two_region_memory
+  440 00000038                 EXPORT           __user_initial_stackheap
+  441 00000038         __user_initial_stackheap
+  442 00000038         
+  443 00000038 480C            LDR              R0, =  Heap_Mem
+  444 0000003A 490D            LDR              R1, = (Stack_Mem + Stack_Size)
+  445 0000003C 4A0D            LDR              R2, = (Heap_Mem +  Heap_Size)
+
+
+
+ARM Macro Assembler    Page 13 
+
+
+  446 0000003E 4B0E            LDR              R3, = Stack_Mem
+  447 00000040 4770            BX               LR
+  448 00000042         
+  449 00000042 00 00           ALIGN
+  450 00000044         
+  451 00000044                 ENDIF
+  452 00000044         
+  453 00000044         
+  454 00000044                 END
+              50004000 
+              00008000 
+              50000100 
+              00000059 
+              00000016 
+              00000088 
+              00000020 
+              50000024 
+              00005AA5 
+              00000000 
+              00000000 
+              00000400 
+              00000100 
+              00000000 
+Command Line: --16 --debug --xref --cpu=Cortex-M0 --apcs=interwork --depend=..\
+output\startup_ISD91xx.d -o..\output\startup_ISD91xx.o -IC:\Keil\ARM\CMSIS\Incl
+ude -IC:\Keil\ARM\INC\Nuvoton --list=..\list\startup_ISD91xx.lst ..\..\ISD91XX_
+SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD91xx\startup\arm\startup_ISD91xx.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+STACK 00000000
+
+Symbol: STACK
+   Definitions
+      At line 188 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: STACK unused
+Stack_Mem 00000000
+
+Symbol: Stack_Mem
+   Definitions
+      At line 198 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      At line 444 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+      At line 446 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+
+__initial_sp 00000400
+
+Symbol: __initial_sp
+   Definitions
+      At line 199 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      At line 222 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+Comment: __initial_sp used once
+3 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+HEAP 00000000
+
+Symbol: HEAP
+   Definitions
+      At line 208 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: HEAP unused
+Heap_Mem 00000000
+
+Symbol: Heap_Mem
+   Definitions
+      At line 210 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      At line 443 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+      At line 445 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+
+__heap_base 00000000
+
+Symbol: __heap_base
+   Definitions
+      At line 209 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: __heap_base unused
+__heap_limit 00000100
+
+Symbol: __heap_limit
+   Definitions
+      At line 211 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: __heap_limit unused
+4 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+RESET 00000000
+
+Symbol: RESET
+   Definitions
+      At line 219 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: RESET unused
+__Vectors 00000000
+
+Symbol: __Vectors
+   Definitions
+      At line 222 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      At line 220 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+Comment: __Vectors used once
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+ 0000001C
+
+Symbol: 
+   Definitions
+      None
+   Uses
+      None
+Warning:  undefinedComment:  unused
+ 00000004
+
+Symbol: 
+   Definitions
+      None
+   Uses
+      None
+Warning:  undefinedComment:  unused
+.text 00000000
+
+Symbol: .text
+   Definitions
+      At line 280 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: .text unused
+ACMP_IRQHandler 00000034
+
+Symbol: ACMP_IRQHandler
+   Definitions
+      At line 416 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      At line 266 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+      At line 386 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+
+BOD_IRQHandler 00000034
+
+Symbol: BOD_IRQHandler
+   Definitions
+      At line 393 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      At line 241 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+      At line 363 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+
+CAN0_IRQHandler 00000034
+
+Symbol: CAN0_IRQHandler
+   Definitions
+      At line 413 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      At line 261 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+      At line 383 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+
+
+
+ARM Macro Assembler    Page 2 Alphabetic symbol ordering
+Relocatable symbols
+
+91xx\startup\arm\startup_ISD91xx.s
+
+Default_Handler 00000034
+
+Symbol: Default_Handler
+   Definitions
+      At line 361 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      At line 262 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+      At line 263 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+      At line 271 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+
+EINT0_IRQHandler 00000034
+
+Symbol: EINT0_IRQHandler
+   Definitions
+      At line 395 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      At line 243 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+      At line 365 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+
+EINT1_IRQHandler 00000034
+
+Symbol: EINT1_IRQHandler
+   Definitions
+      At line 396 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      At line 244 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+      At line 366 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+
+GPAB_IRQHandler 00000034
+
+Symbol: GPAB_IRQHandler
+   Definitions
+      At line 397 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      At line 245 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+      At line 367 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+
+GPCDE_IRQHandler 00000034
+
+Symbol: GPCDE_IRQHandler
+   Definitions
+      At line 398 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+
+
+
+ARM Macro Assembler    Page 3 Alphabetic symbol ordering
+Relocatable symbols
+
+      At line 368 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+Comment: GPCDE_IRQHandler used once
+HardFault_Handler 0000002C
+
+Symbol: HardFault_Handler
+   Definitions
+      At line 344 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      At line 225 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+      At line 345 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+
+I2C0_IRQHandler 00000034
+
+Symbol: I2C0_IRQHandler
+   Definitions
+      At line 411 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      At line 259 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+      At line 381 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+
+I2C1_IRQHandler 00000034
+
+Symbol: I2C1_IRQHandler
+   Definitions
+      At line 412 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      At line 260 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+      At line 382 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+
+I2S_IRQHandler 00000034
+
+Symbol: I2S_IRQHandler
+   Definitions
+      At line 418 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      At line 268 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+      At line 388 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+
+NMI_Handler 0000002A
+
+Symbol: NMI_Handler
+   Definitions
+      At line 339 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      At line 224 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+
+
+
+ARM Macro Assembler    Page 4 Alphabetic symbol ordering
+Relocatable symbols
+
+91xx\startup\arm\startup_ISD91xx.s
+      At line 340 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+
+PDMA_IRQHandler 00000034
+
+Symbol: PDMA_IRQHandler
+   Definitions
+      At line 417 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      At line 267 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+      At line 387 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+
+PS2_IRQHandler 00000034
+
+Symbol: PS2_IRQHandler
+   Definitions
+      At line 415 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      At line 265 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+      At line 385 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+
+PWMA_IRQHandler 00000034
+
+Symbol: PWMA_IRQHandler
+   Definitions
+      At line 399 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      At line 247 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+      At line 369 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+
+PWMB_IRQHandler 00000034
+
+Symbol: PWMB_IRQHandler
+   Definitions
+      At line 400 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      At line 370 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+Comment: PWMB_IRQHandler used once
+PWRWU_IRQHandler 00000034
+
+Symbol: PWRWU_IRQHandler
+   Definitions
+      At line 419 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      At line 269 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+
+
+
+ARM Macro Assembler    Page 5 Alphabetic symbol ordering
+Relocatable symbols
+
+      At line 389 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+
+PendSV_Handler 00000030
+
+Symbol: PendSV_Handler
+   Definitions
+      At line 352 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      At line 236 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+      At line 353 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+
+RTC_IRQHandler 00000034
+
+Symbol: RTC_IRQHandler
+   Definitions
+      At line 421 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      At line 272 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+      At line 391 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+
+Reset_Handler 00000000
+
+Symbol: Reset_Handler
+   Definitions
+      At line 288 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      At line 223 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+      At line 289 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+
+SDADC_IRQHandler 00000034
+
+Symbol: SDADC_IRQHandler
+   Definitions
+      At line 420 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      At line 270 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+      At line 390 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+
+SPI0_IRQHandler 00000034
+
+Symbol: SPI0_IRQHandler
+   Definitions
+      At line 407 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      At line 255 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+
+
+
+ARM Macro Assembler    Page 6 Alphabetic symbol ordering
+Relocatable symbols
+
+91xx\startup\arm\startup_ISD91xx.s
+      At line 377 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+
+SPI1_IRQHandler 00000034
+
+Symbol: SPI1_IRQHandler
+   Definitions
+      At line 408 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      At line 256 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+      At line 378 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+
+SPI2_IRQHandler 00000034
+
+Symbol: SPI2_IRQHandler
+   Definitions
+      At line 409 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      At line 257 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+      At line 379 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+
+SPI3_IRQHandler 00000034
+
+Symbol: SPI3_IRQHandler
+   Definitions
+      At line 410 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      At line 258 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+      At line 380 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+
+SVC_Handler 0000002E
+
+Symbol: SVC_Handler
+   Definitions
+      At line 348 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      At line 233 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+      At line 349 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+
+SysTick_Handler 00000032
+
+Symbol: SysTick_Handler
+   Definitions
+      At line 356 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+
+
+
+ARM Macro Assembler    Page 7 Alphabetic symbol ordering
+Relocatable symbols
+
+      At line 237 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+      At line 357 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+
+TMR0_IRQHandler 00000034
+
+Symbol: TMR0_IRQHandler
+   Definitions
+      At line 401 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      At line 249 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+      At line 371 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+
+TMR1_IRQHandler 00000034
+
+Symbol: TMR1_IRQHandler
+   Definitions
+      At line 402 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      At line 250 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+      At line 372 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+
+TMR2_IRQHandler 00000034
+
+Symbol: TMR2_IRQHandler
+   Definitions
+      At line 403 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      At line 251 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+      At line 373 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+
+TMR3_IRQHandler 00000034
+
+Symbol: TMR3_IRQHandler
+   Definitions
+      At line 404 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      At line 252 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+      At line 374 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+
+UART02_IRQHandler 00000034
+
+Symbol: UART02_IRQHandler
+   Definitions
+      At line 405 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+
+
+
+ARM Macro Assembler    Page 8 Alphabetic symbol ordering
+Relocatable symbols
+
+   Uses
+      At line 253 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+      At line 375 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+
+UART1_IRQHandler 00000034
+
+Symbol: UART1_IRQHandler
+   Definitions
+      At line 406 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      At line 254 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+      At line 376 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+
+USBD_IRQHandler 00000034
+
+Symbol: USBD_IRQHandler
+   Definitions
+      At line 414 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      At line 264 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+      At line 384 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+
+WDT_IRQHandler 00000034
+
+Symbol: WDT_IRQHandler
+   Definitions
+      At line 394 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      At line 242 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+      At line 364 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+
+__user_initial_stackheap 00000038
+
+Symbol: __user_initial_stackheap
+   Definitions
+      At line 441 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      At line 440 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+Comment: __user_initial_stackheap used once
+40 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Absolute symbols
+
+ADCALD 0000003C
+
+Symbol: ADCALD
+   Definitions
+      At line 79 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: ADCALD unused
+ADCALR 00000034
+
+Symbol: ADCALR
+   Definitions
+      At line 77 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: ADCALR unused
+ADCFCR 00000038
+
+Symbol: ADCFCR
+   Definitions
+      At line 78 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: ADCFCR unused
+ADCHER 00000024
+
+Symbol: ADCHER
+   Definitions
+      At line 73 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: ADCHER unused
+ADCMPR0 00000028
+
+Symbol: ADCMPR0
+   Definitions
+      At line 74 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: ADCMPR0 unused
+ADCMPR1 0000002C
+
+Symbol: ADCMPR1
+   Definitions
+      At line 75 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: ADCMPR1 unused
+ADCR 00000020
+
+Symbol: ADCR
+   Definitions
+      At line 72 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+
+
+
+ARM Macro Assembler    Page 2 Alphabetic symbol ordering
+Absolute symbols
+
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: ADCR unused
+ADC_COMP_CLK 50000208
+
+Symbol: ADC_COMP_CLK
+   Definitions
+      At line 23 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: ADC_COMP_CLK unused
+ADC_PDMA_CFG 00002980
+
+Symbol: ADC_PDMA_CFG
+   Definitions
+      At line 145 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: ADC_PDMA_CFG unused
+ADC_PDMA_DST C0000000
+
+Symbol: ADC_PDMA_DST
+   Definitions
+      At line 146 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: ADC_PDMA_DST unused
+ADC_PDMA_SRC E0024200
+
+Symbol: ADC_PDMA_SRC
+   Definitions
+      At line 147 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: ADC_PDMA_SRC unused
+ADC_PDMA_TCBL 00030008
+
+Symbol: ADC_PDMA_TCBL
+   Definitions
+      At line 148 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: ADC_PDMA_TCBL unused
+ADC_base 400E0000
+
+Symbol: ADC_base
+   Definitions
+      At line 63 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: ADC_base unused
+ADC_enable 10000000
+
+
+
+ARM Macro Assembler    Page 3 Alphabetic symbol ordering
+Absolute symbols
+
+
+Symbol: ADC_enable
+   Definitions
+      At line 24 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: ADC_enable unused
+ADDR0 00000000
+
+Symbol: ADDR0
+   Definitions
+      At line 64 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: ADDR0 unused
+ADDR1 00000004
+
+Symbol: ADDR1
+   Definitions
+      At line 65 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: ADDR1 unused
+ADDR2 00000008
+
+Symbol: ADDR2
+   Definitions
+      At line 66 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: ADDR2 unused
+ADDR3 0000000C
+
+Symbol: ADDR3
+   Definitions
+      At line 67 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: ADDR3 unused
+ADDR4 00000010
+
+Symbol: ADDR4
+   Definitions
+      At line 68 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: ADDR4 unused
+ADDR5 00000014
+
+Symbol: ADDR5
+   Definitions
+      At line 69 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+
+
+
+ARM Macro Assembler    Page 4 Alphabetic symbol ordering
+Absolute symbols
+
+   Uses
+      None
+Comment: ADDR5 unused
+ADDR6 00000018
+
+Symbol: ADDR6
+   Definitions
+      At line 70 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: ADDR6 unused
+ADDR7 0000001C
+
+Symbol: ADDR7
+   Definitions
+      At line 71 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: ADDR7 unused
+ADSR 00000030
+
+Symbol: ADSR
+   Definitions
+      At line 76 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: ADSR unused
+AHBCLK 00000004
+
+Symbol: AHBCLK
+   Definitions
+      At line 11 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: AHBCLK unused
+ALCR 00000048
+
+Symbol: ALCR
+   Definitions
+      At line 54 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: ALCR unused
+APBCLK 00000008
+
+Symbol: APBCLK
+   Definitions
+      At line 12 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: APBCLK unused
+BIQ16 00000040
+
+
+
+
+ARM Macro Assembler    Page 5 Alphabetic symbol ordering
+Absolute symbols
+
+Symbol: BIQ16
+   Definitions
+      At line 52 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: BIQ16 unused
+BIQ17 00000044
+
+Symbol: BIQ17
+   Definitions
+      At line 53 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: BIQ17 unused
+BIQ_base 400B0000
+
+Symbol: BIQ_base
+   Definitions
+      At line 35 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: BIQ_base unused
+BIQcoeff0 00000000
+
+Symbol: BIQcoeff0
+   Definitions
+      At line 36 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: BIQcoeff0 unused
+BIQcoeff1 00000004
+
+Symbol: BIQcoeff1
+   Definitions
+      At line 37 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: BIQcoeff1 unused
+BIQcoeff10 00000028
+
+Symbol: BIQcoeff10
+   Definitions
+      At line 46 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: BIQcoeff10 unused
+BIQcoeff11 0000002C
+
+Symbol: BIQcoeff11
+   Definitions
+      At line 47 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+
+
+
+ARM Macro Assembler    Page 6 Alphabetic symbol ordering
+Absolute symbols
+
+      None
+Comment: BIQcoeff11 unused
+BIQcoeff12 00000030
+
+Symbol: BIQcoeff12
+   Definitions
+      At line 48 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: BIQcoeff12 unused
+BIQcoeff13 00000034
+
+Symbol: BIQcoeff13
+   Definitions
+      At line 49 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: BIQcoeff13 unused
+BIQcoeff14 00000038
+
+Symbol: BIQcoeff14
+   Definitions
+      At line 50 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: BIQcoeff14 unused
+BIQcoeff15 0000003C
+
+Symbol: BIQcoeff15
+   Definitions
+      At line 51 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: BIQcoeff15 unused
+BIQcoeff2 00000008
+
+Symbol: BIQcoeff2
+   Definitions
+      At line 38 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: BIQcoeff2 unused
+BIQcoeff3 0000000C
+
+Symbol: BIQcoeff3
+   Definitions
+      At line 39 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: BIQcoeff3 unused
+BIQcoeff4 00000010
+
+Symbol: BIQcoeff4
+
+
+
+ARM Macro Assembler    Page 7 Alphabetic symbol ordering
+Absolute symbols
+
+   Definitions
+      At line 40 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: BIQcoeff4 unused
+BIQcoeff5 00000014
+
+Symbol: BIQcoeff5
+   Definitions
+      At line 41 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: BIQcoeff5 unused
+BIQcoeff6 00000018
+
+Symbol: BIQcoeff6
+   Definitions
+      At line 42 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: BIQcoeff6 unused
+BIQcoeff7 0000001C
+
+Symbol: BIQcoeff7
+   Definitions
+      At line 43 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: BIQcoeff7 unused
+BIQcoeff8 00000020
+
+Symbol: BIQcoeff8
+   Definitions
+      At line 44 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: BIQcoeff8 unused
+BIQcoeff9 00000024
+
+Symbol: BIQcoeff9
+   Definitions
+      At line 45 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: BIQcoeff9 unused
+CLKDIV 00000018
+
+Symbol: CLKDIV
+   Definitions
+      At line 15 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+
+
+
+ARM Macro Assembler    Page 8 Alphabetic symbol ordering
+Absolute symbols
+
+Comment: CLKDIV unused
+CLKSEL0 00000010
+
+Symbol: CLKSEL0
+   Definitions
+      At line 13 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: CLKSEL0 unused
+CLKSEL1 00000014
+
+Symbol: CLKSEL1
+   Definitions
+      At line 14 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: CLKSEL1 unused
+CLK_BA_APBCLK 50000208
+
+Symbol: CLK_BA_APBCLK
+   Definitions
+      At line 19 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: CLK_BA_APBCLK unused
+CLK_BA_base 50000200
+
+Symbol: CLK_BA_base
+   Definitions
+      At line 9 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD91
+xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: CLK_BA_base unused
+CMP1CR 00000000
+
+Symbol: CMP1CR
+   Definitions
+      At line 58 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: CMP1CR unused
+CMP2CR 00000004
+
+Symbol: CMP2CR
+   Definitions
+      At line 59 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: CMP2CR unused
+CMPSR 00000008
+
+Symbol: CMPSR
+   Definitions
+
+
+
+ARM Macro Assembler    Page 9 Alphabetic symbol ordering
+Absolute symbols
+
+      At line 60 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: CMPSR unused
+COMP_base 400D0000
+
+Symbol: COMP_base
+   Definitions
+      At line 57 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: COMP_base unused
+COMP_enable 40000000
+
+Symbol: COMP_enable
+   Definitions
+      At line 25 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: COMP_enable unused
+GCR_base 50000000
+
+Symbol: GCR_base
+   Definitions
+      At line 167 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: GCR_base unused
+GPB_MFP 00000034
+
+Symbol: GPB_MFP
+   Definitions
+      At line 168 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: GPB_MFP unused
+GPIOB_DBEN 00000054
+
+Symbol: GPIOB_DBEN
+   Definitions
+      At line 159 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: GPIOB_DBEN unused
+GPIOB_DMASK 0000004C
+
+Symbol: GPIOB_DMASK
+   Definitions
+      At line 157 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: GPIOB_DMASK unused
+
+
+
+ARM Macro Assembler    Page 10 Alphabetic symbol ordering
+Absolute symbols
+
+GPIOB_DOUT 00000048
+
+Symbol: GPIOB_DOUT
+   Definitions
+      At line 156 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: GPIOB_DOUT unused
+GPIOB_IEN 0000005C
+
+Symbol: GPIOB_IEN
+   Definitions
+      At line 161 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: GPIOB_IEN unused
+GPIOB_IMD 00000058
+
+Symbol: GPIOB_IMD
+   Definitions
+      At line 160 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: GPIOB_IMD unused
+GPIOB_ISRC 00000060
+
+Symbol: GPIOB_ISRC
+   Definitions
+      At line 162 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: GPIOB_ISRC unused
+GPIOB_OFFD 00000044
+
+Symbol: GPIOB_OFFD
+   Definitions
+      At line 155 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: GPIOB_OFFD unused
+GPIOB_PIN 00000050
+
+Symbol: GPIOB_PIN
+   Definitions
+      At line 158 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: GPIOB_PIN unused
+GPIOB_PMD 00000040
+
+Symbol: GPIOB_PMD
+   Definitions
+      At line 154 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+
+
+
+ARM Macro Assembler    Page 11 Alphabetic symbol ordering
+Absolute symbols
+
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: GPIOB_PMD unused
+GPIO_base 50004000
+
+Symbol: GPIO_base
+   Definitions
+      At line 153 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: GPIO_base unused
+Heap_Size 00000100
+
+Symbol: Heap_Size
+   Definitions
+      At line 206 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      At line 210 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+      At line 445 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+
+INT_BA_base 50000300
+
+Symbol: INT_BA_base
+   Definitions
+      At line 141 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: INT_BA_base unused
+PDMA_BA_GCR 50008F00
+
+Symbol: PDMA_BA_GCR
+   Definitions
+      At line 99 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: PDMA_BA_GCR unused
+PDMA_BA_GCR_base 50008F00
+
+Symbol: PDMA_BA_GCR_base
+   Definitions
+      At line 100 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: PDMA_BA_GCR_base unused
+PDMA_BA_ch0_base 50008000
+
+Symbol: PDMA_BA_ch0_base
+   Definitions
+      At line 90 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+
+
+
+ARM Macro Assembler    Page 12 Alphabetic symbol ordering
+Absolute symbols
+
+      None
+Comment: PDMA_BA_ch0_base unused
+PDMA_BA_ch1_base 50008100
+
+Symbol: PDMA_BA_ch1_base
+   Definitions
+      At line 91 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: PDMA_BA_ch1_base unused
+PDMA_BA_ch2_base 50008200
+
+Symbol: PDMA_BA_ch2_base
+   Definitions
+      At line 92 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: PDMA_BA_ch2_base unused
+PDMA_BA_ch3_base 50008300
+
+Symbol: PDMA_BA_ch3_base
+   Definitions
+      At line 93 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: PDMA_BA_ch3_base unused
+PDMA_BA_ch4_base 50008400
+
+Symbol: PDMA_BA_ch4_base
+   Definitions
+      At line 94 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: PDMA_BA_ch4_base unused
+PDMA_BA_ch5_base 50008500
+
+Symbol: PDMA_BA_ch5_base
+   Definitions
+      At line 95 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: PDMA_BA_ch5_base unused
+PDMA_BA_ch6_base 50008600
+
+Symbol: PDMA_BA_ch6_base
+   Definitions
+      At line 96 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: PDMA_BA_ch6_base unused
+PDMA_BA_ch7_base 50008700
+
+Symbol: PDMA_BA_ch7_base
+
+
+
+ARM Macro Assembler    Page 13 Alphabetic symbol ordering
+Absolute symbols
+
+   Definitions
+      At line 97 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: PDMA_BA_ch7_base unused
+PDMA_BCR 0000000C
+
+Symbol: PDMA_BCR
+   Definitions
+      At line 113 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: PDMA_BCR unused
+PDMA_CBSR 0000001C
+
+Symbol: PDMA_CBSR
+   Definitions
+      At line 116 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: PDMA_CBSR unused
+PDMA_CDAR 00000018
+
+Symbol: PDMA_CDAR
+   Definitions
+      At line 115 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: PDMA_CDAR unused
+PDMA_CLK 50000204
+
+Symbol: PDMA_CLK
+   Definitions
+      At line 27 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: PDMA_CLK unused
+PDMA_CSAR 00000014
+
+Symbol: PDMA_CSAR
+   Definitions
+      At line 114 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: PDMA_CSAR unused
+PDMA_CSR 00000000
+
+Symbol: PDMA_CSR
+   Definitions
+      At line 110 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+
+
+
+ARM Macro Assembler    Page 14 Alphabetic symbol ordering
+Absolute symbols
+
+Comment: PDMA_CSR unused
+PDMA_CTCSR 00000028
+
+Symbol: PDMA_CTCSR
+   Definitions
+      At line 119 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: PDMA_CTCSR unused
+PDMA_DAR 00000008
+
+Symbol: PDMA_DAR
+   Definitions
+      At line 112 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: PDMA_DAR unused
+PDMA_DASOCR 00000030
+
+Symbol: PDMA_DASOCR
+   Definitions
+      At line 121 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: PDMA_DASOCR unused
+PDMA_GCRCSR 00000000
+
+Symbol: PDMA_GCRCSR
+   Definitions
+      At line 102 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: PDMA_GCRCSR unused
+PDMA_GCRISR 0000000C
+
+Symbol: PDMA_GCRISR
+   Definitions
+      At line 105 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: PDMA_GCRISR unused
+PDMA_GLOBAL_enable 0000FF00
+
+Symbol: PDMA_GLOBAL_enable
+   Definitions
+      At line 107 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: PDMA_GLOBAL_enable unused
+PDMA_IER 00000020
+
+Symbol: PDMA_IER
+   Definitions
+
+
+
+ARM Macro Assembler    Page 15 Alphabetic symbol ordering
+Absolute symbols
+
+      At line 117 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: PDMA_IER unused
+PDMA_ISR 00000024
+
+Symbol: PDMA_ISR
+   Definitions
+      At line 118 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: PDMA_ISR unused
+PDMA_PDSSR1 00000008
+
+Symbol: PDMA_PDSSR1
+   Definitions
+      At line 104 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: PDMA_PDSSR1 unused
+PDMA_PDSSR2 00000004
+
+Symbol: PDMA_PDSSR2
+   Definitions
+      At line 103 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: PDMA_PDSSR2 unused
+PDMA_SAR 00000004
+
+Symbol: PDMA_SAR
+   Definitions
+      At line 111 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: PDMA_SAR unused
+PDMA_SASOCR 0000002C
+
+Symbol: PDMA_SASOCR
+   Definitions
+      At line 120 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: PDMA_SASOCR unused
+PDMA_SBUF0 00000080
+
+Symbol: PDMA_SBUF0
+   Definitions
+      At line 122 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: PDMA_SBUF0 unused
+
+
+
+ARM Macro Assembler    Page 16 Alphabetic symbol ordering
+Absolute symbols
+
+PDMA_SBUF1 00000084
+
+Symbol: PDMA_SBUF1
+   Definitions
+      At line 123 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: PDMA_SBUF1 unused
+PDMA_SBUF2 00000088
+
+Symbol: PDMA_SBUF2
+   Definitions
+      At line 124 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: PDMA_SBUF2 unused
+PDMA_SBUF3 0000008C
+
+Symbol: PDMA_SBUF3
+   Definitions
+      At line 125 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: PDMA_SBUF3 unused
+PDMA_enable 00000003
+
+Symbol: PDMA_enable
+   Definitions
+      At line 28 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: PDMA_enable unused
+PLLCON 00000020
+
+Symbol: PLLCON
+   Definitions
+      At line 16 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: PLLCON unused
+PWRCON 00000000
+
+Symbol: PWRCON
+   Definitions
+      At line 10 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: PWRCON unused
+Stack_Size 00000400
+
+Symbol: Stack_Size
+   Definitions
+      At line 192 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+
+
+
+ARM Macro Assembler    Page 17 Alphabetic symbol ordering
+Absolute symbols
+
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      At line 198 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+      At line 444 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+
+TEST_S 00000030
+
+Symbol: TEST_S
+   Definitions
+      At line 17 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: TEST_S unused
+VIC_EOSCR 00000130
+
+Symbol: VIC_EOSCR
+   Definitions
+      At line 138 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: VIC_EOSCR unused
+VIC_MDCR 0000031C
+
+Symbol: VIC_MDCR
+   Definitions
+      At line 137 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: VIC_MDCR unused
+VIC_MECR 00000318
+
+Symbol: VIC_MECR
+   Definitions
+      At line 136 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: VIC_MECR unused
+VIC_SCR15 0000003C
+
+Symbol: VIC_SCR15
+   Definitions
+      At line 130 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: VIC_SCR15 unused
+VIC_SCR16 00000040
+
+Symbol: VIC_SCR16
+   Definitions
+      At line 132 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+
+
+
+ARM Macro Assembler    Page 18 Alphabetic symbol ordering
+Absolute symbols
+
+      None
+Comment: VIC_SCR16 unused
+VIC_SCR30 00000078
+
+Symbol: VIC_SCR30
+   Definitions
+      At line 134 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: VIC_SCR30 unused
+VIC_SVR15 000000BC
+
+Symbol: VIC_SVR15
+   Definitions
+      At line 131 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: VIC_SVR15 unused
+VIC_SVR16 000000C0
+
+Symbol: VIC_SVR16
+   Definitions
+      At line 133 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: VIC_SVR16 unused
+VIC_SVR30 000000F8
+
+Symbol: VIC_SVR30
+   Definitions
+      At line 135 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: VIC_SVR30 unused
+VIC_base FFFF0000
+
+Symbol: VIC_base
+   Definitions
+      At line 129 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: VIC_base unused
+pattern_00005555 00005555
+
+Symbol: pattern_00005555
+   Definitions
+      At line 84 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: pattern_00005555 unused
+pattern_0000aaaa 0000AAAA
+
+Symbol: pattern_0000aaaa
+
+
+
+ARM Macro Assembler    Page 19 Alphabetic symbol ordering
+Absolute symbols
+
+   Definitions
+      At line 85 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: pattern_0000aaaa unused
+pattern_05550515 05550515
+
+Symbol: pattern_05550515
+   Definitions
+      At line 86 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: pattern_05550515 unused
+pattern_0aaa0a2a 0AAA0A2A
+
+Symbol: pattern_0aaa0a2a
+   Definitions
+      At line 87 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: pattern_0aaa0a2a unused
+pattern_55555555 55555555
+
+Symbol: pattern_55555555
+   Definitions
+      At line 82 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: pattern_55555555 unused
+pattern_aaaaaaaa AAAAAAAA
+
+Symbol: pattern_aaaaaaaa
+   Definitions
+      At line 83 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD9
+1xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: pattern_aaaaaaaa unused
+122 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+External symbols
+
+__main 00000000
+
+Symbol: __main
+   Definitions
+      At line 290 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      At line 332 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+Comment: __main used once
+__use_two_region_memory 00000000
+
+Symbol: __use_two_region_memory
+   Definitions
+      At line 439 in file ..\..\ISD91XX_SDK\CMSIS\CM0\DeviceSupport\Nuvoton\ISD
+91xx\startup\arm\startup_ISD91xx.s
+   Uses
+      None
+Comment: __use_two_region_memory unused
+2 symbols
+509 symbols in table

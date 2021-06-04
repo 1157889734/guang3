@@ -1,0 +1,25 @@
+*** Creating Trace Output File '.\obj\Smpl_DrvUART.tra' Ok.
+### Preparing for ADS-LD.
+### Creating ADS-LD Command Line
+### List of Objects: adding '".\obj\core_cm0.o"'
+### List of Objects: adding '".\obj\boot.o"'
+### List of Objects: adding '".\obj\system_isd9xx.o"'
+### List of Objects: adding '".\obj\smpl_drvuart.o"'
+### List of Objects: adding '".\obj\drvsys.o"'
+### List of Objects: adding '".\obj\drvuart.o"'
+### List of Objects: adding '".\obj\retarget.o"'
+### List of Objects: adding '".\obj\drvgpio.o"'
+### ADS-LD Command completed:
+--cpu Cortex-M0 ".\obj\core_cm0.o" ".\obj\boot.o" ".\obj\system_isd9xx.o" ".\obj\smpl_drvuart.o" ".\obj\drvsys.o" ".\obj\drvuart.o" ".\obj\retarget.o" ".\obj\drvgpio.o" --ro-base 0x00000000 --entry 0x00000000 --rw-base 0x20000000 --entry Reset_Handler --first __Vectors --strict --map --first='boot.o(vectors)' --datacompressor=off --info=inline --entry Reset_Handler --callgraph --autoat --summary_stderr --info summarysizes --map 
+--info sizes --info totals 
+ --list ".\lst\Smpl_DrvUART.map" -o ".\obj\Smpl_DrvUART.axf"### Preparing Environment (PrepEnvAds)
+### ADS-LD Output File: '.\obj\Smpl_DrvUART.axf'
+### ADS-LD Command File: '.\obj\Smpl_DrvUART.lnp'
+### Checking for dirty Components...
+### Creating CmdFile '.\obj\Smpl_DrvUART.lnp', Handle=0x000003E8
+### Writing '.lnp' file
+### ADS-LD Command file '.\obj\Smpl_DrvUART.lnp' is ready.
+### ADS-LD: About to start ADS-LD Thread.
+### ADS-LD: executed with 0 errors
+### Updating obj list
+### LDADS_file() completed.

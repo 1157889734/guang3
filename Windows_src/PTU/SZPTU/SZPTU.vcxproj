@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{C52343FE-EB97-446A-9773-A6FEC5A72472}</ProjectGuid>
+    <RootNamespace>SZPTU</RootNamespace>
+    <Keyword>MFCProj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
+    <UseOfMfc>Static</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>15.0.28307.705</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>false</ValidateAllParameters>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>setupapi.h;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0804</Culture>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>usb\hid.lib;Setupapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>false</ValidateAllParameters>
+    </Midl>
+    <ClCompile>
+      <AdditionalIncludeDirectories>setupapi.h;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0804</Culture>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>usb\hid.lib;Setupapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="BreakQueryTimeDlg.h" />
+    <ClInclude Include="CESeries.h" />
+    <ClInclude Include="ComPro.h" />
+    <ClInclude Include="CustomDlg.h" />
+    <ClInclude Include="DeleteDlg.h" />
+    <ClInclude Include="DeviceQueryCTCDlg.h" />
+    <ClInclude Include="DevStatusQueryDlg.h" />
+    <ClInclude Include="DlgCtcSetRoute.h" />
+    <ClInclude Include="DlgHistoricalView.h" />
+    <ClInclude Include="DownByTypeDlg.h" />
+    <ClInclude Include="DownLoadLED.h" />
+    <ClInclude Include="GridCtrl_src\CellRange.h" />
+    <ClInclude Include="GridCtrl_src\GridCell.h" />
+    <ClInclude Include="GridCtrl_src\GridCellBase.h" />
+    <ClInclude Include="GridCtrl_src\GridCtrl.h" />
+    <ClInclude Include="GridCtrl_src\GridDropTarget.h" />
+    <ClInclude Include="GridCtrl_src\InPlaceEdit.h" />
+    <ClInclude Include="GridCtrl_src\InPlaceList.h" />
+    <ClInclude Include="GridCtrl_src\MemDC.h" />
+    <ClInclude Include="GridCtrl_src\TitleTip.h" />
+    <ClInclude Include="IHListBox.h" />
+    <ClInclude Include="LedParaSetDlg.h" />
+    <ClInclude Include="LittaceSet.h" />
+    <ClInclude Include="MainFrm.h" />
+    <ClInclude Include="MyButton.h" />
+    <ClInclude Include="MyEdit.h" />
+    <ClInclude Include="OperateDlg.h" />
+    <ClInclude Include="ParaSetDlg.h" />
+    <ClInclude Include="PicDownDlg.h" />
+    <ClInclude Include="PicSaveDlg.h" />
+    <ClInclude Include="PisProtocol.h" />
+    <ClInclude Include="PortLinkDlg.h" />
+    <ClInclude Include="ProgramDownDlg.h" />
+    <ClInclude Include="ProtocolAnalysis.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="RTCTimeSetdlg.h" />
+    <ClInclude Include="SelFileDlg.h" />
+    <ClInclude Include="StationCfg.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="SZPTU.h" />
+    <ClInclude Include="SZPTUDoc.h" />
+    <ClInclude Include="SZPTUView.h" />
+    <ClInclude Include="TmsProtocol.h" />
+    <ClInclude Include="usb\devioctl.h" />
+    <ClInclude Include="usb\hidpi.h" />
+    <ClInclude Include="usb\hidsdi.h" />
+    <ClInclude Include="usb\hidusage.h" />
+    <ClInclude Include="usb\HidUSB.h" />
+    <ClInclude Include="usb\usb100.h" />
+    <ClInclude Include="usb\usbdi.h" />
+    <ClInclude Include="usb\usbhead.h" />
+    <ClInclude Include="usb\usbioctl.h" />
+    <ClInclude Include="usb\usbiodef.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="BreakQueryTimeDlg.cpp" />
+    <ClCompile Include="CESeries.cpp" />
+    <ClCompile Include="ComPro.cpp" />
+    <ClCompile Include="CustomDlg.cpp" />
+    <ClCompile Include="DeleteDlg.cpp" />
+    <ClCompile Include="DeviceQueryCTCDlg.cpp" />
+    <ClCompile Include="DevStatusQueryDlg.cpp" />
+    <ClCompile Include="DlgCtcSetRoute.cpp" />
+    <ClCompile Include="DlgHistoricalView.cpp" />
+    <ClCompile Include="DownByTypeDlg.cpp" />
+    <ClCompile Include="DownLoadLED.cpp" />
+    <ClCompile Include="GridCtrl_src\GridCell.cpp" />
+    <ClCompile Include="GridCtrl_src\GridCellBase.cpp" />
+    <ClCompile Include="GridCtrl_src\GridCtrl.cpp" />
+    <ClCompile Include="GridCtrl_src\GridDropTarget.cpp" />
+    <ClCompile Include="GridCtrl_src\InPlaceEdit.cpp" />
+    <ClCompile Include="GridCtrl_src\InPlaceList.cpp" />
+    <ClCompile Include="GridCtrl_src\TitleTip.cpp" />
+    <ClCompile Include="IHListBox.cpp" />
+    <ClCompile Include="LedParaSetDlg.cpp" />
+    <ClCompile Include="LittaceSet.cpp" />
+    <ClCompile Include="MainFrm.cpp" />
+    <ClCompile Include="MyButton.cpp" />
+    <ClCompile Include="MyEdit.cpp" />
+    <ClCompile Include="OperateDlg.cpp" />
+    <ClCompile Include="ParaSetDlg.cpp" />
+    <ClCompile Include="PicDownDlg.cpp" />
+    <ClCompile Include="PicSaveDlg.cpp" />
+    <ClCompile Include="PisProtocol.cpp" />
+    <ClCompile Include="PortLinkDlg.cpp" />
+    <ClCompile Include="ProgramDownDlg.cpp" />
+    <ClCompile Include="ProtocolAnalysis.cpp" />
+    <ClCompile Include="RTCTimeSetdlg.cpp" />
+    <ClCompile Include="SelFileDlg.cpp" />
+    <ClCompile Include="StationCfg.cpp" />
+    <ClCompile Include="StationChaildCfg.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="SZPTU.cpp" />
+    <ClCompile Include="SZPTUDoc.cpp" />
+    <ClCompile Include="SZPTUView.cpp" />
+    <ClCompile Include="TmsProtocol.cpp" />
+    <ClCompile Include="usb\HidUSB.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\back2.ico" />
+    <Image Include="res\BKbmp.bmp" />
+    <Image Include="res\email.ico" />
+    <Image Include="res\exit.ico" />
+    <Image Include="res\help.ico" />
+    <Image Include="res\LED图像升级图标.ico" />
+    <Image Include="res\pre.ico" />
+    <Image Include="res\SZPTU.ico" />
+    <Image Include="res\SZPTUDoc.ico" />
+    <Image Include="res\Toolbar.bmp" />
+    <Image Include="res\UpDownArrow.bmp" />
+    <Image Include="res\wzd.ico" />
+    <Image Include="res\系统图标.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="SZPTU.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\SZPTU.rc2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="SZPTU.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

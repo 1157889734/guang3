@@ -1,0 +1,6 @@
+--cpu Cortex-M3 -g --apcs=interwork 
+-I C:\Keil_v5\ARM\RV31\INC
+-I C:\Keil_v5\ARM\CMSIS\Include
+-I C:\Keil_v5\ARM\Inc\ST\STM32F2xx
+--pd "__UVISION_VERSION SETA 514"
+--list .\startup_stm32f2xx.lst --xref -o .\out\startup_stm32f2xx.o --depend .\out\startup_stm32f2xx.d "startup\startup_stm32f2xx.s"

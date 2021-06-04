@@ -1,0 +1,11 @@
+LIBS += -L./lib_hi3520A -lmpi
+LIBS += -laec
+LIBS += -lanr
+LIBS += -lhdmi
+LIBS += -ljpeg
+LIBS += -lnemesi
+LIBS += -lnetembryo
+LIBS += -lpciv
+LIBS += -lresampler
+LIBS += -ltde
+LIBS += -lVoiceEngine

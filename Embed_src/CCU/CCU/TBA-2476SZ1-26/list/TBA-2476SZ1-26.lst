@@ -1,0 +1,1066 @@
+C51 COMPILER V7.06   TBA_2476SZ1_26                                                        03/29/2014 15:19:42 PAGE 1   
+
+
+C51 COMPILER V7.06, COMPILATION OF MODULE TBA_2476SZ1_26
+OBJECT MODULE PLACED IN .\output\TBA-2476SZ1-26.obj
+COMPILER INVOKED BY: D:\Keil\C51\BIN\C51.EXE TBA-2476SZ1-26.c BROWSE DEBUG OBJECTEXTEND PRINT(.\list\TBA-2476SZ1-26.lst)
+                    - OBJECT(.\output\TBA-2476SZ1-26.obj)
+
+stmt level    source
+
+   1          #include <reg52.h>
+   2          #include <intrins.h>
+   3          #include "TBA-2476SZ1-26.h"
+   4          
+   5          #define DEBUG
+   6          
+   7          #define DEBUG_SWITCH                            0x10
+   8          #define VERSION                                         0x20
+   9          
+  10          #define IDLE                                            0x00
+  11          #define PA_2_LINK_PA_SUCCESS            0x01
+  12          #define PA_2_LINK_PA_FAIL                       0x02
+  13          #define PC_2_LINK_PC_SUCCESS            0x03
+  14          #define PC_2_LINK_PC_FAIL                       0x04
+  15          #define LINK_PA_2_PA_SUCCESS            0x05
+  16          #define LINK_PA_2_PA_FAIL                       0x06
+  17          #define LINK_PC_2_PC_SUCCESS            0x07
+  18          #define LINK_PC_2_PC_FAIL                       0x08
+  19          
+  20          unsigned char work_status;
+  21          
+  22          volatile unsigned char data com_timeout = TIMEOUT;
+  23          
+  24          unsigned char data debug_switch = 0;
+  25          
+  26          void debug_printf(unsigned char *buf, unsigned char n);
+  27          
+  28          unsigned char pa_ctrl_op_flag;
+  29          unsigned char pc_ctrl_op_flag;
+  30          unsigned char link_pa_ctrl_op_flag;
+  31          unsigned char link_pc_ctrl_op_flag;
+  32          
+  33          void pa_ctrl(unsigned char on_off);                              
+  34          void pc_ctrl(unsigned char on_off);                                     // ¶Ô½²¿ØÖÆ
+  35          void link_pa_ctrl(unsigned char on_off);                        // ÖØÁ¬¹ã²¥¿ØÖÆ
+  36          void link_pc_ctrl(unsigned char on_off);                        // ÖØÁ¬¶Ô½²¿ØÖÆ
+  37          
+  38          void pa_2_link_pa(void);
+  39          void pc_2_link_pc(void);
+  40          void link_pa_2_pa(void);
+  41          void link_pc_2_pc(void);
+  42          
+  43          unsigned char pa_state_chk(void);
+  44          unsigned char pc_state_chk(void);
+  45          unsigned char link_pa_state_chk(void);
+  46          unsigned char link_pc_state_chk(void);
+  47          
+  48          void pa_2_link_pa_on(void);                                                     // PAµ½LINK_PAÍ¨µÀ´ò¿ª                                  
+  49          void pa_2_link_pa_off(void);                                            // PAµ½LINK_PAÍ¨µÀ¹Ø±Õ
+  50          void pc_2_link_pc_on(void);                                                     // PCµ½LINK_PCÍ¨µÀ´ò¿ª
+  51          void pc_2_link_pc_off(void);                                            // PCµ½LINK_PCÍ¨µÀ¹Ø±Õ
+  52          void link_pa_2_pa_on(void);                                                     // LINK_PAµ½PAÍ¨µÀ´ò¿ª
+  53          void link_pa_2_pa_off(void);                                            // LINK_PAµ½PAÍ¨µÀ¹Ø±Õ
+  54          void link_pc_2_pc_on(void);                                                     // LINK_PCµ½PCÍ¨µÀ´ò¿ª
+C51 COMPILER V7.06   TBA_2476SZ1_26                                                        03/29/2014 15:19:42 PAGE 2   
+
+  55          void link_pc_2_pc_off(void);                                            // LINK_PCµ½PCÍ¨µÀ¹Ø±Õ
+  56          
+  57          void main(void)
+  58          {
+  59   1              device_init();
+  60   1              
+  61   1      #ifdef  DEBUG
+  62   1              get_ver_info(); 
+  63   1      #endif
+  64   1              
+  65   1              while(1)
+  66   1              {
+  67   2                      work_led_blink(50);                                                     // ¹¤×÷Ö¸Ê¾µÆ¼ä¸ô500msÁÁÃð1´Î£¬¶¨Ê±Æ÷¼ä¸ô10msÖÐ¶ÏÒ»´Î
+  68   2      
+  69   2                      pa_2_link_pa();
+  70   2                      pc_2_link_pc();
+  71   2                      link_pa_2_pa();
+  72   2                      link_pc_2_pc();
+  73   2      
+  74   2                      prc_rx_data();          
+  75   2              }
+  76   1      }
+  77          
+  78          void pa_2_link_pa(void)
+  79          {
+  80   1              if(work_status == IDLE)                                                 // ¹¤×÷ÔÚ¿ÕÏÐ×´Ì¬
+  81   1              {
+  82   2                      if(pa_state_chk() ==  1)                                        // ¼ì²âµ½PA×ÜÏßµçÆ½À­µÍ£¬PA_STATE_CHK = 0
+  83   2                      {
+  84   3                              debug_printf("PA_STATE_CHK = 0\r\n", 18);
+  85   3                              PA_LED = ON;                                                    // PAÖ¸Ê¾µÆµãÁÁ
+  86   3      
+  87   3                              if((link_pa_state_chk() == 0) && (link_pc_state_chk() == 0))    // LINK_PA¡¢LINK_PC×´Ì¬Ïß¶¼Ã»ÓÐÀ­µÍ£¬Ôò½øÈ
+             -ëPAµ½LINK_PA×´Ì¬
+  88   3                              {
+  89   4                                      pa_2_link_pa_on();                                      // PAµ½LINK_PAÍ¨µÀ´ò¿ª
+  90   4      
+  91   4                                      LINK_PA_LED = ON;                                       // LINK_PAÖ¸Ê¾µÆµãÁÁ
+  92   4      
+  93   4                                      debug_printf("work_status = PA_2_LINK_PA_SUCCESS\r\n", 36);
+  94   4                                      work_status = PA_2_LINK_PA_SUCCESS;     // ¹¤×÷×´Ì¬ÎªPAµ½LINK_PA
+  95   4                              }
+  96   3                      }
+  97   2              }
+  98   1              else if(work_status == PA_2_LINK_PA_SUCCESS)    // ¹¤×÷×´Ì¬ÎªPAµ½LINK_PA
+  99   1              {
+ 100   2                      pa_led_blink(50);                                                       // PAÖ¸Ê¾µÆ¼ä¸ô500msÉÁÁÁ
+ 101   2      
+ 102   2                      if(pa_state_chk() == 0)                                         // ¼ì²âµ½PA×ÜÏßµçÆ½Ì§¸ß£¬PA_STATE_CHK = 1
+ 103   2                      {
+ 104   3                              debug_printf("PA_STATE_CHK = 1\r\n", 18);
+ 105   3                              debug_printf("work_status = PA_2_LINK_PA_SUCCESS\r\n", 36);
+ 106   3      
+ 107   3                              pa_2_link_pa_off();                                             // PAµ½LINK_PAÍ¨µÀ¹Ø±Õ
+ 108   3                              
+ 109   3                              PA_LED = OFF;                                                   // PAÖ¸Ê¾µÆÏ¨Ãð         
+ 110   3                              LINK_PA_LED = OFF;                                              // LINK_PAÖ¸Ê¾µÆÏ¨Ãð
+ 111   3      
+ 112   3                              debug_printf("work_status = IDLE\r\n\r\n\r\n", 24);
+ 113   3                              work_status = IDLE;                                             // ¹¤×÷×´Ì¬ÎªIDLE
+ 114   3                      }                       
+ 115   2              }       
+C51 COMPILER V7.06   TBA_2476SZ1_26                                                        03/29/2014 15:19:42 PAGE 3   
+
+ 116   1      }
+ 117          
+ 118          void pc_2_link_pc(void)
+ 119          {
+ 120   1              if((work_status == IDLE) || (work_status == PA_2_LINK_PA_SUCCESS) || (work_status == LINK_PA_2_PA_SUCCESS
+             -))                // ¹¤×÷ÔÚ¿ÕÏÐ¡¢PAµ½LINK_PA¡¢LINK_PAµ½PA×´Ì¬£¬ PCÓÅÏÈ¼¶¸ßÓÚPA
+ 121   1              {
+ 122   2                      if(pc_state_chk() == 1)                                         // ¼ì²âµ½PC×ÜÏßµçÆ½À­µÍ£¬PC_STATE_CHK= 0
+ 123   2                      {
+ 124   3                              debug_printf("PC_STATE_CHK = 0\r\n", 18);
+ 125   3                              PC_LED = ON;                                                    // PCÖ¸Ê¾µÆµãÁÁ
+ 126   3      
+ 127   3                              if(work_status == PA_2_LINK_PA_SUCCESS) // ¹¤×÷ÔÚPAµ½LINK_PA×´Ì¬
+ 128   3                              {
+ 129   4                                      pa_2_link_pa_off();                                     // PAµ½LINK_PAÍ¨µÀ¹Ø±Õ
+ 130   4                                      PA_LED = OFF;                                           // PAÖ¸Ê¾µÆÏ¨Ãð
+ 131   4                                      LINK_PA_LED = OFF;                                      // LINK_PAÖ¸Ê¾µÆÏ¨Ãð                            
+ 132   4                              }
+ 133   3      
+ 134   3                              if(work_status == LINK_PA_2_PA_SUCCESS) // ¹¤×÷ÔÚLINK_PAµ½PA×´Ì¬
+ 135   3                              {
+ 136   4                                      link_pa_2_pa_off();                                     // LINK_PAµ½PAÍ¨µÀ¹Ø±Õ
+ 137   4                                      LINK_PA_LED = OFF;                                      // LINK_PAÖ¸Ê¾µÆÏ¨Ãð
+ 138   4                                      PA_LED = OFF;                                           // PAÖ¸Ê¾µÆÏ¨Ãð                         
+ 139   4                              }
+ 140   3                              
+ 141   3                              if(link_pc_state_chk() == 0)                    // LINK_PC×´Ì¬ÏßÃ»ÓÐÀ­µÍ£¬Ôò½øÈëPCµ½LINK_PC×´Ì¬
+ 142   3                              {
+ 143   4                                      pc_2_link_pc_on();                                      // PCµ½LINK_PCÍ¨µÀ´ò¿ª
+ 144   4                                      
+ 145   4                                      LINK_PC_LED = ON;                                       // LINK_PCÖ¸Ê¾µÆµãÁÁ
+ 146   4                                      
+ 147   4                                      debug_printf("work_status = PC_2_LINK_PC_SUCCESS\r\n", 36);
+ 148   4                                      work_status = PC_2_LINK_PC_SUCCESS;     // ¹¤×÷×´Ì¬´¦ÓÚPCµ½LINK_PC×´Ì¬  
+ 149   4                              }                               
+ 150   3                      }
+ 151   2              }
+ 152   1              else if(work_status == PC_2_LINK_PC_SUCCESS)    // ¹¤×÷×´Ì¬ÎªPCµ½LINK_PC
+ 153   1              {
+ 154   2                      pc_led_blink(50);                                                       // PCÖ¸Ê¾µÆ¼ä¸ô500msÉÁÁÁ
+ 155   2      
+ 156   2                      if(pc_state_chk() == 0)                                         // ¼ì²âµ½PC×ÜÏßµçÆ½Ì§¸ß£¬PC_STATE_CHK = 1
+ 157   2                      {
+ 158   3                              debug_printf("PC_STATE_CHK = 1\r\n", 18);
+ 159   3                              debug_printf("work_status = PC_2_LINK_PC_SUCCESS\r\n", 36);
+ 160   3      
+ 161   3                              pc_2_link_pc_off();                                             // PCµ½LINK_PCÍ¨µÀ¹Ø±Õ
+ 162   3      
+ 163   3                              PC_LED = OFF;                                                   // PCÖ¸Ê¾µÆÏ¨Ãð
+ 164   3                              LINK_PC_LED = OFF;                                              // LINK_PCÖ¸Ê¾µÆÏ¨Ãð
+ 165   3      
+ 166   3                              debug_printf("work_status = IDLE\r\n\r\n\r\n", 24);
+ 167   3                              work_status = IDLE;                                             // ¹¤×÷×´Ì¬ÎªIDLE
+ 168   3                      }
+ 169   2                      
+ 170   2                      if(pa_state_chk() ==  1)                                        // ¼ì²âµ½PA×ÜÏßµçÆ½À­µÍ£¬PA_STATE_CHK = 0
+ 171   2                              PA_LED = ON;                                                    // PAÖ¸Ê¾µÆµãÁÁ
+ 172   2                      else if(pa_state_chk() ==  0)                           // ¼ì²âµ½PA×ÜÏßµçÆ½Ì§¸ß£¬PA_STATE_CHK = 1
+ 173   2                              PA_LED = OFF;                                                   // PAÖ¸Ê¾µÆÏ¨Ãð
+ 174   2      
+ 175   2                      if(link_pa_state_chk() == 1)                            // ¼ì²âµ½LINK_PAµçÆ½À­µÍ£¬LINK_PA_STATE_CHK = 0
+ 176   2                              LINK_PA_LED = ON;                                               // LINK_PAÖ¸Ê¾µÆµãÁÁ
+C51 COMPILER V7.06   TBA_2476SZ1_26                                                        03/29/2014 15:19:42 PAGE 4   
+
+ 177   2                      else if(link_pa_state_chk() ==  0)                      // ¼ì²âµ½LINK_PAµçÆ½Ì§¸ß£¬LINK_PA_STATE_CHK = 1
+ 178   2                              LINK_PA_LED = OFF;                                              // LINK_PAÖ¸Ê¾µÆÏ¨Ãð                    
+ 179   2              } 
+ 180   1      }
+ 181          
+ 182          void link_pa_2_pa(void)
+ 183          {
+ 184   1              if(work_status == IDLE)                                                 // ¹¤×÷ÔÚ¿ÕÏÐ×´Ì¬
+ 185   1              {
+ 186   2                      if(link_pa_state_chk() == 1)                            // ¼ì²âµ½LINK_PA×´Ì¬À­µÍ£¬LINK_PA_STATE_CHK = 0
+ 187   2                      {
+ 188   3                              debug_printf("LINK_PA_STATE_CHK = 0\r\n", 23);
+ 189   3                              LINK_PA_LED = ON;                                               // LINK_PAÖ¸Ê¾µÆµãÁÁ
+ 190   3      
+ 191   3                              if(pa_state_chk() == 0)                                 // PA×´Ì¬Ïß¶¼Ã»ÓÐÀ­µÍ£¬Ôò½øÈëLINK_PAµ½PA×´Ì¬
+ 192   3                              {
+ 193   4                                      link_pa_2_pa_on();                                      // LINK_PAµ½PAÍ¨µÀ´ò¿ª
+ 194   4      
+ 195   4                                      PA_LED = ON;                                            // PAÖ¸Ê¾µÆµãÁÁ
+ 196   4      
+ 197   4                                      debug_printf("work_status = LINK_PA_2_PA_SUCCESS\r\n", 36);
+ 198   4                                      work_status = LINK_PA_2_PA_SUCCESS;     // ¹¤×÷×´Ì¬ÎªLINK_PAµ½PA
+ 199   4                              }
+ 200   3                      }
+ 201   2              }
+ 202   1              else if(work_status == LINK_PA_2_PA_SUCCESS)    // ¹¤×÷×´Ì¬ÎªLINK_PAµ½PA×´Ì¬
+ 203   1              {
+ 204   2                      link_pa_led_blink(50);                                          // LINK_PA_LEDÖ¸Ê¾µÆ¼ä¸ô500msÉÁÁÁ
+ 205   2      
+ 206   2                      if(link_pa_state_chk() == 0)                            // ¼ì²âµ½LINK_PAµçÆ½Ì§¸ß£¬LINK_PA_STATE_CHK = 1
+ 207   2                      {
+ 208   3                              debug_printf("LINK_PA_STATE_CHK = 0\r\n", 23);
+ 209   3                              debug_printf("work_status = LINK_PA_2_PA_SUCCESS\r\n", 36);
+ 210   3      
+ 211   3                              link_pa_2_pa_off();                                             // LINK_PAµ½PAÍ¨µÀ¹Ø±Õ
+ 212   3                              
+ 213   3                              PA_LED = OFF;                                                   // PAÖ¸Ê¾µÆÏ¨Ãð         
+ 214   3                              LINK_PA_LED = OFF;                                              // LINK_PAÖ¸Ê¾µÆÏ¨Ãð
+ 215   3      
+ 216   3                              debug_printf("work_status = IDLE\r\n\r\n\r\n", 24);
+ 217   3                              work_status = IDLE;                                             // ¹¤×÷×´Ì¬ÎªIDLE
+ 218   3                      }
+ 219   2              } 
+ 220   1      }
+ 221          
+ 222          void link_pc_2_pc(void)
+ 223          {
+ 224   1              if((work_status == IDLE) || (work_status == PA_2_LINK_PA_SUCCESS) || (work_status == LINK_PA_2_PA_SUCCESS
+             -))                // ¹¤×÷ÔÚ¿ÕÏÐ¡¢PAµ½LINK_PA¡¢LINK_PAµ½PA×´Ì¬£¬ PCÓÅÏÈ¼¶¸ßÓÚPA
+ 225   1              {
+ 226   2                      if(link_pc_state_chk() == 1)                            // ¼ì²âµ½LINK_PC×´Ì¬À­µÍ£¬LINK_PC_STATE_CHK = 0
+ 227   2                      {
+ 228   3                              debug_printf("LINK_PC_STATE_CHK = 0\r\n", 23);
+ 229   3                              LINK_PC_LED = ON;                                               // LINK_PCÖ¸Ê¾µÆµãÁÁ
+ 230   3      
+ 231   3                              if(work_status == PA_2_LINK_PA_SUCCESS) // ¹¤×÷ÔÚPAµ½LINK_PA×´Ì¬
+ 232   3                              {
+ 233   4                                      pa_2_link_pa_off();                                     // PAµ½LINK_PAÍ¨µÀ¹Ø±Õ
+ 234   4                                      PA_LED = OFF;                                           // PAÖ¸Ê¾µÆÏ¨Ãð
+ 235   4                                      LINK_PA_LED = OFF;                                      // LINK_PAÖ¸Ê¾µÆÏ¨Ãð                            
+ 236   4                              }
+ 237   3      
+C51 COMPILER V7.06   TBA_2476SZ1_26                                                        03/29/2014 15:19:42 PAGE 5   
+
+ 238   3                              if(work_status == LINK_PA_2_PA_SUCCESS) // ¹¤×÷ÔÚLINK_PAµ½PA×´Ì¬
+ 239   3                              {
+ 240   4                                      link_pa_2_pa_off();                                     // LINK_PAµ½PAÍ¨µÀ¹Ø±Õ
+ 241   4                                      LINK_PA_LED = OFF;                                      // LINK_PAÖ¸Ê¾µÆÏ¨Ãð
+ 242   4                                      PA_LED = OFF;                                           // PAÖ¸Ê¾µÆÏ¨Ãð                         
+ 243   4                              }
+ 244   3                              
+ 245   3                              if(pc_state_chk() == 0)                                 // PC×´Ì¬Ïß¶¼Ã»ÓÐÀ­µÍ£¬Ôò½øÈëLINK_PCµ½PC×´Ì¬
+ 246   3                              {
+ 247   4                                      link_pc_2_pc_on();                                      // LINK_PCµ½PCÍ¨µÀ´ò¿ª
+ 248   4      
+ 249   4                                      PC_LED = ON;                                            // PCÖ¸Ê¾µÆµãÁÁ
+ 250   4      
+ 251   4                                      debug_printf("work_status = LINK_PC_2_PC_SUCCESS\r\n", 36);
+ 252   4                                      work_status = LINK_PC_2_PC_SUCCESS;     // ¹¤×÷×´Ì¬´¦ÓÚLINK_PCµ½PC×´Ì¬
+ 253   4                              }       
+ 254   3                      }
+ 255   2              }
+ 256   1              else if(work_status == LINK_PC_2_PC_SUCCESS)    // ¹¤×÷×´Ì¬ÎªLINK_PCµ½PC×´Ì¬
+ 257   1              {
+ 258   2                      link_pc_led_blink(50);                                          // LINK_PC_LEDÖ¸Ê¾µÆ¼ä¸ô500msÉÁÁÁ
+ 259   2      
+ 260   2                      if(link_pc_state_chk() == 0)                            // ¼ì²âµ½LINK_PCµçÆ½Ì§¸ß£¬LINK_PC_STATE_CHK = 1
+ 261   2                      {
+ 262   3                              debug_printf("LINK_PC_STATE_CHK = 1\r\n", 23);
+ 263   3                              debug_printf("work_status = LINK_PC_2_PC_SUCCESS\r\n", 36);
+ 264   3      
+ 265   3                              link_pc_2_pc_off();                                             // LINK_PCµ½PCÍ¨µÀ¹Ø±Õ
+ 266   3      
+ 267   3                              PC_LED = OFF;                                                   // PCÖ¸Ê¾µÆÏ¨Ãð
+ 268   3                              LINK_PC_LED = OFF;                                              // LINK_PCÖ¸Ê¾µÆÏ¨Ãð
+ 269   3      
+ 270   3                              debug_printf("work_status = IDLE\r\n\r\n\r\n", 24);
+ 271   3                              work_status = IDLE;                                             // ¹¤×÷×´Ì¬ÎªIDLE
+ 272   3                      }
+ 273   2                      
+ 274   2                      if(pa_state_chk() ==  1)                                        // ¼ì²âµ½PA×ÜÏßµçÆ½À­µÍ£¬PA_STATE_CHK = 0
+ 275   2                              PA_LED = ON;                                                    // PAÖ¸Ê¾µÆµãÁÁ
+ 276   2                      else if(pa_state_chk() ==  0)                           // ¼ì²âµ½PA×ÜÏßµçÆ½Ì§¸ß£¬PA_STATE_CHK = 1
+ 277   2                              PA_LED = OFF;                                                   // PAÖ¸Ê¾µÆÏ¨Ãð
+ 278   2      
+ 279   2                      if(link_pa_state_chk() == 1)                            // ¼ì²âµ½LINK_PAµçÆ½À­µÍ£¬LINK_PA_STATE_CHK = 0
+ 280   2                              LINK_PA_LED = ON;                                               // LINK_PAÖ¸Ê¾µÆµãÁÁ
+ 281   2                      else if(link_pa_state_chk() ==  0)                      // ¼ì²âµ½LINK_PAµçÆ½Ì§¸ß£¬LINK_PA_STATE_CHK = 1
+ 282   2                              LINK_PA_LED = OFF;                                              // LINK_PAÖ¸Ê¾µÆÏ¨Ãð                    
+ 283   2              } 
+ 284   1      }
+ 285          
+ 286          void pa_2_link_pa_on(void)                                      // PAµ½LINK_PAÍ¨µÀ´ò¿ª
+ 287          {
+ 288   1              debug_printf("PA_AUDIO_IN = ON\r\n", 18);
+ 289   1              PA_AUDIO_IN = ON;                                                               // PAÊäÈë´ò¿ª
+ 290   1                                              
+ 291   1              debug_printf("PA_AUDIO_OUT = OFF\r\n", 20);
+ 292   1              PA_AUDIO_OUT = OFF;                                                             // PAÊä³ö¹Ø±Õ
+ 293   1                                                      
+ 294   1              debug_printf("LINK_AUDIO_IN = OFF\r\n", 21);
+ 295   1              LINK_AUDIO_IN = OFF;                                                    // LINK_AUDIOÊä³ö¹Ø±Õ
+ 296   1                                              
+ 297   1              debug_printf("LINK_AUDIO_OUT = ON\r\n", 21);
+ 298   1              LINK_AUDIO_OUT = ON;                                                    // LINK_AUDIOÊä³ö´ò¿ª
+ 299   1                              
+C51 COMPILER V7.06   TBA_2476SZ1_26                                                        03/29/2014 15:19:42 PAGE 6   
+
+ 300   1              debug_printf("LINK_PA_CTRL = ON\r\n", 19);
+ 301   1              link_pa_ctrl(ON);                                                               // À­µÍLINK_PA×´Ì¬Ïß
+ 302   1              delay_1ms(50);                                                                  // ÑÓÊ±50msÊ¹LINK_PA×´Ì¬ÎÈ¶¨
+ 303   1      }
+ 304                                                  
+ 305          void pa_2_link_pa_off(void)                                     // PAµ½LINK_PAÍ¨µÀ¹Ø±Õ
+ 306          {
+ 307   1              debug_printf("PA_AUDIO_IN = OFF\r\n", 19);
+ 308   1              PA_AUDIO_IN = OFF;                                                              // PAÊäÈë¹Ø±Õ
+ 309   1      
+ 310   1              debug_printf("PA_AUDIO_OUT = OFF\r\n", 20);
+ 311   1              PA_AUDIO_OUT = OFF;                                                             // PAÊä³ö¹Ø±Õ
+ 312   1      
+ 313   1              debug_printf("LINK_AUDIO_IN = OFF\r\n", 21);
+ 314   1              LINK_AUDIO_IN = OFF;                                                    // LINK_AUDIOÊä³ö¹Ø±Õ
+ 315   1      
+ 316   1              debug_printf("LINK_AUDIO_OUT = OFF\r\n", 22);
+ 317   1              LINK_AUDIO_OUT = OFF;                                                   // LINK_AUDIOÊä³ö¹Ø±Õ
+ 318   1                              
+ 319   1              debug_printf("LINK_PA_CTRL = OFF\r\n", 20);
+ 320   1              link_pa_ctrl(OFF);                                                              // Ì§¸ßLINK_PA×´Ì¬Ïß
+ 321   1              delay_1ms(50);                                                                  // ÑÓÊ±50msÊ¹LINK_PA×´Ì¬ÎÈ¶¨
+ 322   1      }
+ 323          
+ 324          void pc_2_link_pc_on(void)                                      // PCµ½LINK_PCÍ¨µÀ´ò¿ª
+ 325          {
+ 326   1              debug_printf("PC_AUDIO_IN = ON\r\n", 18);
+ 327   1              PC_AUDIO_IN = ON;                                                               // PCÊäÈë´ò¿ª
+ 328   1      
+ 329   1              debug_printf("PC_AUDIO_OUT = OFF\r\n", 20);
+ 330   1              PC_AUDIO_OUT = OFF;                                                             // PCÊä³ö¹Ø±Õ
+ 331   1      
+ 332   1              debug_printf("LINK_AUDIO_IN = OFF\r\n", 21);
+ 333   1              LINK_AUDIO_IN = OFF;                                                    // LINK_AUDIOÊäÈë¹Ø±Õ
+ 334   1      
+ 335   1              debug_printf("LINK_AUDIO_OUT = ON\r\n", 21);
+ 336   1              LINK_AUDIO_OUT = ON;                                                    // LINK_AUDIOÊä³ö´ò¿ª
+ 337   1      
+ 338   1              debug_printf("LINK_PA_CTRL = ON\r\n", 19);
+ 339   1              link_pc_ctrl(ON);                                                               // À­µÍLINK_PCÌ¬Ïß
+ 340   1              delay_1ms(50);                                                                  // ÑÓÊ±50msÊ¹LINK_PC×´Ì¬ÎÈ¶¨
+ 341   1      }
+ 342          
+ 343          void pc_2_link_pc_off(void)                                     // PCµ½LINK_PCÍ¨µÀ¹Ø±Õ
+ 344          {
+ 345   1              debug_printf("PC_AUDIO_IN = OFF\r\n", 19);
+ 346   1              PC_AUDIO_IN = OFF;                                                              // PCÊäÈë¹Ø±Õ
+ 347   1      
+ 348   1              debug_printf("PC_AUDIO_OUT = OFF\r\n", 20);
+ 349   1              PC_AUDIO_OUT = OFF;                                                             // PCÊä³ö¹Ø±Õ
+ 350   1      
+ 351   1              debug_printf("LINK_AUDIO_IN = OFF\r\n", 21);
+ 352   1              LINK_AUDIO_IN = OFF;                                                    // LINK_AUDIOÊäÈë¹Ø±Õ
+ 353   1      
+ 354   1              debug_printf("LINK_AUDIO_OUT = OFF\r\n", 22);
+ 355   1              LINK_AUDIO_OUT = OFF;                                                   // LINK_AUDIOÊä³ö¹Ø±Õ
+ 356   1      
+ 357   1              debug_printf("LINK_PC_CTRL = OFF\r\n", 20);
+ 358   1              link_pc_ctrl(OFF);                                                              // Ì§¸ßLINK_PC×´Ì¬Ïß
+ 359   1              delay_1ms(50);                                                                  // ÑÓÊ±50msÊ¹LINK_PC×´Ì¬ÎÈ¶¨
+ 360   1      }
+ 361          
+C51 COMPILER V7.06   TBA_2476SZ1_26                                                        03/29/2014 15:19:42 PAGE 7   
+
+ 362          void link_pa_2_pa_on(void)                                      // LINK_PAµ½PAÍ¨µÀ´ò¿ª
+ 363          {
+ 364   1              debug_printf("PA_AUDIO_IN = OFF\r\n", 19);
+ 365   1              PA_AUDIO_IN = OFF;                                                      // PAÊäÈë¹Ø±Õ
+ 366   1      
+ 367   1              debug_printf("PA_AUDIO_OUT = ON\r\n", 19);
+ 368   1              PA_AUDIO_OUT = ON;                                                      // PAÊä³ö´ò¿ª
+ 369   1      
+ 370   1              debug_printf("LINK_AUDIO_IN = ON\r\n", 20);
+ 371   1              LINK_AUDIO_IN = ON;                                                     // LINK_AUDIOÊäÈë´ò¿ª
+ 372   1      
+ 373   1              debug_printf("LINK_AUDIO_OUT = OFF\r\n", 22);
+ 374   1              LINK_AUDIO_OUT = OFF;                                           // LINK_AUDIOÊä³ö¹Ø±Õ
+ 375   1      
+ 376   1              debug_printf("PA_CTRL = ON\r\n", 14);
+ 377   1              pa_ctrl(ON);                                                            // À­µÍPA×´Ì¬Ïß
+ 378   1              delay_1ms(50);                                                          // ÑÓÊ±50msÊ¹PA×´Ì¬ÎÈ¶¨
+ 379   1      }
+ 380          
+ 381          void link_pa_2_pa_off(void)                                     // LINK_PAµ½PAÍ¨µÀ¹Ø±Õ
+ 382          {
+ 383   1              debug_printf("PA_AUDIO_IN = OFF\r\n", 19);
+ 384   1              PA_AUDIO_IN = OFF;                                                              // PAÊäÈë¹Ø±Õ
+ 385   1      
+ 386   1              debug_printf("PA_AUDIO_OUT = OFF\r\n", 20);
+ 387   1              PA_AUDIO_OUT = OFF;                                                             // PAÊä³ö¹Ø±Õ
+ 388   1      
+ 389   1              debug_printf("LINK_AUDIO_IN = OFF\r\n", 21);
+ 390   1              LINK_AUDIO_IN = OFF;                                                    // LINK_AUDIOÊä³ö¹Ø±Õ
+ 391   1      
+ 392   1              debug_printf("LINK_AUDIO_OUT = OFF\r\n", 22);
+ 393   1              LINK_AUDIO_OUT = OFF;                                                   // LINK_AUDIOÊä³ö¹Ø±Õ
+ 394   1      
+ 395   1              debug_printf("PA_CTRL = OFF\r\n", 15);
+ 396   1              pa_ctrl(OFF);                                                                   // Ì§¸ß¹ãPA×´Ì¬Ïß
+ 397   1              delay_1ms(50);                                                                  // ÑÓÊ±50msÊ¹PA×´Ì¬ÎÈ¶¨
+ 398   1      }
+ 399          
+ 400          void link_pc_2_pc_on(void)                                      // LINK_PCµ½PCÍ¨µÀ´ò¿ª
+ 401          {
+ 402   1              debug_printf("PC_AUDIO_IN = OFF\r\n", 19);
+ 403   1              PC_AUDIO_IN = OFF;                                                              // PCÊäÈë¹Ø±Õ
+ 404   1      
+ 405   1              debug_printf("PC_AUDIO_OUT = ON\r\n", 19);
+ 406   1              PC_AUDIO_OUT = ON;                                                              // PCÊä³ö´ò¿ª
+ 407   1      
+ 408   1              debug_printf("LINK_AUDIO_IN = ON\r\n", 20);
+ 409   1              LINK_AUDIO_IN = ON;                                                             // LINK_AUDIOÊäÈë´ò¿ª
+ 410   1      
+ 411   1              debug_printf("LINK_AUDIO_OUT = OFF\r\n", 22);
+ 412   1              LINK_AUDIO_OUT = OFF;                                                   // LINK_AUDIOÊä³ö¹Ø±Õ
+ 413   1      
+ 414   1              debug_printf("PC_CTRL = ON\r\n", 14);
+ 415   1              pc_ctrl(ON);                                                                    // À­µÍPC×´Ì¬Ïß
+ 416   1              delay_1ms(50);                                                                  // ÑÓÊ±50msÊ¹PC×´Ì¬ÎÈ¶¨
+ 417   1      }
+ 418          
+ 419          void link_pc_2_pc_off(void)                                     // LINK_PCµ½PCÍ¨µÀ¹Ø±Õ
+ 420          {
+ 421   1              debug_printf("PC_AUDIO_IN = OFF\r\n", 19);
+ 422   1              PC_AUDIO_IN = OFF;                                                              // PCÊäÈë¹Ø±Õ
+ 423   1      
+C51 COMPILER V7.06   TBA_2476SZ1_26                                                        03/29/2014 15:19:42 PAGE 8   
+
+ 424   1              debug_printf("PC_AUDIO_OUT = OFF\r\n", 20);
+ 425   1              PC_AUDIO_OUT = OFF;                                                             // PCÊä³ö¹Ø±Õ
+ 426   1      
+ 427   1              debug_printf("LINK_AUDIO_IN = OFF\r\n", 21);
+ 428   1              LINK_AUDIO_IN = OFF;                                                    // LINK_AUDIOÊäÈë¹Ø±Õ
+ 429   1      
+ 430   1              debug_printf("LINK_AUDIO_OUT = OFF\r\n", 22);
+ 431   1              LINK_AUDIO_OUT = OFF;                                                   // LINK_AUDIOÊä³ö¹Ø±Õ
+ 432   1      
+ 433   1              debug_printf("PC_CTRL = OFF\r\n", 15);
+ 434   1              pc_ctrl(OFF);                                                                   // Ì§¸ßPC×´Ì¬Ïß
+ 435   1              delay_1ms(50);                                                                  // ÑÓÊ±50msÊ¹PC×´Ì¬ÎÈ¶¨
+ 436   1      }
+ 437          
+ 438          // ¹ã²¥×´Ì¬¼ì²â
+ 439          unsigned char pa_state_chk(void)
+ 440          {
+ 441   1              if(!PA_STATE_CHK)                               // ¹ã²¥×´Ì¬I/OÒý½ÅPA_STATE_CHKµçÆ½Îª0
+ 442   1              {
+ 443   2                      if(pa_ctrl_op_flag == 0)        // ¹ã²¥¿ØÖÆ²Ù×÷±êÖ¾Îª0£¬ËµÃ÷²»ÊÇ×Ô¼º½«PA_STATE_CHK×´Ì¬À­µÍ
+ 444   2                              return(1);
+ 445   2                      else
+ 446   2                              return(0xff);
+ 447   2              }
+ 448   1              else
+ 449   1                      return(0);
+ 450   1      }
+ 451          
+ 452          // ¶Ô½²×´Ì¬¼ì²â
+ 453          unsigned char pc_state_chk(void)
+ 454          {
+ 455   1              if(!PC_STATE_CHK)               // ¶Ô½²×´Ì¬I/OÒý½ÅPC_STATE_CHKµçÆ½Îª0
+ 456   1              {
+ 457   2                      if(pc_ctrl_op_flag == 0) // ¶Ô½²¿ØÖÆ²Ù×÷±êÖ¾Îª0£¬ËµÃ÷²»ÊÇ×Ô¼º½«PC_STATE_CHK×´Ì¬À­µÍ
+ 458   2                              return(1);      
+ 459   2                      else
+ 460   2                              return(0xff);
+ 461   2              }
+ 462   1              else
+ 463   1                      return(0);
+ 464   1      }
+ 465          
+ 466          // ÖØÁ¬¹ã²¥×´Ì¬¼ì²â
+ 467          unsigned char link_pa_state_chk(void)
+ 468          {
+ 469   1              if(!LINK_PA_STATE_CHK)                  // ÖØÁ¬¹ã²¥×´Ì¬I/OÒý½ÅPC_STATE_CHKµçÆ½Îª0
+ 470   1              {
+ 471   2                      if(link_pa_ctrl_op_flag == 0)   // ÖØÁ¬¹ã²¥¿ØÖÆ²Ù×÷±êÖ¾Îª0£¬ËµÃ÷²»ÊÇ×Ô¼º½«LINK_PA_STATE_CHK×´Ì¬À­µÍ
+ 472   2                              return(1);
+ 473   2                      else
+ 474   2                              return(0xff);
+ 475   2              }
+ 476   1              else
+ 477   1                      return(0);
+ 478   1      }
+ 479          
+ 480          // ÖØÁ¬¶Ô½²×´Ì¬¼ì²â
+ 481          unsigned char link_pc_state_chk(void)
+ 482          {
+ 483   1              if(!LINK_PC_STATE_CHK)                  // ÖØÁ¬¶Ô½²×´Ì¬I/OÒý½ÅPC_STATE_CHKµçÆ½Îª0
+ 484   1              {
+ 485   2                      if(link_pc_ctrl_op_flag == 0)   // ÖØÁ¬¶Ô½²¿ØÖÆ²Ù×÷±êÖ¾Îª0£¬ËµÃ÷²»ÊÇ×Ô¼º½«LINK_PA_STATE_CHK×´Ì¬À­µÍ
+C51 COMPILER V7.06   TBA_2476SZ1_26                                                        03/29/2014 15:19:42 PAGE 9   
+
+ 486   2                              return(1);
+ 487   2                      else
+ 488   2                              return(0xff);
+ 489   2              }
+ 490   1              else
+ 491   1                      return(0);
+ 492   1      }
+ 493          
+ 494          // ¹ã²¥¿ØÖÆ on  - À­µÍ¿ØÖÆµçÆ½
+ 495          //          off - Ì§¸ß¿ØÖÆµçÆ½
+ 496          void pa_ctrl(unsigned char on_off)
+ 497          {
+ 498   1              if(on_off == ON)
+ 499   1              {
+ 500   2                      PA_CTRL = 0;
+ 501   2                      pa_ctrl_op_flag = 1;                    // ¹ã²¥¿ØÖÆI/OÀ­µÍ£¬¹ã²¥¿ØÖÆ²Ù×÷±êÖ¾ÖÃ1
+ 502   2              }
+ 503   1              else
+ 504   1              {
+ 505   2                      PA_CTRL = 1;
+ 506   2                      pa_ctrl_op_flag = 0;
+ 507   2              }
+ 508   1      }
+ 509          
+ 510          // ¶Ô½²¿ØÖÆ on  - À­µÍ¿ØÖÆµçÆ½
+ 511          //          off - Ì§¸ß¿ØÖÆµçÆ½
+ 512          void pc_ctrl(unsigned char on_off)
+ 513          {
+ 514   1              if(on_off == ON)
+ 515   1              {
+ 516   2                      PC_CTRL = 0;
+ 517   2                      pc_ctrl_op_flag = 1;                    // ¶Ô½²¿ØÖÆ²Ù×÷±êÖ¾ÖÃ1
+ 518   2              }
+ 519   1              else
+ 520   1              {
+ 521   2                      PC_CTRL = 1;
+ 522   2                      pc_ctrl_op_flag = 0;
+ 523   2              }
+ 524   1      }
+ 525          
+ 526          // ÖØÁ¬¹ã²¥¿ØÖÆ on  - À­µÍ¿ØÖÆµçÆ½
+ 527          //              off - Ì§¸ß¿ØÖÆµçÆ½
+ 528          void link_pa_ctrl(unsigned char on_off)
+ 529          {
+ 530   1              if(on_off == ON)
+ 531   1              {
+ 532   2                      LINK_PA_CTRL = 0;
+ 533   2                      link_pa_ctrl_op_flag = 1;               // ÖØÁ¬¹ã²¥¿ØÖÆ²Ù×÷±êÖ¾ÖÃ1
+ 534   2              }
+ 535   1              else
+ 536   1              {
+ 537   2                      LINK_PA_CTRL = 1;
+ 538   2                      link_pa_ctrl_op_flag = 0;
+ 539   2              }
+ 540   1      }
+ 541          
+ 542          // ÖØÁ¬¶Ô½²¿ØÖÆ on  - À­µÍ¿ØÖÆµçÆ½
+ 543          //              off - Ì§¸ß¿ØÖÆµçÆ½
+ 544          void link_pc_ctrl(unsigned char on_off)
+ 545          {
+ 546   1              if(on_off == ON)
+ 547   1              {
+C51 COMPILER V7.06   TBA_2476SZ1_26                                                        03/29/2014 15:19:42 PAGE 10  
+
+ 548   2                      LINK_PC_CTRL = 0;
+ 549   2                      link_pc_ctrl_op_flag = 1;               // ÖØÁ¬¶Ô½²¿ØÖÆ²Ù×÷±êÖ¾ÖÃ1
+ 550   2              }
+ 551   1              else
+ 552   1              {
+ 553   2                      LINK_PC_CTRL = 1;
+ 554   2                      link_pc_ctrl_op_flag = 0;
+ 555   2              }
+ 556   1      }
+ 557          
+ 558          void work_led_blink(unsigned char interval)
+ 559          {
+ 560   1              if(work_led_blink_interval >= interval)
+ 561   1              {
+ 562   2                      WORK_LED = ~WORK_LED;
+ 563   2      
+ 564   2                      work_led_blink_interval = 0;            
+ 565   2              }
+ 566   1      }
+ 567          
+ 568          void pa_led_blink(unsigned char interval)
+ 569          {
+ 570   1              if(pa_led_blink_interval >= interval)
+ 571   1              {
+ 572   2                      PA_LED = ~PA_LED;
+ 573   2                      pa_led_blink_interval = 0;              
+ 574   2              }       
+ 575   1      }
+ 576          
+ 577          void pc_led_blink(unsigned char interval)
+ 578          {
+ 579   1              if(pc_led_blink_interval >= interval)
+ 580   1              {
+ 581   2                      PC_LED = ~PC_LED;
+ 582   2                      pc_led_blink_interval = 0;              
+ 583   2              }
+ 584   1      }
+ 585          
+ 586          void link_pa_led_blink(unsigned char interval)
+ 587          {
+ 588   1              if(link_pa_led_blink_interval >= interval)
+ 589   1              {
+ 590   2                      LINK_PA_LED = ~LINK_PA_LED;
+ 591   2                      link_pa_led_blink_interval = 0;         
+ 592   2              }
+ 593   1      }
+ 594          
+ 595          void link_pc_led_blink(unsigned char interval)
+ 596          {
+ 597   1              if(link_pc_led_blink_interval >= interval)
+ 598   1              {
+ 599   2                      LINK_PC_LED = ~LINK_PC_LED;
+ 600   2                      link_pc_led_blink_interval = 0;         
+ 601   2              }
+ 602   1      }
+ 603          
+ 604          void get_ver_info(void)
+ 605          {
+ 606   1              put_n_char("\r\n\r\n\tÉè±¸Ãû³Æ:  ÖØÁ¬Ä£¿é  TBA-2476SZ1-26\r\n", 42);
+ 607   1              put_n_char("\tÏîÄ¿Ãû³Æ:  ÉîÛÚµØÌú1ºÅÏß26ÁÐ³µ¸ÄÔì\r\n", 37);
+ 608   1              put_n_char("\t°æ±¾ÐÅÏ¢:  Ver 1.1  2014-03-29\r\n", 33);
+ 609   1              put_n_char("\tÖÆÔìÉÌ:    ÉîÛÚÊÐ±±º£¹ìµÀ½»Í¨¼¼ÊõÓÐÏÞ¹«Ë¾\r\n", 44);
+C51 COMPILER V7.06   TBA_2476SZ1_26                                                        03/29/2014 15:19:42 PAGE 11  
+
+ 610   1      }
+ 611          
+ 612          unsigned char chksum(unsigned char *buf, unsigned char n)
+ 613          {
+ 614   1              unsigned char idata i;
+ 615   1              unsigned char idata tmp = 0;
+ 616   1      
+ 617   1              for(i = 0; i < n; i++)
+ 618   1                      tmp += buf[i];
+ 619   1      
+ 620   1              return(tmp);
+ 621   1      }
+ 622          
+ 623          void prc_rx_data(void)
+ 624          {
+ 625   1              unsigned char data tmp; 
+ 626   1              static unsigned int data rx_data_len = 0;
+ 627   1              static unsigned char data tmp_rx_chksum;
+ 628   1              static unsigned char data rx_chksum; 
+ 629   1      
+ 630   1              while(get_char(&tmp))
+ 631   1              {
+ 632   2                      switch(rx_status)
+ 633   2                      {
+ 634   3                      case COM_RX_HEAD:
+ 635   3                              if(0x7e == tmp)
+ 636   3                              {
+ 637   4                                      rx_status = COM_RX_DATA;
+ 638   4                                      rx_data_len = 0;
+ 639   4                                      tmp_rx_chksum = 0;
+ 640   4                              }
+ 641   3                              else
+ 642   3                                      rx_status = COM_RX_HEAD;
+ 643   3                              break;
+ 644   3      
+ 645   3                      case COM_RX_DATA:
+ 646   3                              if(0x7e == tmp)
+ 647   3                              {
+ 648   4                                      if(rx_data_len > 0)
+ 649   4                                      {
+ 650   5                                              rx_status = COM_RX_HEAD;
+ 651   5                                              tmp_rx_chksum -= rx_chksum;
+ 652   5                                              //if(rx_chksum != (0x55 - tmp_rx_chksum))
+ 653   5                                              //      break;
+ 654   5                                              prase_rx_data(rx_data_len);
+ 655   5      
+ 656   5                                              rx_data_len = 0;
+ 657   5                                      }
+ 658   4                                      else
+ 659   4                                              rx_status = COM_RX_DATA;
+ 660   4                              }
+ 661   3                              else if(0x7f == tmp)
+ 662   3                                      rx_status = COM_RX_DLE;
+ 663   3                              else
+ 664   3                              {
+ 665   4                                      rx_buffer[rx_data_len++] = tmp;
+ 666   4                                      tmp_rx_chksum += tmp;
+ 667   4                                      rx_chksum = tmp;
+ 668   4      
+ 669   4                                      rx_status = COM_RX_DATA;
+ 670   4                              }
+ 671   3                              break;
+C51 COMPILER V7.06   TBA_2476SZ1_26                                                        03/29/2014 15:19:42 PAGE 12  
+
+ 672   3      
+ 673   3                      case COM_RX_DLE:
+ 674   3                              rx_status = COM_RX_DATA;
+ 675   3                              if(0x80 == tmp)
+ 676   3                              {
+ 677   4                                      rx_buffer[rx_data_len++] = 0x7e;
+ 678   4                                      tmp_rx_chksum += 0x7e;
+ 679   4                                      rx_chksum = 0x7e;
+ 680   4                              }
+ 681   3                              else if(0x81 == tmp)
+ 682   3                              {
+ 683   4                                      rx_buffer[rx_data_len++] = 0x7f;
+ 684   4                                      tmp_rx_chksum += 0x7f;
+ 685   4                                      rx_chksum = 0x7f;
+ 686   4                              }
+ 687   3                              else
+ 688   3                                      rx_status = COM_RX_HEAD;
+ 689   3                              break;
+ 690   3                      }
+ 691   2              }
+ 692   1      }
+ 693          
+ 694          void prase_rx_data(unsigned char len)
+ 695          {
+ 696   1              FRAME_HEADER *ptr_frame_header;
+ 697   1      
+ 698   1              ptr_frame_header = (FRAME_HEADER *)rx_buffer;
+ 699   1      
+ 700   1              if(len < 7)
+ 701   1                      return;
+ 702   1      
+ 703   1              switch(ptr_frame_header->cmd.bits.packet_type)
+ 704   1              {
+ 705   2              case PROCESS_PACKET:
+ 706   2                      break;
+ 707   2      
+ 708   2              case P2P_PACKET:
+ 709   2                      break;
+ 710   2      
+ 711   2              case TOKEN_PACKET:
+ 712   2                      if(ptr_frame_header->len != 1)
+ 713   2                              return;
+ 714   2      
+ 715   2                      cmd_type = rx_buffer[6];
+ 716   2      
+ 717   2                      switch(cmd_type & 0xf0)
+ 718   2                      {
+ 719   3                      case DEBUG_SWITCH:
+ 720   3                                      debug_switch = cmd_type & 0x01;
+ 721   3                              break;
+ 722   3      
+ 723   3                      case VERSION:
+ 724   3                              get_ver_info();
+ 725   3                              break;
+ 726   3                      }
+ 727   2      
+ 728   2                      break;
+ 729   2      
+ 730   2              case DOWNLOAD_PACKET:
+ 731   2                      break;
+ 732   2              }
+ 733   1      
+C51 COMPILER V7.06   TBA_2476SZ1_26                                                        03/29/2014 15:19:42 PAGE 13  
+
+ 734   1              return;
+ 735   1      }
+ 736          
+ 737          void debug_printf(unsigned char *buf, unsigned char n)
+ 738          {
+ 739   1              if(debug_switch)
+ 740   1                      put_n_char(buf, n);
+ 741   1      }
+ 742          
+ 743          unsigned char ISP_IAP_byte_read(unsigned int addr)
+ 744          {
+ 745   1              ISP_ADDRH = (unsigned char)(addr >> 8);
+ 746   1              ISP_ADDRL = (unsigned char)(addr & 0x00ff);
+ 747   1              ISP_CMD &= 0xf8;
+ 748   1              ISP_CMD |= ISP_IAP_BYTE_READ;
+ 749   1              ISP_IAP_enable();
+ 750   1              ISP_TRIG = 0x46;
+ 751   1              ISP_TRIG = 0xb9;
+ 752   1              _nop_();
+ 753   1              ISP_IAP_disable();
+ 754   1      
+ 755   1              return(ISP_DATA);
+ 756   1      }
+ 757          
+ 758          void ISP_IAP_n_byte_read(unsigned int addr, unsigned int n, unsigned char *buf)
+ 759          {
+ 760   1              unsigned int data i;
+ 761   1      
+ 762   1              for(i = 0; i < n; i++)
+ 763   1                      buf[i] = ISP_IAP_byte_read(addr++);
+ 764   1      }
+ 765          
+ 766          unsigned char ISP_IAP_n_byte_program(unsigned int addr, unsigned int n, unsigned char *buf)
+ 767          {
+ 768   1              unsigned int data i = 0;
+ 769   1              unsigned int data in_sector_begin_addr = 0;
+ 770   1              unsigned int data sector_addr = 0;
+ 771   1      
+ 772   1              if(n > 256)
+ 773   1                      return 0;
+ 774   1      
+ 775   1              in_sector_begin_addr = addr & 0x1ff;
+ 776   1              if((in_sector_begin_addr + n) > 128)
+ 777   1                      return 0;
+ 778   1      
+ 779   1              sector_addr = (addr & 0xfe00);
+ 780   1              ISP_ADDRH = (unsigned char)(sector_addr >> 8);
+ 781   1              ISP_ADDRL = 0;
+ 782   1              ISP_CMD &= 0xf8;
+ 783   1              ISP_CMD |= ISP_IAP_SECTOR_ERASE;
+ 784   1              ISP_IAP_enable();
+ 785   1              ISP_TRIG = 0x46;
+ 786   1              ISP_TRIG = 0xb9;
+ 787   1              _nop_();
+ 788   1      
+ 789   1              for(i = 0; i < n; i++)
+ 790   1              {
+ 791   2                      ISP_ADDRH = (unsigned char)(addr >> 8);
+ 792   2                      ISP_ADDRL = (unsigned char)(addr & 0x00ff);
+ 793   2                      ISP_DATA = buf[i];
+ 794   2                      ISP_CMD &= 0xf8;
+ 795   2                      ISP_CMD |= ISP_IAP_BYTE_PROGRAM;
+C51 COMPILER V7.06   TBA_2476SZ1_26                                                        03/29/2014 15:19:42 PAGE 14  
+
+ 796   2                      ISP_TRIG = 0x46;
+ 797   2                      ISP_TRIG = 0xb9;
+ 798   2                      _nop_();
+ 799   2      
+ 800   2                      ISP_DATA = 0;
+ 801   2                      ISP_CMD &= 0xf8;
+ 802   2                      ISP_CMD |= ISP_IAP_BYTE_READ;
+ 803   2                      ISP_TRIG = 0x46;
+ 804   2                      ISP_TRIG = 0xb9;
+ 805   2                      _nop_();
+ 806   2      
+ 807   2                      if(ISP_DATA != buf[i])
+ 808   2                      {
+ 809   3                              ISP_IAP_disable();
+ 810   3                              return 0;
+ 811   3                      }
+ 812   2      
+ 813   2                      addr++;
+ 814   2              }
+ 815   1      
+ 816   1              ISP_IAP_disable();
+ 817   1      
+ 818   1              return 1;
+ 819   1      }
+ 820          
+ 821          void ISP_IAP_erase(unsigned int sector_addr)
+ 822          {
+ 823   1              ISP_ADDRH = (unsigned char)(sector_addr >> 8);
+ 824   1              ISP_ADDRL = 0;
+ 825   1      
+ 826   1              ISP_CMD &= 0xf8;
+ 827   1              ISP_CMD |= ISP_IAP_SECTOR_ERASE;
+ 828   1              ISP_IAP_enable();
+ 829   1              ISP_TRIG = 0x46;
+ 830   1              ISP_TRIG = 0xb9;
+ 831   1              _nop_();
+ 832   1              ISP_IAP_disable();
+ 833   1      }
+ 834          
+ 835          void ISP_IAP_enable(void)
+ 836          {
+ 837   1              EA = 0;
+ 838   1              ISP_CONTR &= 0x18;
+ 839   1              ISP_CONTR |= ISP_IAP_WAIT_TIME;
+ 840   1              ISP_CONTR |= 0x80;
+ 841   1      }
+ 842          
+ 843          void ISP_IAP_disable(void)
+ 844          {
+ 845   1              ISP_CONTR &= 0x7f;
+ 846   1              ISP_TRIG = 0x00;
+ 847   1              EA = 1;
+ 848   1      }
+ 849          
+ 850          
+ 851          void timer0(void) interrupt 1 using 1           // ¼ä¸ô10msÖÐ¶Ï
+ 852          {
+ 853   1              ET0 = 0;
+ 854   1              TR0 = 0;
+ 855   1              TL0 = T0_INTERVAL_L;
+ 856   1              TH0 = T0_INTERVAL_H;
+ 857   1      
+C51 COMPILER V7.06   TBA_2476SZ1_26                                                        03/29/2014 15:19:42 PAGE 15  
+
+ 858   1              work_led_blink_interval++;
+ 859   1              pa_led_blink_interval++;
+ 860   1              pc_led_blink_interval++;
+ 861   1              link_pa_led_blink_interval++;
+ 862   1              link_pc_led_blink_interval++;
+ 863   1      
+ 864   1              if(com_timeout > TIMEOUT)
+ 865   1                      com_timeout--;
+ 866   1      
+ 867   1              TR0 = 1;
+ 868   1              ET0 = 1;
+ 869   1      }
+ 870          
+ 871          void serial(void) interrupt 4
+ 872          {
+ 873   1              if(RI)
+ 874   1              {
+ 875   2                      RI = 0;
+ 876   2                      rxbuf[rx_wr_index++] = SBUF;
+ 877   2                      if(rx_wr_index >= RX_BUF_LEN)
+ 878   2                              rx_wr_index = 0;
+ 879   2                      rx_counter++;
+ 880   2              }
+ 881   1      }
+ 882          
+ 883          unsigned char get_char(unsigned char *pchar)
+ 884          {       
+ 885   1              if(0 == rx_counter)
+ 886   1                      return(0);
+ 887   1              
+ 888   1              *pchar = rxbuf[rx_rd_index++];
+ 889   1              if(rx_rd_index >= RX_BUF_LEN)
+ 890   1                      rx_rd_index = 0;
+ 891   1              ES = 0;
+ 892   1              rx_counter--;
+ 893   1              ES = 1; 
+ 894   1      
+ 895   1              return(1);
+ 896   1      }
+ 897          
+ 898          void put_n_char(unsigned char *buf, unsigned char n)
+ 899          {
+ 900   1              unsigned char data i;
+ 901   1      
+ 902   1              com_timeout = 200;
+ 903   1              
+ 904   1      //      WORK_LED = 0;
+ 905   1      
+ 906   1              for(i = 0; i < n; i++)
+ 907   1                      put_char(buf[i]);
+ 908   1      
+ 909   1      //      WORK_LED = 1;           
+ 910   1      }
+ 911          
+ 912          void put_char(unsigned char c)
+ 913          {
+ 914   1              SBUF = c;
+ 915   1              while(!TI);
+ 916   1              TI = 0;
+ 917   1      }
+ 918          
+ 919          void hex2ascii(unsigned char *buf, unsigned char hex)
+C51 COMPILER V7.06   TBA_2476SZ1_26                                                        03/29/2014 15:19:42 PAGE 16  
+
+ 920          {
+ 921   1              unsigned char tmp, tmp_B, tmp_S, tmp_G;
+ 922   1      
+ 923   1              tmp_B = hex /100;
+ 924   1              tmp = hex % 100;
+ 925   1              if(tmp_B > 0)
+ 926   1                      *buf++ = tmp_B + 0x30;
+ 927   1              else
+ 928   1                      *buf++ = 0x20;
+ 929   1      
+ 930   1              tmp_S = tmp / 10;
+ 931   1              tmp_G = tmp % 10;
+ 932   1      
+ 933   1              if(tmp_B == 0 && tmp_S == 0)
+ 934   1                      *buf++ = 0x20;
+ 935   1              else
+ 936   1                      *buf++ = tmp_S + 0x30;
+ 937   1      
+ 938   1              *buf++ = tmp_G + 0x30;
+ 939   1      
+ 940   1      }
+ 941          
+ 942          void delay_1ms(unsigned int _1ms)
+ 943          {
+ 944   1              RCAP2LH = 0xfc66;                                       // 1ms @11.0592MHz
+ 945   1              T2LH = 0xfc66;
+ 946   1      
+ 947   1              ET2 = 0;                                                        // disable timer2 interrupt
+ 948   1              T2CON = 0x04;                                           // 16-bit auto-reload, clear TF2, start timer 2 TR2 = 1
+ 949   1              while(_1ms--)
+ 950   1              {
+ 951   2                      while(!TF2);
+ 952   2                      TF2 = 0;
+ 953   2              }
+ 954   1      
+ 955   1              TR2 = 0;
+ 956   1      }
+ 957          
+ 958          void device_init(void)
+ 959          {
+ 960   1              EA = 0;
+ 961   1      
+ 962   1              TMOD = 0x21;                                    // T1 mode 2, T0 mode 1
+ 963   1              TH0 = T0_INTERVAL_H;                    // 10ms interrupt @11.0592MHz, time = (65536 - previous) * period *12
+ 964   1              TL0 = T0_INTERVAL_L;                    //
+ 965   1              ET0 = 1;                                                // enable T0 interrupt
+ 966   1              TR0 = 1;                                                // start up T0
+ 967   1       
+ 968   1              SCON = 0x50;                                    // UART mode 1, 8 bit, REN = 1 
+ 969   1              PCON = 0x00;                                    // SMOD = 0;
+ 970   1              TH1 = 0xfd;                                             // Baud 9600 @11.0592MHz
+ 971   1              TL1 = 0xfd;
+ 972   1              TR1 = 1;                                                // start up T1
+ 973   1              ES = 1;                                                 // enable UART interrupt
+ 974   1      
+ 975   1              WORK_LED = 0;                                   // ¹¤×÷×´Ì¬Ö¸Ê¾µÆI/O¿ÚÉÏµçÎªµÍµçÆ½£¬¹¤×÷×´Ì¬Ö¸Ê¾µÆ´¦ÓÚµãÁÁ×´Ì¬
+ 976   1                                                                              
+ 977   1              PA_STATE_CHK = 1;                               // ¹ã²¥×´Ì¬¼ì²âI/O¿ÚÉÏµçÎª¸ßµçÆ½£¬I/O¿ÚÎªÊäÈë¿Ú
+ 978   1              PC_STATE_CHK = 1;                               // ¶Ô½²×´Ì¬¼ì²âI/O¿ÚÉÏµçÎª¸ßµçÆ½£¬I/O¿ÚÎªÊäÈë¿Ú
+ 979   1              LINK_PA_STATE_CHK = 1;                  // ÖØÁ¬¹ã²¥×´Ì¬¼ì²âI/O¿ÚÉÏµçÎª¸ßµçÆ½£¬I/O¿ÚÎªÊäÈë¿Ú
+ 980   1              LINK_PC_STATE_CHK = 1;                  // ÖØÁ¬¶Ô½²×´Ì¬¼ì²âI/O¿ÚÉÏµçÎª¸ßµçÆ½£¬I/O¿ÚÎªÊäÈë¿Ú
+ 981   1      
+C51 COMPILER V7.06   TBA_2476SZ1_26                                                        03/29/2014 15:19:42 PAGE 17  
+
+ 982   1              PA_LED = 1;                                             // ¹ã²¥LEDÖ¸Ê¾µÆÏ¨Ãð
+ 983   1              PC_LED = 1;                                             // ¶Ô½²LEDÖ¸Ê¾µÆÏ¨Ãð
+ 984   1              LINK_PA_LED = 1;                                // ÖØÁ¬¹ã²¥LEDÖ¸Ê¾µÆÏ¨Ãð
+ 985   1              LINK_PC_LED = 1;                                // ÖØÁ¬¶Ô½²LEDÖ¸Ê¾µÆÏ¨Ãð
+ 986   1      
+ 987   1              PA_AUDIO_OUT = OFF;                             // ¹ã²¥ÒôÆµÊä³ö¹Ø±Õ
+ 988   1              PA_AUDIO_IN = OFF;                              // ¹ã²¥ÒôÆµÊäÈë¹Ø±Õ     
+ 989   1              
+ 990   1              PC_AUDIO_OUT = OFF;                             // ¶Ô½²ÒôÆµÊä³ö¹Ø±Õ
+ 991   1              PC_AUDIO_IN = OFF;                              // ¶Ô½²ÒôÆµÊäÈë¹Ø±Õ
+ 992   1      
+ 993   1              LINK_AUDIO_OUT = OFF;                   // ¹ã²¥ÒôÆµÊä³ö¹Ø±Õ
+ 994   1              LINK_AUDIO_IN = OFF;                    // ¹ã²¥ÒôÆµÊäÈë¹Ø±Õ
+ 995   1      
+ 996   1              pa_ctrl(OFF);                                   // PA_CTRL = OFF;                                       // ¹ã²¥¿ØÖÆÎª¸ßµçÆ½£¬¹Ø±Õ
+ 997   1              pc_ctrl(OFF);                                   // PC_CTRL = OFF;                                       // ¶Ô½²¿ØÖÆÎª¸ßµçÆ½£¬¹Ø±Õ
+ 998   1      
+ 999   1              link_pa_ctrl(OFF);                              // LINK_PA_CTRL = OFF;                          // ÖØÁ¬¹ã²¥¿ØÖÆÎª¸ßµçÆ½£¬¹Ø±Õ
+1000   1              link_pc_ctrl(OFF);                              // LINK_PC_CTRL = OFF;                          // ÖØÁ¬¶Ô½²¿ØÖÆÎª¸ßµçÆ½£¬¹Ø±Õ
+1001   1      
+1002   1              work_status = IDLE;                             // ÉÏµçÈ±Ê¡¹¤×÷×´Ì¬´¦ÓÚ¿ÕÏÐ×´Ì¬
+1003   1      
+1004   1              com_rx_status = COM_RX_HEAD;
+1005   1              
+1006   1              EA = 1; 
+1007   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   2569    ----
+   CONSTANT SIZE    =    853    ----
+   XDATA SIZE       =    176    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     25      30
+   IDATA SIZE       =   ----       2
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

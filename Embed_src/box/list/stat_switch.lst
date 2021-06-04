@@ -1,0 +1,138 @@
+C51 COMPILER V8.08   STAT_SWITCH                                                           11/14/2014 14:07:29 PAGE 1   
+
+
+C51 COMPILER V8.08, COMPILATION OF MODULE STAT_SWITCH
+OBJECT MODULE PLACED IN .\list\stat_switch.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE stat_switch.c COMPACT OPTIMIZE(1,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\l
+                    -ist\stat_switch.lst) OBJECT(.\list\stat_switch.obj)
+
+line level    source
+
+   1          /*
+   2          *******************************************************************************
+   3          **  Copyright (c) 2014, 深圳市北海轨道交通技术有限公司
+   4          **  All rights reserved.
+   5          **      
+   6          **  文件说明: 处理紧急报警状态切换
+   7          **  创建日期: 2014.01.06
+   8          **
+   9          **  当前版本：1.0
+  10          **  作者：李军
+  11          *******************************************************************************
+  12          */
+  13          #include "stat_switch.h"
+  14          #include "general.h"
+  15          #include "com.h"
+  16          #include "led_control.h"
+  17          
+  18          //总的状态
+  19          static eTalkStat gTalkStat;
+  20          
+  21          
+  22          void SetTalkStat(eTalkStat stat)
+  23          {       
+  24   1              gTalkStat = stat;
+  25   1      }
+  26          
+  27          eTalkStat GetTalkStat()
+  28          {
+  29   1              return gTalkStat;
+  30   1      }
+  31          
+  32          
+  33          void TalkStatSwitch(void)
+  34          {
+  35   1              eTalkStat  stat;
+  36   1              eKeyType key;
+  37   1      
+  38   1              if (GetUartIfSend()) return;
+  39   1      
+  40   1              key = GetKeyValue();
+  41   1      
+  42   1              if (//(key == KEY_TYPE_IDLE) || 
+  43   1                      (key == KEY_TYPE_CC) || \
+  44   1                      (key == KEY_TYPE_PA) || \
+  45   1                      (key == KEY_TYPE_PTT_DOWN) || \
+  46   1                      (key == KEY_TYPE_PTT_UP) )
+  47   1              {
+  48   2                      switch(key)
+  49   2                      {
+  50   3                              case KEY_TYPE_PTT_DOWN:
+  51   3                                      LedSwitch(LED_PTT, LED_OPEN);
+  52   3                                      MIC_CTRL_PIN = 0;                               
+  53   3                                      BoxDataUpdateKeyPtt(0);
+  54   3                                      break;
+C51 COMPILER V8.08   STAT_SWITCH                                                           11/14/2014 14:07:29 PAGE 2   
+
+  55   3                              case KEY_TYPE_PTT_UP:
+  56   3                                      LedSwitch(LED_PTT, LED_CLOSE);
+  57   3                                      MIC_CTRL_PIN = 1;
+  58   3                                      BoxDataUpdateKeyPtt(1);
+  59   3                                      break;
+  60   3                              case KEY_TYPE_PA:
+  61   3                                      LedSwitch(LED_PA, LED_OPEN);
+  62   3                                      BoxDataUpdateKeyPa(0);
+  63   3                                      //BoxDataUpdateKeyCc(1);  //CC 切到PA 时，两种状态会同时触发，add by suven
+  64   3                                      break;
+  65   3                              case KEY_TYPE_CC:
+  66   3                                      LedSwitch(LED_CC, LED_OPEN);
+  67   3                                      BoxDataUpdateKeyCc(0);
+  68   3                                      //BoxDataUpdateKeyPa(1);//PA 切到CC 时，两种状态会同时触发，add by suven
+  69   3                                      break;
+  70   3      
+  71   3                              case KEY_TYPE_PCRST:
+  72   3                                      BoxDataUpdateKeyPcRst(0);
+  73   3                                      //BoxDataUpdateKeyPa(1);
+  74   3                                      //BoxDataUpdateKeyCc(1);
+  75   3                                      break;
+  76   3      
+  77   3                      }
+  78   2              }
+  79   1              else 
+  80   1              {
+  81   2                      stat = GetTalkStat();
+  82   2                      switch( stat )
+  83   2                      {
+  84   3                              case TALK_STAT_IDLE:
+  85   3                                      BoxDataUpdateKeyPc(0);
+  86   3                                      break;
+  87   3                              case TALK_STAT_ALARM:
+  88   3                                      if (key == KEY_TYPE_PC)
+  89   3                                      {
+  90   4                                              BoxDataUpdateKeyPc(1);
+  91   4                                      }
+  92   3                                      break;
+  93   3                              case TALK_STAT_CONN:
+  94   3                                      if (key == KEY_TYPE_PC)
+  95   3                                      {
+  96   4                                              BoxDataUpdateKeyPc(2);
+  97   4                                      }
+  98   3                                      break;
+  99   3                              default:
+ 100   3                                      SetTalkStat(TALK_STAT_IDLE);
+ 101   3                                      break;
+ 102   3                      }
+ 103   2              }
+ 104   1      }
+ 105          
+ 106          void TalkStatInit(void)
+ 107          {
+ 108   1              gTalkStat = TALK_STAT_IDLE;
+ 109   1      }
+ 110          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    240    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+C51 COMPILER V8.08   STAT_SWITCH                                                           11/14/2014 14:07:29 PAGE 3   
+
+   PDATA SIZE       =      4    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

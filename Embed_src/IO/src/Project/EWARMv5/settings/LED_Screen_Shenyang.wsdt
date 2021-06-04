@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Workspace>
+  <ConfigDictionary>
+    
+  <CurrentConfigs><Project>JoyStickMouse/STM32108PKT</Project></CurrentConfigs></ConfigDictionary>
+  <Desktop>
+    <Static>
+      <Workspace>
+        <ColumnWidths>
+          
+          
+          
+          
+        <Column0>199</Column0><Column1>37</Column1><Column2>60</Column2><Column3>2001363427</Column3></ColumnWidths>
+      </Workspace>
+      <Build>
+        
+        
+        
+        
+      <ColumnWidth0>20</ColumnWidth0><ColumnWidth1>932</ColumnWidth1><ColumnWidth2>244</ColumnWidth2><ColumnWidth3>61</ColumnWidth3></Build>
+    <Debug-Log><ColumnWidth0>20</ColumnWidth0><ColumnWidth1>1221</ColumnWidth1></Debug-Log><TerminalIO/><Disassembly><MixedMode>1</MixedMode><CodeCovShow>0</CodeCovShow><InstrProfShow>0</InstrProfShow></Disassembly><Find-in-Files><ColumnWidth0>552</ColumnWidth0><ColumnWidth1>78</ColumnWidth1><ColumnWidth2>946</ColumnWidth2></Find-in-Files></Static>
+    <Windows>
+      
+      
+    <Wnd2>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-25512-4396</Identity>
+            <TabName>Workspace</TabName>
+            <Factory>Workspace</Factory>
+            <Session>
+              
+            <NodeDict><ExpandedNode>JoyStickMouse</ExpandedNode><ExpandedNode>JoyStickMouse/CMSIS</ExpandedNode><ExpandedNode>JoyStickMouse/Doc</ExpandedNode><ExpandedNode>JoyStickMouse/EWARMv5</ExpandedNode><ExpandedNode>JoyStickMouse/Output</ExpandedNode><ExpandedNode>JoyStickMouse/StdPeriph_Driver</ExpandedNode><ExpandedNode>JoyStickMouse/USB-FS-Device_Driver</ExpandedNode><ExpandedNode>JoyStickMouse/User</ExpandedNode></NodeDict></Session>
+          </Tab>
+        </Tabs>
+        
+      <SelectedTab>0</SelectedTab></Wnd2><Wnd3>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-13718-4413</Identity>
+            <TabName>Build</TabName>
+            <Factory>Build</Factory>
+            <Session/>
+          </Tab>
+        <Tab><Identity>TabID-9027-3953</Identity><TabName>Debug Log</TabName><Factory>Debug-Log</Factory><Session/></Tab><Tab><Identity>TabID-7758-23060</Identity><TabName>Find in Files</TabName><Factory>Find-in-Files</Factory><Session/></Tab></Tabs>
+        
+      <SelectedTab>0</SelectedTab></Wnd3></Windows>
+    <Editor>
+      
+      
+      
+      
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>D:\svuen&#x52FF;&#x5220;\&#x5e7F;3\IO\src\Project\src\led_control.c</Filename><XPos>0</XPos><YPos>376</YPos><SelStart>6468</SelStart><SelEnd>6468</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>D:\svuen&#x52FF;&#x5220;\&#x5e7F;3\IO\src\Project\src\data_train.c</Filename><XPos>0</XPos><YPos>265</YPos><SelStart>5773</SelStart><SelEnd>5773</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>D:\svuen&#x52FF;&#x5220;\&#x5e7F;3\IO\src\Project\src\main.c</Filename><XPos>0</XPos><YPos>309</YPos><SelStart>9986</SelStart><SelEnd>9986</SelEnd></Tab><ActiveTab>2</ActiveTab><Tab><Factory>TextEditor</Factory><Filename>D:\svuen&#x52FF;&#x5220;\&#x5e7F;3\IO\src\Project\src\stm32f10x_it.c</Filename><XPos>0</XPos><YPos>53</YPos><SelStart>2925</SelStart><SelEnd>2925</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>D:\svuen&#x52FF;&#x5220;\&#x5e7F;3\IO\src\Libraries\CMSIS\Core\CM3\system_stm32f10x.c</Filename><XPos>0</XPos><YPos>662</YPos><SelStart>23274</SelStart><SelEnd>23274</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>D:\svuen&#x52FF;&#x5220;\&#x5e7F;3\IO\src\Project\src\device_info.c</Filename><XPos>0</XPos><YPos>57</YPos><SelStart>1260</SelStart><SelEnd>1260</SelEnd></Tab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Positions>
+      
+      
+      
+      
+      
+    <Top><Row0><Sizes><Toolbar-0122e2e8><key>iaridepm.enu1</key></Toolbar-0122e2e8></Sizes></Row0><Row1><Sizes/></Row1></Top><Left><Row0><Sizes><Wnd2><Rect><Top>-2</Top><Left>-2</Left><Bottom>437</Bottom><Right>333</Right><x>-2</x><y>-2</y><xscreen>1</xscreen><yscreen>0</yscreen><sizeHorzCX>732</sizeHorzCX><sizeHorzCY>0</sizeHorzCY><sizeVertCX>245242</sizeVertCX><sizeVertCY>639942</sizeVertCY></Rect></Wnd2></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd3><Rect><Top>-2</Top><Left>-2</Left><Bottom>204</Bottom><Right>1368</Right><x>-2</x><y>-2</y><xscreen>1370</xscreen><yscreen>206</yscreen><sizeHorzCX>1002928</sizeHorzCX><sizeHorzCY>300292</sizeHorzCY><sizeVertCX>732</sizeVertCX><sizeVertCY>0</sizeVertCY></Rect></Wnd3></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+  </Desktop>
+</Workspace>
+
+
